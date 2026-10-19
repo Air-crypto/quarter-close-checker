@@ -1,0 +1,45 @@
+% Cut verbatim from appendix_q6.tex by paper/gen_v10/split_parts.py; do not edit.
+\apptab{Frozen \vq{6}: SEC set~1 held-out poor scans (29 statements, 2,144 numbers)}\label{tab:q6A_0}
+One run per model, mode and identity setting. Fixed: wrong in the extraction, right at the end. Coverage: share of numbers in some identity used by the run. Frozen \vq{5}, re-run on the same inputs, gives exactly the hand-identity rows (not repeated).
+\begin{center}\footnotesize\setlength{\tabcolsep}{3.5pt}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{lllrrrrr}
+\toprule
+Pipeline & Accuracy [95\% CI] & Silent [95\% CI] & Flagged (wrong) & Broken & Fixed & To human & Coverage \\
+\midrule
+Haiku alone & 94.92\% [92.06, 97.47] & 109 [53, 175] & 0 (0) & 0 & 0 & 0.0\% & -- \\
+Haiku + \vq{6}, text & 98.83\% [97.94, 99.56] & 0 [0, 0] & 51 (25) & 0 & 84 & 2.4\% & 85.6\% \\
+Haiku + \vq{6}, no text & 94.92\% [92.06, 97.47] & 57 [27, 92] & 155 (52) & 0 & 0 & 7.2\% & 85.6\% \\
+Haiku + \vq{6}, OCR docTR & 95.52\% [92.97, 97.75] & 47 [21, 78] & 249 (49) & 0 & 13 & 11.6\% & 85.6\% \\
+Haiku + \vq{6}, OCR Tesseract & 94.92\% [92.06, 97.47] & 38 [15, 66] & 391 (71) & 0 & 0 & 18.2\% & 85.6\% \\
+Haiku + \vq{6} discovered ids, text & 98.83\% [97.94, 99.56] & 0 [0, 0] & 38 (25) & 0 & 84 & 1.8\% & 89.2\% \\
+Haiku + \vq{6} discovered ids, no text & 94.92\% [92.06, 97.47] & 80 [33, 138] & 100 (29) & 0 & 0 & 4.7\% & 87.5\% \\
+Haiku + \vq{6} hand + discovered ids, text & 98.83\% [97.94, 99.56] & 0 [0, 0] & 49 (25) & 0 & 84 & 2.3\% & 93.8\% \\
+Haiku + \vq{6} hand + discovered ids, no text & 94.92\% [92.06, 97.47] & 56 [27, 91] & 175 (53) & 0 & 0 & 8.2\% & 92.7\% \\
+Haiku + \vq{6} zero-config, text & 97.29\% [95.96, 98.54] & 0 [0, 0] & 80 (58) & 0 & 51 & 3.7\% & 84.7\% \\
+Haiku + \vq{6} zero-config, no text & 94.92\% [92.06, 97.47] & 80 [33, 138] & 100 (29) & 0 & 0 & 4.7\% & 87.5\% \\
+Opus alone & 98.60\% [97.39, 99.56] & 30 [9, 56] & 0 (0) & 0 & 0 & 0.0\% & -- \\
+Opus + \vq{6}, text & 99.44\% [98.64, 100.00] & 0 [0, 0] & 16 (12) & 0 & 18 & 0.7\% & 85.6\% \\
+Opus + \vq{6}, no text & 98.60\% [97.39, 99.56] & 13 [3, 26] & 62 (17) & 0 & 0 & 2.9\% & 85.6\% \\
+Opus + \vq{6}, OCR docTR & 98.79\% [97.64, 99.66] & 10 [2, 21] & 183 (16) & 0 & 4 & 8.5\% & 85.6\% \\
+Opus + \vq{6}, OCR Tesseract & 98.60\% [97.39, 99.56] & 9 [2, 19] & 282 (21) & 0 & 0 & 13.2\% & 85.6\% \\
+Opus + \vq{6} discovered ids, text & 99.44\% [98.64, 100.00] & 5 [0, 14] & 8 (7) & 0 & 18 & 0.4\% & 90.2\% \\
+Opus + \vq{6} discovered ids, no text & 98.60\% [97.39, 99.56] & 18 [5, 34] & 51 (12) & 0 & 0 & 2.4\% & 90.6\% \\
+Opus + \vq{6} hand + discovered ids, text & 99.44\% [98.64, 100.00] & 0 [0, 0] & 31 (12) & 0 & 18 & 1.4\% & 93.8\% \\
+Opus + \vq{6} hand + discovered ids, no text & 98.60\% [97.39, 99.56] & 12 [2, 25] & 82 (18) & 0 & 0 & 3.8\% & 92.5\% \\
+Opus + \vq{6} zero-config, text & 99.35\% [98.55, 99.91] & 5 [0, 14] & 10 (9) & 0 & 16 & 0.5\% & 88.5\% \\
+Opus + \vq{6} zero-config, no text & 98.60\% [97.39, 99.56] & 18 [5, 34] & 51 (12) & 0 & 0 & 2.4\% & 90.6\% \\
+GPT alone & 75.23\% [68.22, 81.76] & 531 [375, 707] & 0 (0) & 0 & 0 & 0.0\% & -- \\
+GPT + \vq{6}, text & 94.50\% [91.86, 96.79] & 8 [1, 19] & 186 (110) & 0 & 413 & 8.7\% & 85.6\% \\
+GPT + \vq{6}, no text & 75.23\% [68.22, 81.76] & 316 [208, 430] & 554 (215) & 0 & 0 & 25.8\% & 85.6\% \\
+GPT + \vq{6}, OCR docTR & 76.54\% [69.42, 83.20] & 194 [116, 279] & 689 (309) & 2 & 30 & 32.1\% & 85.6\% \\
+GPT + \vq{6}, OCR Tesseract & 75.28\% [68.26, 81.83] & 193 [116, 281] & 873 (337) & 0 & 1 & 40.7\% & 85.6\% \\
+GPT + \vq{6} discovered ids, text & 94.50\% [91.90, 96.78] & 10 [1, 24] & 137 (108) & 0 & 413 & 6.4\% & 75.4\% \\
+GPT + \vq{6} discovered ids, no text & 75.23\% [68.22, 81.76] & 484 [330, 658] & 144 (47) & 0 & 0 & 6.7\% & 60.7\% \\
+GPT + \vq{6} hand + discovered ids, text & 94.59\% [92.09, 96.80] & 8 [1, 19] & 188 (108) & 0 & 415 & 8.8\% & 89.3\% \\
+GPT + \vq{6} hand + discovered ids, no text & 75.23\% [68.22, 81.76] & 303 [201, 413] & 586 (228) & 0 & 0 & 27.3\% & 90.4\% \\
+GPT + \vq{6} zero-config, text & 76.73\% [69.42, 83.57] & 56 [15, 109] & 533 (443) & 0 & 32 & 24.9\% & 51.1\% \\
+GPT + \vq{6} zero-config, no text & 75.23\% [68.22, 81.76] & 484 [330, 658] & 144 (47) & 0 & 0 & 6.7\% & 60.7\% \\
+\bottomrule
+\end{tabular}\end{adjustbox}
+\end{center}
+

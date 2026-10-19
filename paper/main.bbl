@@ -1,0 +1,248 @@
+\begin{thebibliography}{31}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Aggarwal et~al.(2024)Aggarwal, Madaan, Anand, Potharaju, Mishra, Zhou,
+  Gupta, Rajagopal, Kappaganthu, Yang, Upadhyay, Faruqui, and
+  Mausam]{aggarwal2024automix}
+Pranjal Aggarwal, Aman Madaan, Ankit Anand, Srividya~Pranavi Potharaju, Swaroop
+  Mishra, Pei Zhou, Aditya Gupta, Dheeraj Rajagopal, Karthik Kappaganthu,
+  Yiming Yang, Shyam Upadhyay, Manaal Faruqui, and Mausam.
+\newblock {AutoMix}: Automatically mixing language models.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2024.
+\newblock URL \url{https://arxiv.org/abs/2310.12963}.
+
+\bibitem[Aggarwal et~al.(2025)Aggarwal, Narang, Kulkarni, Raman, Thomas,
+  Mascarenhas, and Shah]{aggarwal2025fiscal}
+Vikram Aggarwal, Aakriti Narang, Jay Kulkarni, Siddarth Raman, Susan Thomas,
+  Aditi Mascarenhas, and Ajay Shah.
+\newblock Information extraction from fiscal documents using {LLMs}.
+\newblock In \emph{Proceedings of the ACM International Conference on AI in
+  Finance (ICAIF '25)}, 2025.
+\newblock URL \url{https://arxiv.org/abs/2511.10659}.
+
+\bibitem[Anvari(2026)]{anvari2026pixels}
+Zahra Anvari.
+\newblock From pixels to pairs: A comprehensive benchmark of {LLM}-based
+  key-value extraction in noisy document settings, 2026.
+\newblock URL \url{https://arxiv.org/abs/2609.17538}.
+
+\bibitem[Baker et~al.(2025)Baker, Huizinga, Gao, Dou, Guan, Madry, Zaremba,
+  Pachocki, and Farhi]{baker2025monitoring}
+Bowen Baker, Joost Huizinga, Leo Gao, Zehao Dou, Melody~Y. Guan, Aleksander
+  Madry, Wojciech Zaremba, Jakub Pachocki, and David Farhi.
+\newblock Monitoring reasoning models for misbehavior and the risks of
+  promoting obfuscation, 2025.
+\newblock URL \url{https://arxiv.org/abs/2503.11926}.
+
+\bibitem[Bertossi et~al.(2005)Bertossi, Bravo, Franconi, and
+  Lopatenko]{bertossi2005complexity}
+Leopoldo Bertossi, Loreto Bravo, Enrico Franconi, and Andrei Lopatenko.
+\newblock Complexity and approximation of fixing numerical attributes in
+  databases under integrity constraints.
+\newblock In \emph{Database Programming Languages (DBPL 2005)}, volume 3774 of
+  \emph{Lecture Notes in Computer Science}. Springer, 2005.
+
+\bibitem[Chen et~al.(2024)Chen, Zaharia, and Zou]{chen2024frugalgpt}
+Lingjiao Chen, Matei Zaharia, and James Zou.
+\newblock {FrugalGPT}: How to use large language models while reducing cost and
+  improving performance.
+\newblock \emph{Transactions on Machine Learning Research}, 2024.
+\newblock URL \url{https://arxiv.org/abs/2305.05176}.
+
+\bibitem[Correia and Luck(2023)]{correia2023digitizing}
+Sergio Correia and Stephan Luck.
+\newblock Digitizing historical balance sheet data: A practitioner's guide.
+\newblock \emph{Explorations in Economic History}, 2023.
+\newblock URL \url{https://arxiv.org/abs/2204.00052}.
+
+\bibitem[Debreceny et~al.(2010)Debreceny, Farewell, Piechocki, Felden, and
+  Gr{\"a}ning]{debreceny2010add}
+Roger Debreceny, Stephanie Farewell, Maciej Piechocki, Carsten Felden, and
+  Andr{\'e} Gr{\"a}ning.
+\newblock Does it add up? early evidence on the data quality of {XBRL} filings
+  to the {SEC}.
+\newblock \emph{Journal of Accounting and Public Policy}, 29\penalty0
+  (3):\penalty0 296--306, 2010.
+\newblock URL
+  \url{https://ideas.repec.org/a/eee/jappol/v29y2010i3p296-306.html}.
+
+\bibitem[Fazzinga et~al.(2006)Fazzinga, Flesca, Furfaro, and
+  Parisi]{fazzinga2006dart}
+Bettina Fazzinga, Sergio Flesca, Filippo Furfaro, and Francesco Parisi.
+\newblock {DART}: A data acquisition and repairing tool.
+\newblock In \emph{Current Trends in Database Technology -- EDBT 2006
+  Workshops}, volume 4254 of \emph{Lecture Notes in Computer Science}, pages
+  297--317. Springer, 2006.
+
+\bibitem[Fellegi and Holt(1976)]{fellegi1976systematic}
+Ivan~P. Fellegi and D.~Holt.
+\newblock A systematic approach to automatic edit and imputation.
+\newblock \emph{Journal of the American Statistical Association}, 71\penalty0
+  (353):\penalty0 17--35, 1976.
+
+\bibitem[Flesca et~al.(2010)Flesca, Furfaro, and Parisi]{flesca2010querying}
+Sergio Flesca, Filippo Furfaro, and Francesco Parisi.
+\newblock Querying and repairing inconsistent numerical databases.
+\newblock \emph{ACM Transactions on Database Systems}, 35\penalty0
+  (2):\penalty0 1--50, 2010.
+
+\bibitem[Gupta et~al.(2024)Gupta, Narasimhan, Jitkrittum, Rawat, Menon, and
+  Kumar]{gupta2024cascades}
+Neha Gupta, Harikrishna Narasimhan, Wittawat Jitkrittum, Ankit~Singh Rawat,
+  Aditya~Krishna Menon, and Sanjiv Kumar.
+\newblock Language model cascades: Token-level uncertainty and beyond.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2024.
+
+\bibitem[Hall et~al.(2026)Hall, Shome, and Eiers]{hall2026verifin}
+Bethel Hall, Sachi Shome, and William Eiers.
+\newblock {VeriFin}: A neurosymbolic framework for verifying {LLM}-generated
+  financial claims, 2026.
+\newblock URL \url{https://arxiv.org/abs/2608.10213}.
+
+\bibitem[He et~al.(2025)He, Zhang, Wu, Chen, Zhan, Li, Zhang, Wang, and
+  Qiu]{he2025seeing}
+Zhentao He, Can Zhang, Ziheng Wu, Zhenghao Chen, Yufei Zhan, Yifan Li, Zhao
+  Zhang, Xian Wang, and Minghui Qiu.
+\newblock Seeing is believing? mitigating {OCR} hallucinations in multimodal
+  large language models.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2025.
+\newblock URL \url{https://arxiv.org/abs/2506.20168}.
+
+\bibitem[Hemmer et~al.(2025)Hemmer, Coustaty, Bartolo, and
+  Ogier]{hemmer2025neurosymbolic}
+Arthur Hemmer, Micka{\"e}l Coustaty, Nicola Bartolo, and Jean-Marc Ogier.
+\newblock Neurosymbolic information extraction from transactional documents.
+\newblock \emph{International Journal on Document Analysis and Recognition},
+  2025.
+\newblock URL \url{https://arxiv.org/abs/2512.09666}.
+
+\bibitem[Huang et~al.(2024)Huang, Chen, Mishra, Zheng, Yu, Song, and
+  Zhou]{huang2024cannot}
+Jie Huang, Xinyun Chen, Swaroop Mishra, Huaixiu~Steven Zheng, Adams~Wei Yu,
+  Xinying Song, and Denny Zhou.
+\newblock Large language models cannot self-correct reasoning yet.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2024.
+
+\bibitem[Jung et~al.(2025)Jung, Brahman, and Choi]{jung2025trust}
+Jaehun Jung, Faeze Brahman, and Yejin Choi.
+\newblock Trust or escalate: {LLM} judges with provable guarantees for human
+  agreement.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2025.
+
+\bibitem[Kim et~al.(2022)Kim, Hong, Yim, Nam, Park, Yim, Hwang, Yun, Han, and
+  Park]{kim2022donut}
+Geewook Kim, Teakgyu Hong, Moonbin Yim, JeongYeon Nam, Jinyoung Park, Jinyeong
+  Yim, Wonseok Hwang, Sangdoo Yun, Dongyoon Han, and Seunghyun Park.
+\newblock {OCR}-free document understanding transformer.
+\newblock In \emph{European Conference on Computer Vision (ECCV)}, 2022.
+
+\bibitem[Kugler and Zhu(2026)]{kugler2026ipums}
+Tracy Kugler and Tsu Zhu.
+\newblock Does 1 + 2 = 8? automating {QA/QC} for tabular data.
+\newblock IPUMS blog, Minnesota Population Center, 2026.
+\newblock URL
+  \url{https://blog.popdata.org/automating-qa-qc-for-tabular-data/}.
+
+\bibitem[Panda(2026)]{panda2026finverbench}
+Silu Panda.
+\newblock {FinVerBench}: Benchmark validity and calibration in large language
+  model financial statement verification, 2026.
+\newblock URL \url{https://arxiv.org/abs/2605.29586}.
+
+\bibitem[Pannekoek et~al.(2013)Pannekoek, Scholtus, and van~der
+  Loo]{pannekoek2013automated}
+Jeroen Pannekoek, Sander Scholtus, and Mark van~der Loo.
+\newblock Automated and manual data editing: A view on process design and
+  methodology.
+\newblock \emph{Journal of Official Statistics}, 29\penalty0 (4):\penalty0
+  511--537, 2013.
+
+\bibitem[Park et~al.(2019)Park, Shin, Lee, Lee, Surh, Seo, and
+  Lee]{park2019cord}
+Seunghyun Park, Seung Shin, Bado Lee, Junyeop Lee, Jaeheung Surh, Minjoon Seo,
+  and Hwalsuk Lee.
+\newblock {CORD}: A consolidated receipt dataset for post-{OCR} parsing.
+\newblock In \emph{Workshop on Document Intelligence at NeurIPS}, 2019.
+
+\bibitem[Scholtus(2009)]{scholtus2009typing}
+Sander Scholtus.
+\newblock Automatic correction of simple typing errors in numerical data with
+  balance edits.
+\newblock Discussion paper 09046, Statistics Netherlands, 2009.
+\newblock URL
+  \url{https://www.cbs.nl/nl-nl/achtergrond/2009/48/automatic-correction-of-simple-typing-errors-in-numerical-data-with-balance-edits}.
+
+\bibitem[Scholtus(2011)]{scholtus2011algorithms}
+Sander Scholtus.
+\newblock Algorithms for correcting sign errors and rounding errors in business
+  survey data.
+\newblock \emph{Journal of Official Statistics}, 27\penalty0 (3):\penalty0
+  467--490, 2011.
+\newblock URL
+  \url{https://www.scb.se/contentassets/ca21efb41fee47d293bbee5bf7be7fb3/algorithms-for-correcting-sign-errors-and-rounding-errors-in-business-survey-data.pdf}.
+
+\bibitem[Shankar et~al.(2026)Shankar, Zeighami, and
+  Parameswaran]{shankar2026taskcascades}
+Shreya Shankar, Sepanta Zeighami, and Aditya Parameswaran.
+\newblock Task cascades for efficient unstructured data processing.
+\newblock \emph{Proceedings of the ACM on Management of Data}, 4\penalty0 (1),
+  2026.
+
+\bibitem[Shu et~al.(2025)Shu, Wang, Wang, Mai, and Wan]{shu2025lava}
+Ruoqi Shu, Xuhui Wang, Isaac Wang, Yanming Mai, and Bo~Wan.
+\newblock {LAVA}: Logic-aware validation and augmentation framework for
+  large-scale financial document auditing.
+\newblock In \emph{Proceedings of the 10th Workshop on Financial Technology and
+  Natural Language Processing (FinNLP)}, pages 75--92, Suzhou, China, 2025.
+  Association for Computational Linguistics.
+\newblock URL \url{https://aclanthology.org/2025.finnlp-2.7/}.
+
+\bibitem[van~der Loo et~al.(2011)van~der Loo, de~Jonge, and
+  Scholtus]{vanderloo2011deducorrect}
+Mark van~der Loo, Edwin de~Jonge, and Sander Scholtus.
+\newblock Correction of rounding, typing and sign errors with the deducorrect
+  package.
+\newblock Discussion paper 2011019, Statistics Netherlands, 2011.
+\newblock URL
+  \url{https://www.markvanderloo.eu/files/share/loo2011correction.pdf}.
+
+\bibitem[Wang et~al.(2025)Wang, Wang, Yang, Patel, Zhao, Mo, Peng, Qian, Chen,
+  Guti{\'e}rrez-Basulto, Huang, Xiong, Liu, Liu, and Nie]{wang2025finauditing}
+Yan Wang, Keyi Wang, Shanshan Yang, Jaisal Patel, Jeff Zhao, Fengran Mo,
+  Xueqing Peng, Lingfei Qian, Yankai Chen, V{\'i}ctor Guti{\'e}rrez-Basulto,
+  Jimin Huang, Guojun Xiong, Xiao-Yang Liu, Xue Liu, and Jian-Yun Nie.
+\newblock {FinAuditing}: A financial taxonomy-structured multi-document
+  benchmark for evaluating {LLMs}, 2025.
+\newblock URL \url{https://arxiv.org/abs/2510.08886}.
+
+\bibitem[Wang et~al.(2026)Wang, Ai, Patel, Peng, Mo, Cao, Li, Cao, Qian, and
+  Guti{\'e}rrez-Basulto]{wang2026auditflow}
+Yan Wang, Xuguang Ai, Jaisal Patel, Xueqing Peng, Fengran Mo, Yupeng Cao,
+  Haohang Li, Mingyu Cao, Lingfei Qian, and V{\'i}ctor Guti{\'e}rrez-Basulto.
+\newblock {AuditFlow}: Executable symbolic environments for structured
+  financial reporting verification, 2026.
+\newblock URL \url{https://arxiv.org/abs/2606.03031}.
+
+\bibitem[Wang et~al.(2023)Wang, Zhou, Wei, Lee, and Tata]{wang2023vrdu}
+Zilong Wang, Yichao Zhou, Wei Wei, Chen-Yu Lee, and Sandeep Tata.
+\newblock {VRDU}: A benchmark for visually-rich document understanding.
+\newblock In \emph{Proceedings of the 29th ACM SIGKDD Conference on Knowledge
+  Discovery and Data Mining}, 2023.
+
+\bibitem[Zhong et~al.(2025)Zhong, Raghunathan, and
+  Carlini]{zhong2025impossiblebench}
+Ziqian Zhong, Aditi Raghunathan, and Nicholas Carlini.
+\newblock {ImpossibleBench}: Measuring {LLMs}' propensity of exploiting test
+  cases, 2025.
+\newblock URL \url{https://arxiv.org/abs/2510.20270}.
+
+\end{thebibliography}

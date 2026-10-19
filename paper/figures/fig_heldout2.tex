@@ -1,0 +1,53 @@
+% Figure: held-out set 2 (funds 31-39), per model, frozen v1 vs frozen v2.
+% Source: paper/heldout2_v1.md and paper/heldout2_v2.md, per-run rows summed by model
+% (= draft.md Section 5.8 table). Shares are of each model's tier 0 errors:
+%   Opus 423: text v1 422/1/0, v2 422/1/0; no text v1 0/24/399, v2 0/24/399
+%   Haiku 1,539: text v1 1,522/16/1, v2 1,524/14/1; no text v1 0/637/902, v2 0/1,063/476
+%   luna 2,805: text v1 2,738/37/30, v2 2,739/66/0; no text v1 0/213/2,592, v2 0/2,504/301
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 2, vertical sep=26pt},
+  qbar, width=4.6cm, xmin=0, xmax=100, y=9.5pt,
+  ytick={1,2,3,4,5,6}, ymin=1, ymax=6, y dir=reverse,
+  yticklabels={Opus v1, Opus v2, Haiku v1, Haiku v2, luna v1, luna v2},
+  xtick={0,25,50,75,100}, xticklabel={\pgfmathprintnumber{\tick}\%},
+  clip=false]
+\nextgroupplot[title={Text layer}, xticklabels={}, legend columns=3, legend style={at={(0.5,1.32)}, anchor=south}]
+\addplot[fixbar] coordinates {(99.76,1) (99.76,2) (98.90,3) (99.03,4) (97.61,5) (97.65,6)};
+\addplot[t2bar] coordinates {(0.24,1) (0.24,2) (1.04,3) (0.91,4) (1.32,5) (2.35,6)};
+\addplot[missbar] coordinates {(0,1) (0,2) (0.06,3) (0.06,4) (1.07,5) (0,6)};
+\legend{fixed, to tier 2, missed}
+\coordinate (hel1) at (axis cs:100,1);
+\coordinate (hel2) at (axis cs:100,2);
+\coordinate (hel3) at (axis cs:100,3);
+\coordinate (hel4) at (axis cs:100,4);
+\coordinate (hel5) at (axis cs:100,5);
+\coordinate (hel6) at (axis cs:100,6);
+\nextgroupplot[title={No page text (fixed $=0$)}]
+\addplot[fixbar] coordinates {(0,1) (0,2) (0,3) (0,4) (0,5) (0,6)};
+\addplot[t2bar] coordinates {(5.67,1) (5.67,2) (41.39,3) (69.07,4) (7.59,5) (89.27,6)};
+\addplot[missbar] coordinates {(94.33,1) (94.33,2) (58.61,3) (30.93,4) (92.41,5) (10.73,6)};
+\coordinate (hel7) at (axis cs:100,1);
+\coordinate (hel8) at (axis cs:100,2);
+\coordinate (hel9) at (axis cs:100,3);
+\coordinate (hel10) at (axis cs:100,4);
+\coordinate (hel11) at (axis cs:100,5);
+\coordinate (hel12) at (axis cs:100,6);
+\end{groupplot}
+\node[sidelab] at (hel1) {422 / 1 / 0};
+\node[sidelab] at (hel2) {422 / 1 / 0};
+\node[sidelab] at (hel3) {1,522 / 16 / 1};
+\node[sidelab] at (hel4) {1,524 / 14 / 1};
+\node[sidelab] at (hel5) {2,738 / 37 / 30};
+\node[sidelab] at (hel6) {2,739 / 66 / 0};
+\node[sidelab] at (hel7) {24 / 399};
+\node[sidelab] at (hel8) {24 / 399};
+\node[sidelab] at (hel9) {637 / 902};
+\node[sidelab] at (hel10) {1,063 / 476};
+\node[sidelab] at (hel11) {213 / 2,592};
+\node[sidelab] at (hel12) {2,504 / 301};
+\end{tikzpicture}
+\caption{Outcomes on held-out set~2 (funds 31--39, 4,767 tier~0 errors) as a share of each model's errors, for frozen PE v1 and v2. Counts at right are fixed\,/\,tier~2\,/\,missed with a text layer (top) and tier~2\,/\,missed without page text (bottom). With a text layer both versions fix 97.6--99.8\% of each model's errors.}
+\label{fig:heldout2}
+\end{figure}

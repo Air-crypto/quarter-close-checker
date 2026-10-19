@@ -1,0 +1,59 @@
+% Figure 1 (v6): the tier ladder. Counts: Claude Haiku on the 155 held-out SEC statements (sets 1-3 pooled),
+% poor scans, frozen qcore6, hand identities, text mode (out/qcore6_heldout/results.json, sets.ABC.rows
+% "Haiku + qcore6 (text)": 527 tier 0 errors (Haiku alone wrong); fixed 348; wrong at the end 179, flagged wrong 160,
+% silent 19; broken 0; tier 2 items 25 (A) + 55 (B) + 75 (C) = 155 (sets.{A,B,C}.rows[...].tier2_items).
+\begin{figure*}[t]
+\centering
+\def\hdr{\small\bfseries}
+\begin{tikzpicture}[
+  font=\sffamily\footnotesize,
+  tier/.style={draw=ink, rounded corners=2pt, line width=0.6pt, fill=white, align=left,
+               inner sep=4pt, text width=#1, minimum height=2.75cm,
+               execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}},
+  tier/.default=3.0cm,
+  hdr/.style={font=\sffamily\small\bfseries},
+  flow/.style={-{Latex[length=2.2mm,width=1.6mm]}, line width=0.8pt, draw=ink},
+  lab/.style={font=\sffamily\scriptsize, text=ink, align=center, text width=1.55cm},
+  stage/.style={draw=cFix!70!black, fill=cFix!8, rounded corners=1.5pt, inner sep=2pt,
+                text width=3.45cm, align=left, font=\sffamily\scriptsize, minimum height=0.40cm},
+  opt/.style={draw=cT2!80!black, fill=cT2!10, dashed, rounded corners=1.5pt, inner sep=2pt,
+                text width=3.45cm, align=left, font=\sffamily\scriptsize, minimum height=0.40cm},
+]
+% Tier 0
+\node[tier=2.25cm] (t0) at (0,0) {%
+  {\hdr Tier 0}\\[1pt] cheap model\\[1pt]
+  {\scriptsize\color{ink} any extractor reading page images (here Haiku)}\\[3pt]
+  {\scriptsize every document}};
+% Tier 1 container
+\node[draw=cFix!80!black, line width=0.9pt, rounded corners=2pt, fill=cFix!3,
+      minimum width=4.5cm, minimum height=4.35cm] (t1) at (5.05,-0.40) {};
+\node[hdr, anchor=north west] at ([xshift=3pt,yshift=-2pt]t1.north west) {Tier 1 \textmd{deterministic checker}};
+\node[stage, anchor=north] (s1) at ([yshift=-0.50cm]t1.north) {\textbf{a} identities $Ax=b$: hand-written, discovered on the page, or both};
+\node[stage, below=1.5pt of s1] (s2) {\textbf{b} label read, gated and guarded (OCR: second reader)};
+\node[stage, below=1.5pt of s2] (s3) {\textbf{c} repair search (swap, period, sign) and misread repair};
+\node[stage, below=1.5pt of s3] (s4) {\textbf{d} route the rest with evidence};
+\node[opt, below=1.5pt of s4] (s5) {\textbf{e} optional re-read of unsure cells: flags; a value moves only if an identity ties};
+% Tier 2
+\node[tier=2.55cm] (t2) at (10.3,0) {%
+  {\hdr Tier 2}\\[1pt] stronger model\\[1pt]
+  {\scriptsize\color{ink} answer checked by the same rules}\\[3pt]
+  {\scriptsize only what tier 1 does not settle}};
+% Tier 3
+\node[tier=2.25cm] (t3) at (14.75,0) {%
+  {\hdr Tier 3}\\[1pt] a person\\[3pt]
+  {\scriptsize\color{ink} only what tier 2 cannot settle, or a fix that fails the check}};
+\node[lab, anchor=south, text width=2.6cm] (pdf) at ([yshift=10pt]t0.north) {any PDF set whose numbers obey linear identities};
+\draw[flow] (pdf.south) -- (t0.north);
+\draw[flow] (t0.east) -- node[lab, above=1pt] {records} node[lab, below=1pt] {key, value,\\page, printed\\text} (t1.west |- t0.east);
+\draw[flow] (t1.east |- t2.west) -- node[lab, above=1pt] {packets} node[lab, below=1pt] {160 errors\\in 155 items} (t2.west);
+\draw[flow] (t2.east) -- node[lab, above=1pt] {alerts} node[lab, below=1pt] {unsure, document\\error, failed\\check} (t3.west);
+\node[lab, anchor=north, text width=4.6cm, fill=cFix!12, draw=cFix!80!black, rounded corners=1.5pt, inner sep=3pt]
+  (fix) at ([yshift=-9pt]t1.south) {\textbf{fixed values} (corrections log)\\
+  \textbf{348 of 527 errors (66\%)}; 0 broken, 19 silent};
+\draw[flow] (t1.south) -- (fix.north);
+\node[font=\sffamily\scriptsize, text=ink, anchor=north, inner sep=2pt] (vfix) at ([yshift=-9pt]t2.south) {checked fix $\rightarrow$ correction};
+\draw[flow] (t2.south) -- (vfix.north);
+\end{tikzpicture}
+\caption{The tier ladder. A cheap model extracts; a deterministic checker writes a value only when the page and the documents' own linear identities agree, and sends everything else on as small packets with evidence; a stronger model or a person sees only those. Nothing in tier~1 names a domain. Counts: Claude Haiku on the 155 held-out SEC statements read from poor scans (11,774 numbers; frozen \vq{6}, hand identities, born-digital text layer).}
+\label{fig:ladder}
+\end{figure*}

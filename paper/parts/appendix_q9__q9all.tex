@@ -1,0 +1,103 @@
+% Cut verbatim from appendix_q9.tex by paper/gen_v10/split_parts.py; do not edit.
+\apptab{Frozen \vq{9}, \vq{8} and \vq{6} on SEC set~4, every run (legacy scoring)}\label{tab:q9all}
+5,351 numbers, 72 statements. Model alone: Haiku 168, Opus 25, GPT 1,090 wrong (a GPT blank always counts as wrong). Silent [95\% CI], broken, fixed, flagged (numbers named by a tier~2 item), \% of numbers to a person, identity coverage; \emph{strict}: silent errors of the \vq{9} run under strict scoring (half a printed unit). Source: \code{out/qcore9\_heldout/results.md}.
+{\scriptsize\setlength{\tabcolsep}{4pt}
+\begin{longtable}{llllrrrrrrr}
+\toprule
+Model & Mode & Identities & Version & Silent [CI] & Broken & Fixed & Flagged & To a person & Coverage & Strict \\
+\midrule\endhead
+Haiku & text & hand & \vq{9} & 9 [0, 26] & 0 & 124 & 101 & 1.9\% & 85.5\% & 9 \\
+Haiku & text & hand & \vq{8} & 13 [1, 32] & 0 & 124 & 97 & 1.8\% & 85.5\% &  \\
+Haiku & text & hand & \vq{6} & 13 [1, 32] & 0 & 124 & 97 & 1.8\% & 85.5\% &  \\
+Haiku & text & discovered & \vq{9} & 13 [1, 33] & 3 & 124 & 87 & 1.6\% & 86.2\% & 13 \\
+Haiku & text & discovered & \vq{8} & 16 [3, 36] & 3 & 114 & 87 & 1.6\% & 85.8\% &  \\
+Haiku & text & discovered & \vq{6} & 16 [3, 36] & 4 & 124 & 74 & 1.4\% & 83.8\% &  \\
+Haiku & text & hand + disc. & \vq{9} & 9 [0, 26] & 0 & 124 & 122 & 2.3\% & 92.1\% & 9 \\
+Haiku & text & hand + disc. & \vq{8} & 13 [1, 32] & 0 & 122 & 113 & 2.1\% & 91.9\% &  \\
+Haiku & text & hand + disc. & \vq{6} & 13 [1, 32] & 0 & 124 & 109 & 2.0\% & 91.2\% &  \\
+Haiku & text & zero-config & \vq{9} & 16 [3, 36] & 3 & 88 & 135 & 2.5\% & 84.0\% & 16 \\
+Haiku & text & zero-config & \vq{8} & 19 [5, 39] & 3 & 77 & 138 & 2.6\% & 83.7\% &  \\
+Haiku & text & zero-config & \vq{6} & 31 [6, 67] & 0 & 33 & 127 & 2.4\% & 77.2\% &  \\
+Haiku & no text & hand & \vq{9} & 67 [45, 93] & 0 & 0 & 418 & 7.8\% & 85.5\% & 70 \\
+Haiku & no text & hand & \vq{8} & 67 [45, 93] & 0 & 0 & 418 & 7.8\% & 85.5\% &  \\
+Haiku & no text & hand & \vq{6} & 67 [45, 93] & 0 & 0 & 418 & 7.8\% & 85.5\% &  \\
+Haiku & no text & discovered & \vq{9} & 120 [66, 191] & 0 & 0 & 231 & 4.3\% & 83.1\% & 123 \\
+Haiku & no text & discovered & \vq{8} & 124 [68, 198] & 0 & 0 & 211 & 3.9\% & 82.4\% &  \\
+Haiku & no text & discovered & \vq{6} & 125 [69, 199] & 0 & 0 & 205 & 3.8\% & 81.6\% &  \\
+Haiku & no text & hand + disc. & \vq{9} & 56 [35, 81] & 0 & 0 & 496 & 9.3\% & 91.8\% & 59 \\
+Haiku & no text & hand + disc. & \vq{8} & 56 [35, 81] & 0 & 0 & 487 & 9.1\% & 91.7\% &  \\
+Haiku & no text & hand + disc. & \vq{6} & 56 [35, 81] & 0 & 0 & 483 & 9.0\% & 91.1\% &  \\
+Haiku & no text & zero-config & \vq{9} & 120 [66, 191] & 0 & 0 & 231 & 4.3\% & 83.0\% & 123 \\
+Haiku & no text & zero-config & \vq{8} & 125 [68, 200] & 0 & 0 & 207 & 3.9\% & 82.2\% &  \\
+Haiku & no text & zero-config & \vq{6} & 124 [68, 199] & 0 & 0 & 210 & 3.9\% & 81.8\% &  \\
+Haiku & OCR docTR & hand & \vq{9} & 52 [32, 76] & 1 & 17 & 644 & 12.0\% & 85.5\% & 56 \\
+Haiku & OCR docTR & hand & \vq{8} & 53 [33, 77] & 1 & 17 & 639 & 11.9\% & 85.5\% &  \\
+Haiku & OCR docTR & hand & \vq{6} & 53 [33, 77] & 1 & 17 & 639 & 11.9\% & 85.5\% &  \\
+Haiku & OCR Tesseract & hand & \vq{9} & 39 [23, 58] & 1 & 3 & 930 & 17.4\% & 85.5\% & 43 \\
+Haiku & OCR Tesseract & hand & \vq{8} & 39 [23, 58] & 1 & 3 & 928 & 17.3\% & 85.5\% &  \\
+Haiku & OCR Tesseract & hand & \vq{6} & 39 [23, 58] & 1 & 3 & 928 & 17.3\% & 85.5\% &  \\
+\midrule
+Opus & text & hand & \vq{9} & 0 [0, 0] & 0 & 20 & 54 & 1.0\% & 85.5\% & 0 \\
+Opus & text & hand & \vq{8} & 0 [0, 0] & 0 & 20 & 54 & 1.0\% & 85.5\% &  \\
+Opus & text & hand & \vq{6} & 0 [0, 0] & 0 & 20 & 54 & 1.0\% & 85.5\% &  \\
+Opus & text & discovered & \vq{9} & 3 [0, 9] & 3 & 20 & 49 & 0.9\% & 88.2\% & 3 \\
+Opus & text & discovered & \vq{8} & 3 [0, 9] & 3 & 18 & 44 & 0.8\% & 87.9\% &  \\
+Opus & text & discovered & \vq{6} & 2 [0, 5] & 4 & 20 & 43 & 0.8\% & 86.4\% &  \\
+Opus & text & hand + disc. & \vq{9} & 0 [0, 0] & 0 & 20 & 74 & 1.4\% & 92.5\% & 0 \\
+Opus & text & hand + disc. & \vq{8} & 0 [0, 0] & 0 & 20 & 67 & 1.3\% & 92.4\% &  \\
+Opus & text & hand + disc. & \vq{6} & 0 [0, 0] & 0 & 20 & 65 & 1.2\% & 91.6\% &  \\
+Opus & text & zero-config & \vq{9} & 3 [0, 9] & 3 & 20 & 63 & 1.2\% & 88.3\% & 3 \\
+Opus & text & zero-config & \vq{8} & 3 [0, 9] & 3 & 18 & 60 & 1.1\% & 88.0\% &  \\
+Opus & text & zero-config & \vq{6} & 1 [0, 3] & 0 & 11 & 25 & 0.5\% & 85.7\% &  \\
+Opus & no text & hand & \vq{9} & 17 [5, 32] & 0 & 0 & 38 & 0.7\% & 85.5\% & 17 \\
+Opus & no text & hand & \vq{8} & 17 [5, 32] & 0 & 0 & 38 & 0.7\% & 85.5\% &  \\
+Opus & no text & hand & \vq{6} & 17 [5, 32] & 0 & 0 & 38 & 0.7\% & 85.5\% &  \\
+Opus & no text & discovered & \vq{9} & 20 [6, 37] & 0 & 0 & 59 & 1.1\% & 89.4\% & 20 \\
+Opus & no text & discovered & \vq{8} & 20 [6, 37] & 0 & 0 & 55 & 1.0\% & 89.4\% &  \\
+Opus & no text & discovered & \vq{6} & 20 [6, 37] & 0 & 0 & 39 & 0.7\% & 88.6\% &  \\
+Opus & no text & hand + disc. & \vq{9} & 17 [5, 32] & 0 & 0 & 68 & 1.3\% & 92.6\% & 17 \\
+Opus & no text & hand + disc. & \vq{8} & 17 [5, 32] & 0 & 0 & 63 & 1.2\% & 92.6\% &  \\
+Opus & no text & hand + disc. & \vq{6} & 17 [5, 32] & 0 & 0 & 47 & 0.9\% & 91.9\% &  \\
+Opus & no text & zero-config & \vq{9} & 20 [6, 37] & 0 & 0 & 59 & 1.1\% & 89.4\% & 20 \\
+Opus & no text & zero-config & \vq{8} & 20 [6, 37] & 0 & 0 & 55 & 1.0\% & 89.4\% &  \\
+Opus & no text & zero-config & \vq{6} & 20 [6, 37] & 0 & 0 & 39 & 0.7\% & 88.6\% &  \\
+Opus & OCR docTR & hand & \vq{9} & 11 [2, 24] & 0 & 0 & 376 & 7.0\% & 85.5\% & 11 \\
+Opus & OCR docTR & hand & \vq{8} & 11 [2, 24] & 0 & 0 & 372 & 7.0\% & 85.5\% &  \\
+Opus & OCR docTR & hand & \vq{6} & 11 [2, 24] & 0 & 0 & 372 & 7.0\% & 85.5\% &  \\
+Opus & OCR Tesseract & hand & \vq{9} & 14 [3, 28] & 0 & 0 & 539 & 10.1\% & 85.5\% & 14 \\
+Opus & OCR Tesseract & hand & \vq{8} & 14 [3, 28] & 0 & 0 & 538 & 10.1\% & 85.5\% &  \\
+Opus & OCR Tesseract & hand & \vq{6} & 14 [3, 28] & 0 & 0 & 538 & 10.1\% & 85.5\% &  \\
+\midrule
+GPT & text & hand & \vq{9} & 15 [2, 34] & 2 & 739 & 514 & 9.6\% & 85.5\% & 19 \\
+GPT & text & hand & \vq{8} & 26 [12, 42] & 1 & 737 & 516 & 9.6\% & 85.5\% &  \\
+GPT & text & hand & \vq{6} & 26 [12, 42] & 1 & 737 & 516 & 9.6\% & 85.5\% &  \\
+GPT & text & discovered & \vq{9} & 27 [11, 48] & 3 & 716 & 440 & 8.2\% & 80.3\% & 31 \\
+GPT & text & discovered & \vq{8} & 38 [19, 61] & 3 & 701 & 436 & 8.1\% & 79.8\% &  \\
+GPT & text & discovered & \vq{6} & 42 [23, 65] & 5 & 739 & 380 & 7.1\% & 77.2\% &  \\
+GPT & text & hand + disc. & \vq{9} & 15 [2, 35] & 1 & 730 & 559 & 10.4\% & 91.4\% & 19 \\
+GPT & text & hand + disc. & \vq{8} & 24 [10, 40] & 0 & 726 & 558 & 10.4\% & 91.3\% &  \\
+GPT & text & hand + disc. & \vq{6} & 25 [11, 41] & 1 & 735 & 554 & 10.4\% & 90.9\% &  \\
+GPT & text & zero-config & \vq{9} & 37 [17, 63] & 3 & 370 & 797 & 14.9\% & 69.8\% & 41 \\
+GPT & text & zero-config & \vq{8} & 51 [28, 78] & 3 & 356 & 786 & 14.7\% & 69.2\% &  \\
+GPT & text & zero-config & \vq{6} & 113 [55, 199] & 0 & 118 & 1,254 & 23.4\% & 52.0\% &  \\
+GPT & no text & hand & \vq{9} & 585 [467, 718] & 0 & 0 & 1,288 & 24.1\% & 85.5\% & 597 \\
+GPT & no text & hand & \vq{8} & 585 [467, 718] & 0 & 0 & 1,288 & 24.1\% & 85.5\% &  \\
+GPT & no text & hand & \vq{6} & 585 [467, 718] & 0 & 0 & 1,288 & 24.1\% & 85.5\% &  \\
+GPT & no text & discovered & \vq{9} & 927 [721, 1,151] & 0 & 0 & 519 & 9.7\% & 66.6\% & 940 \\
+GPT & no text & discovered & \vq{8} & 946 [736, 1,175] & 0 & 0 & 426 & 8.0\% & 65.3\% &  \\
+GPT & no text & discovered & \vq{6} & 959 [750, 1,185] & 0 & 0 & 392 & 7.3\% & 62.7\% &  \\
+GPT & no text & hand + disc. & \vq{9} & 554 [440, 683] & 0 & 0 & 1,367 & 25.5\% & 90.1\% & 566 \\
+GPT & no text & hand + disc. & \vq{8} & 561 [443, 695] & 0 & 0 & 1,351 & 25.2\% & 90.0\% &  \\
+GPT & no text & hand + disc. & \vq{6} & 562 [444, 695] & 0 & 0 & 1,349 & 25.2\% & 89.3\% &  \\
+GPT & no text & zero-config & \vq{9} & 927 [721, 1,151] & 0 & 0 & 519 & 9.7\% & 66.6\% & 940 \\
+GPT & no text & zero-config & \vq{8} & 942 [736, 1,168] & 0 & 0 & 431 & 8.1\% & 65.7\% &  \\
+GPT & no text & zero-config & \vq{6} & 955 [748, 1,179] & 0 & 0 & 397 & 7.4\% & 63.0\% &  \\
+GPT & OCR docTR & hand & \vq{9} & 343 [264, 433] & 0 & 76 & 1,532 & 28.6\% & 85.5\% & 356 \\
+GPT & OCR docTR & hand & \vq{8} & 344 [265, 434] & 0 & 76 & 1,529 & 28.6\% & 85.5\% &  \\
+GPT & OCR docTR & hand & \vq{6} & 344 [265, 434] & 0 & 76 & 1,529 & 28.6\% & 85.5\% &  \\
+GPT & OCR Tesseract & hand & \vq{9} & 408 [314, 516] & 0 & 16 & 1,887 & 35.3\% & 85.5\% & 420 \\
+GPT & OCR Tesseract & hand & \vq{8} & 408 [314, 516] & 0 & 16 & 1,886 & 35.2\% & 85.5\% &  \\
+GPT & OCR Tesseract & hand & \vq{6} & 408 [314, 516] & 0 & 16 & 1,886 & 35.2\% & 85.5\% &  \\
+\bottomrule
+\end{longtable}}
+

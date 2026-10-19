@@ -1,0 +1,19 @@
+% Cut verbatim from appendix_q9.tex by paper/gen_v10/split_parts.py; do not edit.
+\apptab{Every correct number broken on SEC set~4 (legacy; strict breaks the same numbers), with its cause}\label{tab:q9broken}
+Each cell once, with every run that broke it ($^{f}$: flagged in that run; all others silent). No no-text run broke a number. Causes: (1) WAT's PDF text layer prints the closing parenthesis as a separate word, so a negative number reads as positive (a tokenisation gap in every version); (2) a GPT row shift that \vq{9}'s change~3 partly repaired and identity completion then finished on a correct cell; (3) OCR look-alike repairs, the class of set~3's OCR breaks; (4) a \vq{6} discovery break fixed in \vq{7}.
+{\scriptsize\setlength{\tabcolsep}{3pt}
+\begin{longtable}{p{4.6cm}rrlp{8.2cm}}
+\toprule
+Cell & Truth & Changed to & Cause & Runs that broke it \\
+\midrule\endhead
+WAT cash flow: Net cash used in financing activities (2025) & -174,000,000 & 174,000,000 & (1) & Haiku q9 disc., text; Haiku q9 ZC, text; Haiku q8 disc., text; Haiku q8 ZC, text; Haiku q6 disc., text$^{f}$; Opus q9 disc., text; Opus q9 ZC, text; Opus q8 disc., text; Opus q8 ZC, text; Opus q6 disc., text$^{f}$; GPT q9 disc., text; GPT q9 ZC, text; GPT q8 disc., text; GPT q8 ZC, text; GPT q6 disc., text \\
+WAT cash flow: Net cash used in financing activities (2026) & -337,000,000 & 337,000,000 & (1) & Haiku q9 disc., text; Haiku q9 ZC, text; Haiku q8 disc., text; Haiku q8 ZC, text; Haiku q6 disc., text; Opus q9 disc., text; Opus q9 ZC, text; Opus q8 disc., text; Opus q8 ZC, text; Opus q6 disc., text; GPT q9 disc., text; GPT q9 ZC, text; GPT q8 disc., text; GPT q8 ZC, text; GPT q6 disc., text \\
+WAT cash flow: Net cash provided by (used in) investing activities (2025) & -85,000,000 & 85,000,000 & (1) & Haiku q9 disc., text; Haiku q9 ZC, text; Haiku q8 disc., text; Haiku q8 ZC, text; Haiku q6 disc., text$^{f}$; Opus q9 disc., text; Opus q9 ZC, text; Opus q8 disc., text; Opus q8 ZC, text; Opus q6 disc., text$^{f}$; GPT q9 disc., text; GPT q9 ZC, text; GPT q8 disc., text; GPT q8 ZC, text; GPT q6 disc., text \\
+WAT income statement: Net (loss) income per basic common share (2026) & -2.31 & 2.31 & (1) & GPT q9, text; GPT q8, text; GPT q6, text; GPT q6 disc., text; GPT q6 hand+disc., text \\
+WST cash flow: Decrease (increase) in other current assets (2024) & -5,800,000 & 5,700,000 & (2) & GPT q9, text; GPT q9 hand+disc., text \\
+DPZ balance sheet: Advertising fund assets, restricted (2024) & 103,396,000 & 103,316,000 & (3) & Haiku q9, docTR; Haiku q8, docTR; Haiku q6, docTR \\
+GRMN balance sheet: Deferred income tax assets (2024) & 822,521,000 & 822,623,000 & (3) & Haiku q9, Tess.; Haiku q8, Tess.; Haiku q6, Tess. \\
+ALB balance sheet: Common stock, \$.01 par value, \dots (2025) & 1,178,000 & 2,025,000 & (4) & Haiku q6 disc., text; Opus q6 disc., text; GPT q6 disc., text \\
+\bottomrule
+\end{longtable}}
+

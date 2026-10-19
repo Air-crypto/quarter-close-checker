@@ -1,0 +1,204 @@
+% Appendix: one-column, after the references.
+\clearpage
+\onecolumn
+\appendix
+\counterwithin{table}{section}
+\newcommand{\apptab}[1]{\par\Needspace{22\baselineskip}\medskip\noindent\captionof{table}{#1}}
+\small
+\setlength{\tabcolsep}{5pt}
+
+\section{Private-equity case study: details}\label{app:pe}
+This appendix keeps the private-equity (PE) work the general checker grew out of, summarised in Section~\ref{sec:bend}. ``v1'' and ``v2'' are PE v1 and PE v2 of Table~\ref{tab:earlyversions}. Planted-error benches, a second real fund and planted Fund~R results from the PE-only version are not repeated here.
+
+Each later version was checked against earlier data: \vq{} reproduces PE~v2 on the fund held-out set with no wrong change, and \vq{2}, \vq{3} and \vq{4} give identical per-error outcomes on all fund errors. On the PE validation runs \vq{5} fixes 4,687 of 4,767 errors where \vq{4} fixed 4,718 (37 fixes became tier~2 items, 6 the reverse), with no wrong change and no broken number in either.
+
+\textbf{Data.} Fund~R is one real venture fund's packet (name withheld): 13 PDFs, 59 pages and 252 numbers, with 6 real document inconsistencies. We degraded it to image-only scans at four levels (clean 100\,dpi; scan 150\,dpi; bad\_scan 85\,dpi with tilt, noise, specks and JPEG quality 18; headless, which is bad\_scan with column headers erased), and Claude Haiku, Sonnet and Opus extracted it, 10 runs in all. The six bad\_scan and headless runs contain 193 errors. Synthetic funds come from a quarter-by-quarter fund simulator; fifteen hard funds were degraded at bad\_scan and extracted by Haiku, Opus and gpt-6-luna, in a development group and two held-out sets.
+
+\textbf{With a text layer.} On Fund~R the frozen PE v1 fixed 189 of 193 hard-run errors (97.9\%), sent 2 to tier~2, missed 2 and made no wrong change. On held-out set~2 (funds 31--39), the frozen PE v2 fixed 4,685 of 4,767 errors (98.3\%, Wilson 95\% interval 97.9--98.6\%), sent 81 to tier~2 and missed 1. It wrote no wrong value and changed no correct number: 0 of 4,767 errors and 0 of 5,349 correct values, a one-sided 95\% upper bound of 0.06\% each. Opus alone leaves 423 of 3,372 numbers wrong there; Haiku plus tier~1 leaves 15, of which 14 are in tier~2 packets (Figure~\ref{fig:heldout2}). Without page text, v2 flags 75.3\% of these errors but only 24 of Opus's 423, because Opus's errors tie its own identities (Figure~\ref{fig:bend}). An ablation on the six Fund~R hard runs shows where the fixes come from (Figure~\ref{fig:ablation}): without the label read, tier~1 fixes 14 errors instead of 189, and arithmetic alone fixes 5, routes 124 and misses 64.
+
+\textbf{With OCR instead of a text layer.} When we replaced the Fund~R text layer with Tesseract OCR of the degraded pages, with two safeguards (pages with median word confidence below 60 count as blank, and a number is kept only if a digits-only re-read agrees), tier~1 fixed 8 of 197 errors over nine runs and flagged 156, with no wrong change (Figure~\ref{fig:ocr}). At 85\,dpi digits are about 6\,px tall.
+
+\textbf{Under attack.} A suite of 360 constructed cases (coordinated bending, decoy numbers, coincidental ties, planted source errors, label collisions, sign and scale traps, OCR-style digit confusions, blanks) made the frozen PE v1 write wrong values in 43 cases, all from page reads. PE v2, tuned on that suite, wrote no wrong value in either mode on 430 fresh cases generated after its freeze (upper bound 0.69\% of cases), where v1 wrote wrong values in 33 (Supplement~\ref{app:adv}). The lesson carried into the general checker: a page read must answer to the identities (the guard of Section~\ref{sec:labelread}) just as a repair does \eqref{eq:accept}.
+
+\textbf{Bending.} On fund held-out set~2, 398 of Opus's 423 errors tie every identity they feed (94.1\%), against 454 of Haiku's 1,539 (29.5\%) and 272 of luna's 2,805. Each planted document issue fails its identities when the page is copied exactly, so if those identities tie in the extraction, the model has erased a real error in the source. Opus erased 10 of 13 planted issues (Wilson 49.7--91.8\%), Haiku 7 and luna 4.
+Per-run tables of the PE work (Fund~R and synthetic-fund runs, label-read failure causes, planted errors, adversarial results per category, erased document issues), the five v1 defects with their v2 changes and four further figures are in Supplement~\ref{sup:pe}.
+
+\input{figures/fig_example_synth}
+
+\apptab{PE evaluation stages, in order}\label{tab:stages}
+Funds 11--19 and the 360-case suite were test data for v1 and tuning data for v2. Funds 31--39 were built (18:13 UTC) and scored with v1 (18:35) before the last v2 source edit (18:52) and the v2 freeze (19:19); the change log and the tuning outputs show that v2 was tuned only on the 360 cases and the v1 regression runs, and the fresh attack cases were generated after the freeze. This is evidence rather than enforcement.
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Stage & Data & Code; role \\
+\midrule
+1 Development & Fund~R runs; funds 01--09 & pre-freeze, then v1 frozen \\
+2 Held-out 1 & funds 11--19, three models & v1; first test of v1 \\
+3 Adversarial & 360 cases on funds 11--19 & v1; found five defects \\
+4 Fixes & the 360 cases plus v1 regression runs & tuning, then v2 frozen \\
+5 Held-out 2 & funds 31--39, three models & v2 (v1 also run); test of v2 \\
+6 Fresh adversarial & 430 cases on funds 31--39 & v2 (v1 also run); test of v2 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Synthetic domains}\label{app:domains}
+\apptab{Zero-shot \vq{} over all 18 synthetic-domain bundles}
+Opus and Haiku read every bundle; gpt-6-luna read 16 of the 18. No-text mode broke nothing.
+\begin{center}
+\begin{tabular}{lrrrrrr}
+\toprule
+Model & Runs & Numbers & Tier 0 errors & Broken, text & Broken, no text & Tier 2 items, text \\
+\midrule
+Claude Opus & 18 & 11,983 & 1 & 123 & 0 & 318 \\
+Claude Haiku & 18 & 11,983 & 4 & 123 & 0 & 303 \\
+gpt-6-luna & 16 & 10,515 & 13 & 104 & 0 & 288 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\apptab{Held-out bundles 02--05 (Opus and Haiku, 24 runs per mode): zero-shot \vq{} against frozen \vq{2}}
+\begin{center}
+\begin{tabular}{llrrrrrr}
+\toprule
+Checker & Mode & Numbers & Tier 0 errors & Broken & Tier 2 items & Planted routed & Planted changed \\
+\midrule
+\vq{2} & text & 15,784 & 2 & 32 & 134 & 46 / 48 & 0 \\
+\vq{} & text & 15,784 & 2 & 164 & 414 & 47 / 48 & 0 \\
+\vq{2} & no text & 15,784 & 2 & 0 & 83 & 46 / 48 & 0 \\
+\vq{} & no text & 15,784 & 2 & 0 & 85 & 46 / 48 & 0 \\
+\bottomrule
+\end{tabular}
+\end{center}
+By domain, \vq{2} in text mode broke 0 numbers on the quarterly reports and the invoices and 32 on the bulletins, where \vq{} broke 0, 24 and 140.
+
+\section{Held-out results of frozen \vq{6}: every set}\label{app:q6}
+Frozen \vq{6} (28 files, combined sha256 {\small\nolinkurl{86debea05f95a6d2d93a7add48d32cd54e6109135052df4c1dd178c48a95ab34}}, frozen 2026-10-16T13:14:47Z; the hash matched before the runs, at their end and at report time) was run once per held-out set, model, mode and identity setting, with frozen \vq{5} re-run on the same inputs: 442 runs, none crashed, none repeated, and in every run the returned values equal the extraction plus the tier~1 fixes. The \vq{5} re-run reproduces its earlier held-out results row for row, and \vq{6} with hand identities returns exactly \vq{5}'s fixes and tier~2 items in all 104 (set, model, mode) runs, so every \vq{6}-against-\vq{5} paired difference is 0; none of \vq{6}'s default-path changes fired, because every text-mode PDF here has a born-digital text layer. On the notes tables and the real scans the checker ran over the whole bundle and rows are scored on the held-out documents. SEC set~3's extractions were checked against their locked hash manifests (132 files) before scoring, and its page images are pixel-identical to those the models read. Sources: \code{out/qcore6\_heldout/results.md}, \code{results.json}, \code{SUMMARY.md}.
+
+\textbf{Identity settings.} \emph{Hand}: the bundle's \code{identities.json} and \code{schema.json}. \emph{Discovered}: identities discovered from the documents, hand schema. \emph{Hand + discovered}: both. \emph{Zero-config}: discovered identities and an inferred schema, neither file read. OCR modes ran with hand identities only.
+
+\textbf{Re-read runs.} Requests were generated once for set~3, OCR mode (docTR), hand identities, for the Haiku and Opus extractions (695 and 523 requests from 914 and 634 selected cells; the rest could not be placed on a row that prints the record's label, or shared a crop). One Opus reader answered every request once (29 and 53 null answers); the answer files are hashed in \code{SUMMARY.md}. Outcomes: Haiku extraction, agrees 515, disagrees 138, another cell 56, null 32, cleared 2; Opus extraction, 377, 86, 41, 57, 2. Over all reads (crops sharing a cell counted per record), the reader gave the truth 551 of 741 times (Haiku extraction) and 386 of 561 (Opus extraction); of its errors, 12 of 158 and 3 of 118 equal the extracted value and 68 and 64 equal the OCR's page read, mostly on crops placed on another cell, where reader and OCR read the same wrong cell.
+
+\textbf{Development data for the re-read gate} (\code{out/qcore6\_work/dev\_summary6.md}). SEC development poor scans, Haiku extraction, OCR docTR (silent / flagged / fixed / broken): no re-read 23 / 438 / 14 / 0; first gate with real Haiku answers 30 / 370 / 15 / 4; final gate, Haiku reader 19 / 449 / 14 / 0, Opus reader 17 / 449 / 14 / 0, both agreeing 19 / 445 / 14 / 0. Opus extraction: 2 / 259 / 0 / 0 without re-reads; first gate 5 / 247 / 0 / 7; final gate with the Opus reader 2 / 272 / 0 / 0. A simulated reader with independent 5\% one-digit errors had suggested 12--14 silent errors and 22--23 fixes under the first gate: real readers are worse than independent noise because their errors follow the hard glyphs.
+
+\textbf{Natural errors on the clean notes tables} (\code{notes\_eval/scores/results.md}). Held-out: Opus 0 of 14,778; Haiku 48 (0.32\%) in 3 of 233 tables, 24 of them in numbers covered by an identity; GPT 2,005, of which 2,001 are blanks, with 99.97\% of its 12,154 non-blank answers right. Development: Opus 0 of 6,589; Haiku 16 sign errors in one table. Haiku's held-out errors are runs of values from the wrong place: a table whose columns it shifted (24 numbers), a table where every row got a different quantity (20), and four cells read from other rows.
+
+\textbf{Set~2 silent errors of Haiku plus the checker in text mode}, the same four under \vq{3} to \vq{6}: an ABBV share repurchase read as $-1{,}496$ for $-1{,}498$\,M; a CVX share count 1,719,134 for 1,719,184; two Visa liability cells read from another row.
+
+\textbf{Real scans: amounts where both models agree against the annotation} (\code{realscan\_eval/scores/results.md}). 33 held-out amounts in six forms: rs\_0030 (21), rs\_0008 (5), rs\_0009, rs\_0026 and rs\_0084 (2 each), rs\_0078 (1). On the 61 held-out forms whose line items sum to the gross, both models agree with every annotation.
+
+\input{tab_main6}
+\input{tab_ids6}
+\input{tab_reread6}
+\input{parts/appendix_q6__broken}
+
+SEC sets 1, 2 and 3, CORD, the notes tables, the real scans and the synthetic bundles separately (every run, every identity setting), and every paired difference against the model alone, against Opus alone and between identity settings, are in Supplement~\ref{sup:q6}.
+
+\section{Frozen \vq{7} on the fresh synthetic held-out set}\label{app:q7}
+Frozen \vq{7} (28 files, combined sha256 {\small\nolinkurl{51d9a35236ca553c1bd1536cee0b06c344ce06c0f0020b467613c80eb0396e55}}, frozen 2026-10-16T16:40:49Z, 65 tests) and frozen \vq{6} were run once, 2026-10-16 16:41--16:46Z, on nine bundles built with the synthetic-domain generator, imported unchanged, with new seeds (base $+$ 6, 7, 8): reports, invoices and bulletins 06--08, 144 documents, 5,920 numbers. The data were locked by a hash manifest (combined sha256 \code{6d6be8d8769f6181\dots}) at 15:27:55Z, before any \vq{7} change; the two package hashes and the data hash were checked at the start and at the end of the run. 432 runs (2 versions $\times$ 9 bundles $\times$ 3 extractions $\times$ 2 modes $\times$ 4 identity settings), none crashed. The extractions are the true values (\emph{clean}), and the true values with 89 (\emph{low}) and 297 (\emph{high}) injected errors; under strict scoring 89 and 296 numbers are wrong, under the legacy rule 81 and 278. Each extraction quotes the printed line of the PDF's text layer, as a model would. Sources: \code{out/qcore7\_heldout/SUMMARY.md}, \code{results.md}, \code{results.json}; generator of these tables: \code{paper/gen\_v7/gen\_q7\_tex.py}. Tables~\ref{tab:q7} and~\ref{tab:dev7} were in the main text of the previous version.
+
+\input{tab_q7}
+\input{parts/appendix_q7__q7broken}
+
+Every run, the paired differences, legacy scoring, injected errors by kind and by domain, and \vq{7}'s development grid are in Supplement~\ref{sup:q7}.
+
+\section{Frozen \vq{9} on SEC set~4 (set D)}\label{app:q9}
+Frozen \vq{9} (30 files, combined sha256 {\small\nolinkurl{3ca510d3ea178550ee3a43676d9f8e74a4e4ec0c4e4e8b7d4149d72732d387e0}}, frozen 2026-10-18T18:27:04Z, 79 tests; the package's first freeze, see below), frozen \vq{8} and frozen \vq{6} were run once, 2026-10-18 18:40--19:19Z, on SEC set~4 (\code{sec\_eval4}): 24 filings (16 10-Qs, 8 10-Ks; ALB, CF, CLX, CTAS, DPZ, EXR, FAST, GRMN, HSY, JBHT, KMB, LKQ, LULU, MLM, NDSN, PAYX, ROL, STE, TER, TSCO, ULTA, WAT, WST, ZBRA), 72 statements, 5,351 located facts (USD 5,023, per share 207, shares 121), 1,135 identities (998 from calculation linkbases, for six filers read from the linkbase embedded in the schema file; all hold on the truth; 9 failing linkbase relations excluded before writing). The bundles and page images were locked at 15:43:59Z (manifests \code{0b37a250\dots}, 76 files; \code{ba82b969\dots}, 152 files), the Haiku and Opus extractions at 15:54Z (\code{6ae22d31\dots}, 263 files) and GPT's at 16:12Z (\code{7156d227\dots}, 72 files), all before the freeze; the four manifests and the three package hashes were verified before the runs, after them and at report time. 90 runs (3 versions $\times$ 3 models $\times$ hand identities in four modes and three discovered settings in two), none crashed, none repeated, in three batches because OCR was not ready (text and no text 72 runs, Tesseract 9, docTR 9). OCR used \vq{9}'s \code{ocr} command, whose file is identical to \vq{6}'s, on page images pixel-identical to those the models read. The extractions were made as for set~3, by subagents, 12 batches of six statements per model, with set~3's prompt; Haiku left 2 blanks, Opus 0, GPT 10. The prompt does not forbid using printed totals to settle an unclear digit; of the per-statement notes (Haiku 67, Opus 52), 40 and 38 mention footing. The Opus re-read tier, run on set~3 as an add-on row, was not run. Scoring: legacy (primary, as sets 1--3) and strict (half a printed unit). Runtimes in the run records are inflated: \vq{9}'s development grid shared the machine. Sources: \code{out/qcore9\_heldout/SUMMARY.md}, \code{results.md}, \code{results.json}, \code{notes.json}; \code{sec\_eval4/README.md}; \code{qcore9/CHANGES.md}; generator of these tables: \code{paper/gen\_v9/gen\_q9\_tex.py}. \emph{Refreeze.} At 19:59:26Z, after this run, \vq{9} was refrozen (\code{c4401b943fcb8eb1\dots}; \code{qcore9/frozen\_manifest.json} and \code{out/qcore9\_work/FROZEN.md} now name that hash) because the first freeze's development grid broke one SEC development number in discovered-identity runs; \code{auto.\_one\_slip} now needs a digit change of two units or more. The record says both freezes preceded any held-out run; the run records above (package checks 18:40:54Z, 19:19:23Z and 19:23:34Z, all \code{3ca510d3}) show the second came after this run. The change is in discovery only, so the hand-identity rows would be unchanged; the discovered and zero-config rows are those of the first freeze.
+
+\input{tab_d9}
+\input{parts/appendix_q9__q9paired}
+\input{parts/appendix_q9__q9pooled}
+\input{parts/appendix_q9__q9broken}
+
+Every run of \vq{9}, \vq{8} and \vq{6} on set~4 and the run-by-run hand-identity check are in Supplement~\ref{sup:q9}.
+
+\section{Development grid of frozen \vq{9}}\label{app:q9dev}
+\input{parts/appendix_q9dev__head}
+\input{parts/appendix_q9dev__q9devbroken}
+
+The full development grid, per set and identity setting, is in Supplement~\ref{sup:q9dev}.
+
+\textbf{The refrozen package's grid.} \vq{9} as refrozen (\code{c4401b94}, not run on set~4) was run on the same 1,330-run grid (\code{out/qcore9\_work/dev\_summary9.md}, \code{dev\_report9.md}, \code{dev\_report9.json}): no crashed or missing run; no number broken with discovered identities, hand + discovered or zero-config on any set (\vq{8}: 20 on set~I); 14 hand-mode breaks in 11 runs, each a \vq{8} break on the same cell with the same value; the same hand-mode check (352 runs, 350 with \vq{8}'s fixes, 330 with its tier~2 items). Zero-config silent errors, pooled: SEC set~1 593 to 575, set~2 1,072 to 1,054, set~3 1,525 to 1,461, notes tables 95 to 96. On the SEC development sets (sets 1--3 and the development filings), zero-config against hand: with the text layer 166 against 79 (\vq{8}: 216 against 126), without 3,013 against 2,061 (\vq{8}: 3,075 against 2,061). Its summary describes both freezes as preceding any held-out run; the set-4 run (18:40--19:19Z) preceded the second.
+
+\section{Frozen \vq{8} on the second fresh held-out set}\label{app:q8}
+Frozen \vq{8} (29 files, combined sha256 {\small\nolinkurl{405186160d8d9a9ef0f1b846630e18ad1dfae94871fdb42d120fd627cc616558}}, frozen 2026-10-16T21:54:50Z, 71 tests), frozen \vq{7} and frozen \vq{6} were run once, 2026-10-16 22:32:57--23:05:26Z, on 18 bundles: 12 from four generators written for this test (\code{gen\_domains8/}: budget, census, inventory, utilbank; 103 documents, 9,860 numbers) and 6 from the earlier generators with new seeds 09--10 and other layout variants (96 documents, 4,008 numbers). The data were locked by a hash manifest (387 files, combined sha256 \code{f1008f45a959cc58\dots}) at 19:43:36Z, before any \vq{8} change; the three package hashes and the data hash were checked at the start and at the end. 1,296 runs (3 versions $\times$ 18 bundles $\times$ 3 extractions $\times$ 2 modes $\times$ 4 identity settings), none crashed. The extractions are the true values (\emph{clean}), and the true values with injected errors (about 1.5\% and 5\%: \code{inject8.py}, \vq{7}'s injector plus a dropped decimal point); under strict scoring 210 and 691 numbers are wrong, under the legacy rule 191 and 640. \vq{8} was frozen three times before this run (\code{d2ce394b}, \code{7aac7220}, then \code{40518616}); each earlier freeze's development grid showed a new zero-config break (one notes-table number per model; two SEC set~3 numbers, a diluted share count read from the diluted earnings-per-share line), fixed by a guard in the inferred schema's label rule. Neither the held-out documents, their truth nor their extractions were opened before the run. Sources: \code{out/qcore8\_heldout/SUMMARY.md}, \code{results.md}, \code{results.json}; \code{qcore8/CHANGES.md}; generator of these tables: \code{paper/gen\_v8/gen\_q8\_tex.py}.
+
+\input{tab_q8}
+\input{parts/appendix_q8__q8broken}
+
+Every run, the NEW and OLD groups, paired differences, legacy scoring, injected errors by kind and by domain, discovered identities by source and \vq{8}'s development grid are in Supplement~\ref{sup:q8}.
+
+\section{Discovered identities}\label{app:ids}
+Tables~\ref{tab:q6verdicts_disc} and~\ref{tab:idsvshand} (Supplement~\ref{sup:q6}) give every held-out run with discovered identities. Table~\ref{tab:discdev} gives the precision of discovery on development data: how many discovered identities hold on the true values, and how many lie in the span of the hand identities of the same documents (an identity outside the span can still be true: a tie the hand file does not state).
+
+\apptab{Discovered identities on development data (selected rows of \code{out/qcore6\_work/dev\_summary6.md})}\label{tab:discdev}
+\begin{center}\footnotesize
+\begin{tabular}{llllrrrl}
+\toprule
+Set & Extraction & Mode & Schema & Discovered & Hold on truth & In hand span / linear & Coverage hand / disc. / both \\
+\midrule
+SEC dev & Haiku poor & text & hand & 501 & 501 & 456 / 501 & 82.4 / 83.7 / 92.2\% \\
+SEC dev & Haiku poor & text & auto & 485 & 484 & 444 / 485 & 82.4 / 77.8 / 91.1\% \\
+SEC dev & Opus poor & notext & hand & 515 & 514 & 474 / 515 & 82.4 / 89.3 / 91.8\% \\
+CORD train & gold & text & auto & 2,183 & 2,176 & 740 / 1,569 & 73.6 / 64.2 / 80.4\% \\
+Notes dev & Opus & text & auto & 1,046 & 1,046 & 396 / 1,046 & 44.8 / 57.0 / 70.8\% \\
+Notes dev & Haiku & notext & hand & 1,091 & 1,070 & 396 / 1,091 & 44.8 / 60.4 / 72.7\% \\
+Real-scan dev & Haiku & notext & hand & 22 & 22 & 1 / 22 & 98.3 / 28.4 / 98.3\% \\
+Synthetic & corp\_fin\_00 Opus & text & auto & 312 & 310 & 269 / 312 & 96.4 / 91.9 / 96.4\% \\
+Synthetic & invoices\_00 Opus & text & auto & 98 & 98 & 17 / 22 & 96.6 / 53.2 / 96.6\% \\
+\bottomrule
+\end{tabular}
+\end{center}
+Without page text, discovery rests on the extraction alone: on the notes development tables 21 of 1,091 discovered identities do not hold on the truth (1 of 1,059 with page text), and they added only flags (77 false flags on the error-free Opus run). On development data zero-config broke no number but found fewer fixes than the hand files (SEC text 45 against 73; CORD with injected errors 11--76 against 43--128).
+
+\Needspace*{18\baselineskip}
+\section{Further SEC results}\label{app:calc}
+\apptab{OCR words fed to frozen \vq{3} as if they were a text layer, against \vq{4}'s two-reader mode, SEC held-out set~1}\label{app:ocrtext}
+Silent / flagged / broken. The two runs used separate OCR pipelines of the same engines (source: \code{ocr\_mode/results.md}, \code{out/qcore4\_heldout/results.md}). With docTR the page scale was wrong for 1,244 of 2,022 dollar amounts, because ``In millions'' came back as ``mullions''.
+\begin{center}\footnotesize
+\begin{tabular}{llrr}
+\toprule
+OCR & Extractor & \vq{3}, as text layer & \vq{4}, two readers \\
+\midrule
+docTR & Haiku & 39 / 1,485 / 93 & 47 / 234 / 0 \\
+docTR & Opus & 34 / 1,471 / 102 & 10 / 168 / 0 \\
+Tesseract & Haiku & 13 / 2,009 / 32 & 38 / 392 / 0 \\
+Tesseract & Opus & 13 / 2,009 / 32 & 9 / 283 / 0 \\
+\midrule
+none & Haiku & 57 / 155 / 0 & 57 / 155 / 0 \\
+none & Opus & 13 / 62 / 0 & 13 / 62 / 0 \\
+\multicolumn{2}{@{}l}{Opus alone, no checker} & \multicolumn{2}{c}{30 / 0 / 0} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Set~1's identities were first inferred from layout and fitted on the truth. We later obtained the XBRL calculation linkbases of 17 of its 20 filings; they give 752 identities, all of which hold on the truth, and confirm 621 of our 1,054. Rebuilding the held-out bundle with the filers' identities and re-running frozen \vq{3} changed no fix and no silent count in text mode and cut flagged numbers by about 15\%; in no-text mode one error per extractor moved from flagged to silent. Set~2 used the linkbases from the start.
+
+The filers' linkbase identities against set~1's, and \vq{3} against \vq{4} on the development filings, are in Supplement~\ref{sup:calc}.
+
+\section{Changes made on development data}\label{app:changes}
+Every version was changed on development data only, frozen, and run once on held-out data (Section~\ref{sec:protocol}). Table~\ref{tab:allversions} condenses the history from the first private-equity checker to \vq{9}; the main text describes \vq{6}'s discovery and re-read tier (Sections~\ref{sec:discover} and~\ref{sec:rereadmethod}) and the changes of \vq{7}, \vq{8} and \vq{9}. With hand identities, \vq{6} returned \vq{5}'s fixes and tier~2 items in every held-out run, and \vq{7} and \vq{8} returned \vq{6}'s; \vq{9}'s change~3 is the one exception (Section~\ref{sec:headline}). The full record of each version, with what was tried and not kept, the development costs and the development tables of \vq{4} and \vq{5}, is in Supplement~\ref{sup:changes}; its sources are each package's \code{CHANGES.md} and the development summaries under \code{out/qcore*\_work/}.
+
+\apptab{Every frozen version: what it was tuned on, what it changed and what it was run on once (freeze times in Appendix~\ref{app:repro})}\label{tab:allversions}\label{tab:earlyversions}
+\begin{center}\footnotesize\setlength{\tabcolsep}{3.5pt}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{1.25cm}>{\raggedright\arraybackslash}p{1.45cm}>{\raggedright\arraybackslash}p{3.6cm}L>{\raggedright\arraybackslash}p{3.2cm}@{}}
+\toprule
+Version & Frozen (Oct.\ 2026) & Tuned on & Main changes & Tested once on \\
+\midrule
+PE v1 & 14th 05:28 & real fund Fund~R; synthetic funds 01--09 & the first frozen checker, for private-fund packets & funds 11--19; 360 attack cases \\
+PE v2 & 14th 19:19 & the 360 attack cases; v1 regression runs & fixes for the five v1 defects (Supplement~\ref{sup:pe}) & funds 31--39; 430 fresh attack cases \\
+\vq{} & 15th 03:40 & none (domain-neutral port of PE v2) & no domain code: identities, schema and adapter as inputs & synthetic domains, zero-shot \\
+\vq{2} & 15th 04:54 & synthetic-domain dev bundles 00--01 & prose and column reads, label and heading rules, number formats & synthetic bundles 02--05; CORD, SEC zero-shot \\
+\vq{3} & 15th 06:44 & CORD train, validation; 10 SEC dev filings & unit statements and headers, own-line confirmation of swaps and flips, CORD adapter (23 tests) & CORD test; SEC sets 1, 2 \\
+\vq{4} & 15th 18:33 & SEC dev filings: poor scans, OCR, injected errors; CORD train, val. & OCR mode with the two-reader rule, scale vote, OCR cleanup, product terms (31 tests) & SEC 1, 2; CORD; notes; real scans \\
+\vq{5} & 16th 03:28 & + notes tables of the 10 dev filers; synthetic dev; PE validation & the gate: rules (a) and (b), joint guard, no power-of-1000 change (39 tests) & the same, all modes, three models \\
+\vq{6} & 16th 13:14 & + real-scan dev split; real re-reads of dev crops & zero-config discovery and schema inference, re-read tier, a scan's text layer read as OCR (56 tests) & SEC 1, 2, 3 (new); CORD; notes; real scans; synthetic 02--05 \\
+\vq{7} & 16th 16:40 & + every \vq{6} held-out set (now spent) & zero-config only: label cells, independent backing, aggregate ties, weak labels (65 tests) & fresh synthetic 06--08 (set~H) \\
+\vq{8} & 16th 21:54 (3rd freeze) & + set~H (now spent) & zero-config only: more templates, tolerances, three label guards (71 tests) & set~I: 4 new families; 09--10 \\
+\vq{9} & 18th 18:27 (1st freeze) & + set~I (now spent) & changes 1--5 of Section~\ref{sec:discover}; change~3 in every page-reading mode (79 tests) & SEC 4 (new), with \vq{8}, \vq{6} \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Reproduction}\label{app:repro}
+The accompanying artifact contains the code of every frozen version with its manifest, the bundle builders for the synthetic domains, CORD and SEC, the degradation scripts, the adversarial generators and the scoring scripts, together with the extractions and result files behind every table and figure. Freeze times: PE v1 2026-10-14T05:28:12Z, PE v2 2026-10-14T19:19:22Z, \vq{} 2026-10-15T03:40:40Z, \vq{2} 2026-10-15T04:54:42Z, \vq{3} 2026-10-15T06:44:43Z, \vq{4} 2026-10-15T18:33:58Z (combined sha256 of its 23 files \code{599928a82f855fe7\dots}), \vq{5} 2026-10-16T03:28:46Z (24 files, \code{97351ded97dbd93f\dots}), \vq{6} 2026-10-16T13:14:47Z (28 files, \code{86debea05f95a6d2\dots}), \vq{7} 2026-10-16T16:40:49Z (28 files, \code{51d9a35236ca553c\dots}), \vq{8} 2026-10-16T21:54:50Z (29 files, \code{405186160d8d9a9e\dots}; earlier freezes \code{d2ce394b}, \code{7aac7220} superseded before any held-out run), \vq{9} 2026-10-18T18:27:04Z (30 files, \code{3ca510d3ea178550\dots}, freeze~1, the version run on set~4 and the one every \vq{9} result describes; refrozen 19:59:26Z as freeze~2, \code{c4401b943fcb8eb1\dots}, which \code{qcore9/} now matches and which has not been tested on held-out data; the freeze-1 code that produced every set-4 result is \code{qcore9\_f1/} (package name \code{qcore9}; copy it to a folder named \code{qcore9} to reproduce \code{3ca510d3\dots}\ and run its 79 tests; its \code{frozen\_manifest.json} holds reconstructed per-file hashes, as the original freeze-1 manifest was overwritten at freeze~2), and its development runs are in \code{/home/claude/q9/runs/qcore9\_freeze1} with the report \code{/home/claude/q9/logs/dev\_report9\_freeze1.md} (copied to \code{paper/gen\_v9/}); recompute with \code{find qcore9 -path '*\_\_pycache\_\_*' -prune -o \textbackslash( -name '*.py' -o -name '*.md' \textbackslash) -print | sort | xargs sha256sum | sha256sum}; per-file hashes in \code{qcore9/frozen\_manifest.json}). The \vq{3} test suite has 23 tests, the \vq{4} suite 31, the \vq{5} suite 39, the \vq{6} suite 56, the \vq{7} suite 65, the \vq{8} suite 71 and the \vq{9} suite 79 (\code{python -m pytest qcore9/tests -q}). SEC set~4: the builder (\code{sec\_eval4/build/build\_bundle4.py}, \code{degrade4.py}, \code{check4.py}), the extraction prompt and batches (\code{sec\_eval4/extract/}), the lock manifests, the held-out harness and report (\code{out/qcore9\_heldout/heldout9.py}, \code{report9.py}, \code{summary9.py}, \code{ocr\_D.sh}) with the start and end checks, the development-grid scripts (\code{out/qcore9\_work/dev9.py}, \code{dev\_report9.py}) and this paper's table generator (\code{paper/gen\_v9/gen\_q9\_tex.py}) are included. The four new generators (\code{gen\_domains8/}), the \vq{8} held-out builder, injector, harness and report (\code{out/qcore8\_heldout/build/build\_heldout8.py}, \code{inject8.py}, \code{heldout8.py}, \code{results\_md8.py}) with the locked data and the start and end hash checks, and the development-grid scripts (\code{out/qcore8\_work/dev8.py}, \code{dev\_report8.py}) are included. The \vq{7} fresh held-out builder, error injector and harness (\code{out/qcore7\_heldout/build\_heldout7.py}, \code{inject7.py}, \code{heldout7.py}), with the locked data, and the development-grid scripts (\code{out/qcore7\_work/dev7.py}, \code{dev\_report7.py}) are included. The SEC set~3 builder, the re-read request maker and the held-out harness of \vq{6} (\code{out/qcore6\_heldout/heldout\_qcore6.py}) are included. The SEC set~2 builder, the notes-table and real-scan builders, the calculation-linkbase reader, the baseline script and the OCR scripts are included.

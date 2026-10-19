@@ -1,0 +1,30 @@
+% Cut verbatim from appendix_q6.tex by paper/gen_v10/split_parts.py; do not edit.
+\apptab{Frozen \vq{6}: Synthetic domains, held-out bundles 02--05 (192 documents, 7,892 numbers)}\label{tab:q6G_0}
+One run per model, mode and identity setting. Fixed: wrong in the extraction, right at the end. Coverage: share of numbers in some identity used by the run. Frozen \vq{5}, re-run on the same inputs, gives exactly the hand-identity rows (not repeated).
+\begin{center}\footnotesize\setlength{\tabcolsep}{3.5pt}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{lllrrrrr}
+\toprule
+Pipeline & Accuracy [95\% CI] & Silent [95\% CI] & Flagged (wrong) & Broken & Fixed & To human & Coverage \\
+\midrule
+Haiku alone & 99.97\% [99.94, 100.00] & 2 [0, 5] & 0 (0) & 0 & 0 & 0.0\% & -- \\
+Haiku + \vq{6}, text & 99.97\% [99.94, 100.00] & 2 [0, 5] & 196 (0) & 0 & 0 & 2.5\% & 97.8\% \\
+Haiku + \vq{6}, no text & 99.97\% [99.94, 100.00] & 2 [0, 5] & 122 (0) & 0 & 0 & 1.5\% & 97.8\% \\
+Haiku + \vq{6} discovered ids, text & 99.77\% [99.67, 99.87] & 18 [10, 27] & 122 (0) & 16 & 0 & 1.5\% & 81.2\% \\
+Haiku + \vq{6} discovered ids, no text & 99.97\% [99.94, 100.00] & 2 [0, 5] & 51 (0) & 0 & 0 & 0.6\% & 78.2\% \\
+Haiku + \vq{6} hand + discovered ids, text & 99.97\% [99.94, 100.00] & 2 [0, 5] & 238 (0) & 0 & 0 & 3.0\% & 97.8\% \\
+Haiku + \vq{6} hand + discovered ids, no text & 99.97\% [99.94, 100.00] & 2 [0, 5] & 149 (0) & 0 & 0 & 1.9\% & 97.8\% \\
+Haiku + \vq{6} zero-config, text & 99.87\% [99.80, 99.95] & 10 [4, 16] & 122 (0) & 8 & 0 & 1.5\% & 81.3\% \\
+Haiku + \vq{6} zero-config, no text & 99.97\% [99.94, 100.00] & 2 [0, 5] & 51 (0) & 0 & 0 & 0.6\% & 78.2\% \\
+Opus alone & 100.00\% [100.00, 100.00] & 0 [0, 0] & 0 (0) & 0 & 0 & 0.0\% & -- \\
+Opus + \vq{6}, text & 100.00\% [100.00, 100.00] & 0 [0, 0] & 221 (0) & 0 & 0 & 2.8\% & 97.8\% \\
+Opus + \vq{6}, no text & 100.00\% [100.00, 100.00] & 0 [0, 0] & 125 (0) & 0 & 0 & 1.6\% & 97.8\% \\
+Opus + \vq{6} discovered ids, text & 99.80\% [99.70, 99.88] & 16 [9, 24] & 137 (0) & 16 & 0 & 1.7\% & 81.3\% \\
+Opus + \vq{6} discovered ids, no text & 100.00\% [100.00, 100.00] & 0 [0, 0] & 53 (0) & 0 & 0 & 0.7\% & 78.2\% \\
+Opus + \vq{6} hand + discovered ids, text & 100.00\% [100.00, 100.00] & 0 [0, 0] & 263 (0) & 0 & 0 & 3.3\% & 97.8\% \\
+Opus + \vq{6} hand + discovered ids, no text & 100.00\% [100.00, 100.00] & 0 [0, 0] & 151 (0) & 0 & 0 & 1.9\% & 97.8\% \\
+Opus + \vq{6} zero-config, text & 99.90\% [99.83, 99.96] & 8 [3, 14] & 130 (0) & 8 & 0 & 1.6\% & 81.3\% \\
+Opus + \vq{6} zero-config, no text & 100.00\% [100.00, 100.00] & 0 [0, 0] & 53 (0) & 0 & 0 & 0.7\% & 78.2\% \\
+\bottomrule
+\end{tabular}\end{adjustbox}
+\end{center}
+

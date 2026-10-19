@@ -1,0 +1,107 @@
+% Cut verbatim from appendix_q8.tex by paper/gen_v10/split_parts.py; do not edit.
+\section{Development grid of frozen \vq{8}}\label{app:q8dev}
+\textbf{Development data only.} Every set below was spent before \vq{8} was written, and \vq{8} was tuned on them, set~H (\vq{7}'s fresh synthetic held-out set, corp\_fin, invoices and public\_stats 06--08) included. Frozen \vq{8} was run on every (set, model, extraction, mode, identity setting) of the grid (898 runs, all completed); the \vq{7} runs are \vq{7}'s own frozen grid and, for set~H, its held-out run. Pooled over models, extractions and modes; legacy scoring, plus strict scoring for set~H. Hand-identity check: in all 244 hand runs \vq{8} returned exactly \vq{7}'s fixes (244) and tier~2 items (244). Every number \vq{8} breaks on these sets is a hand-mode break that \vq{7} makes too, on the same cell with the same new value (OCR look-alike repairs on SEC sets 1--3, the Snap-on swap and the Salesforce cell, Section~\ref{sec:allmodels}); with discovered identities or zero-config \vq{8} breaks none. Source: \code{out/qcore8\_work/dev\_summary8.md}, \code{dev\_report8.md}, \code{dev\_report8.json}.
+{\scriptsize\setlength{\tabcolsep}{4pt}
+\begin{longtable}{lllrllll}
+\toprule
+Set & Identities & Extractions, scoring & Numbers & Silent \vq{7} / \vq{8} & Broken & Fixed & To a person \\
+\midrule\endhead
+SEC set 1 & hand & real, legacy & 25,728 & 885 / 885 & 2 / 2 & 563 / 563 & 14.3 / 14.3\% \\
+SEC set 1 & discovered & real, legacy & 12,864 & 597 / 586 & 0 / 0 & 476 / 477 & 4.0 / 4.3\% \\
+SEC set 1 & hand + disc. & real, legacy & 12,864 & 379 / 374 & 0 / 0 & 518 / 518 & 8.6 / 8.8\% \\
+SEC set 1 & zero-config & real, legacy & 12,864 & 605 / 593 & 0 / 0 & 260 / 259 & 5.8 / 6.0\% \\
+SEC set 2 & hand & real, legacy & 53,088 & 1,615 / 1,615 & 3 / 3 & 1,001 / 1,001 & 12.9 / 12.9\% \\
+SEC set 2 & discovered & real, legacy & 26,544 & 1,058 / 1,048 & 0 / 0 & 804 / 801 & 4.5 / 4.6\% \\
+SEC set 2 & hand + disc. & real, legacy & 26,544 & 699 / 694 & 0 / 0 & 871 / 871 & 7.8 / 7.9\% \\
+SEC set 2 & zero-config & real, legacy & 26,544 & 1,080 / 1,072 & 0 / 0 & 397 / 381 & 5.9 / 6.1\% \\
+SEC set 3 & hand & real, legacy & 62,472 & 2,304 / 2,304 & 6 / 6 & 1,108 / 1,108 & 16.2 / 16.2\% \\
+SEC set 3 & discovered & real, legacy & 31,236 & 1,502 / 1,497 & 0 / 0 & 955 / 955 & 5.7 / 5.9\% \\
+SEC set 3 & hand + disc. & real, legacy & 31,236 & 999 / 1,002 & 0 / 0 & 1,011 / 1,011 & 9.9 / 9.9\% \\
+SEC set 3 & zero-config & real, legacy & 31,236 & 1,536 / 1,525 & 0 / 0 & 481 / 449 & 7.7 / 8.0\% \\
+CORD test & hand & real, legacy & 7,984 & 365 / 365 & 0 / 0 & 28 / 28 & 20.9 / 20.9\% \\
+CORD test & discovered & real, legacy & 3,992 & 151 / 142 & 0 / 0 & 25 / 25 & 19.5 / 21.6\% \\
+CORD test & hand + disc. & real, legacy & 3,992 & 134 / 126 & 0 / 0 & 29 / 29 & 21.2 / 23.4\% \\
+CORD test & zero-config & real, legacy & 3,992 & 153 / 144 & 0 / 0 & 25 / 25 & 19.3 / 21.5\% \\
+Notes tables & hand & real, legacy & 88,668 & 54 / 54 & 3 / 3 & 8 / 8 & 7.1 / 7.1\% \\
+Notes tables & discovered & real, legacy & 88,668 & 95 / 95 & 0 / 0 & 1 / 1 & 7.7 / 8.4\% \\
+Notes tables & hand + disc. & real, legacy & 88,668 & 47 / 47 & 0 / 0 & 1 / 1 & 7.8 / 8.5\% \\
+Notes tables & zero-config & real, legacy & 88,668 & 101 / 95 & 6 / 0 & 0 / 0 & 7.8 / 8.6\% \\
+Real scans & hand & real, legacy & 6,054 & 13 / 13 & 0 / 0 & 0 / 0 & 16.2 / 16.2\% \\
+Real scans & discovered & real, legacy & 2,018 & 5 / 5 & 0 / 0 & 0 / 0 & 20.6 / 20.6\% \\
+Real scans & hand + disc. & real, legacy & 2,018 & 5 / 5 & 0 / 0 & 0 / 0 & 22.6 / 22.8\% \\
+Real scans & zero-config & real, legacy & 2,018 & 5 / 5 & 0 / 0 & 0 / 0 & 20.6 / 20.6\% \\
+Synthetic 02--05 & hand & real, legacy & 31,568 & 4 / 4 & 0 / 0 & 0 / 0 & 2.1 / 2.1\% \\
+Synthetic 02--05 & discovered & real, legacy & 31,568 & 4 / 4 & 0 / 0 & 0 / 0 & 1.1 / 2.9\% \\
+Synthetic 02--05 & hand + disc. & real, legacy & 31,568 & 4 / 4 & 0 / 0 & 0 / 0 & 2.3 / 4.0\% \\
+Synthetic 02--05 & zero-config & real, legacy & 31,568 & 4 / 4 & 0 / 0 & 0 / 0 & 1.4 / 2.9\% \\
+Set H & hand & clean, legacy & 11,840 & 0 / 0 & 0 / 0 & 0 / 0 & 2.1 / 2.1\% \\
+Set H & discovered & clean, legacy & 11,840 & 0 / 0 & 0 / 0 & 0 / 0 & 1.3 / 3.3\% \\
+Set H & hand + disc. & clean, legacy & 11,840 & 0 / 0 & 0 / 0 & 0 / 0 & 2.6 / 4.5\% \\
+Set H & zero-config & clean, legacy & 11,840 & 0 / 0 & 0 / 0 & 0 / 0 & 1.5 / 3.4\% \\
+Set H & hand & clean, strict & 11,840 & 0 / 0 & 0 / 0 & 0 / 0 & 2.1 / 2.1\% \\
+Set H & discovered & clean, strict & 11,840 & 0 / 0 & 0 / 0 & 0 / 0 & 1.3 / 3.3\% \\
+Set H & hand + disc. & clean, strict & 11,840 & 0 / 0 & 0 / 0 & 0 / 0 & 2.6 / 4.5\% \\
+Set H & zero-config & clean, strict & 11,840 & 0 / 0 & 0 / 0 & 0 / 0 & 1.5 / 3.4\% \\
+Set H & hand & high, legacy & 11,840 & 22 / 22 & 0 / 0 & 194 / 194 & 16.9 / 16.9\% \\
+Set H & discovered & high, legacy & 11,840 & 172 / 82 & 0 / 0 & 127 / 150 & 8.2 / 14.4\% \\
+Set H & hand + disc. & high, legacy & 11,840 & 21 / 9 & 0 / 0 & 184 / 185 & 17.5 / 19.2\% \\
+Set H & zero-config & high, legacy & 11,840 & 178 / 88 & 0 / 0 & 91 / 108 & 8.7 / 15.0\% \\
+Set H & hand & high, strict & 11,840 & 27 / 27 & 0 / 0 & 194 / 194 & 16.9 / 16.9\% \\
+Set H & discovered & high, strict & 11,840 & 201 / 90 & 0 / 0 & 127 / 150 & 8.2 / 14.4\% \\
+Set H & hand + disc. & high, strict & 11,840 & 25 / 11 & 0 / 0 & 184 / 185 & 17.5 / 19.2\% \\
+Set H & zero-config & high, strict & 11,840 & 207 / 96 & 0 / 0 & 91 / 108 & 8.7 / 15.0\% \\
+Set H & hand & low, legacy & 11,840 & 9 / 9 & 0 / 0 & 58 / 58 & 6.4 / 6.4\% \\
+Set H & discovered & low, legacy & 11,840 & 29 / 7 & 0 / 0 & 38 / 40 & 4.7 / 6.9\% \\
+Set H & hand + disc. & low, legacy & 11,840 & 9 / 0 & 0 / 0 & 53 / 50 & 7.5 / 9.7\% \\
+Set H & zero-config & low, legacy & 11,840 & 30 / 8 & 0 / 0 & 31 / 30 & 4.9 / 7.0\% \\
+Set H & hand & low, strict & 11,840 & 11 / 11 & 0 / 0 & 59 / 59 & 6.4 / 6.4\% \\
+Set H & discovered & low, strict & 11,840 & 41 / 13 & 0 / 0 & 38 / 40 & 4.7 / 6.9\% \\
+Set H & hand + disc. & low, strict & 11,840 & 11 / 0 & 0 / 0 & 53 / 50 & 7.5 / 9.7\% \\
+Set H & zero-config & low, strict & 11,840 & 42 / 14 & 0 / 0 & 31 / 30 & 4.9 / 7.0\% \\
+SEC dev & hand & injected, legacy & 4,890 & 17 / 17 & 0 / 0 & 54 / 54 & 3.2 / 3.2\% \\
+SEC dev & discovered & injected, legacy & 4,890 & 30 / 30 & 0 / 0 & 39 / 39 & 3.4 / 3.4\% \\
+SEC dev & hand + disc. & injected, legacy & 4,890 & 13 / 13 & 0 / 0 & 51 / 51 & 4.0 / 4.0\% \\
+SEC dev & zero-config & injected, legacy & 4,890 & 33 / 30 & 0 / 0 & 27 / 35 & 3.6 / 3.5\% \\
+SEC dev & hand & real, legacy & 19,560 & 113 / 113 & 0 / 0 & 100 / 100 & 8.9 / 8.9\% \\
+SEC dev & discovered & real, legacy & 19,560 & 147 / 142 & 0 / 0 & 71 / 71 & 7.8 / 7.3\% \\
+SEC dev & hand + disc. & real, legacy & 19,560 & 113 / 109 & 0 / 0 & 100 / 100 & 6.9 / 6.9\% \\
+SEC dev & zero-config & real, legacy & 19,560 & 157 / 151 & 0 / 0 & 50 / 54 & 7.6 / 7.2\% \\
+Notes dev & hand & injected, legacy & 13,178 & 67 / 67 & 0 / 0 & 18 / 18 & 1.2 / 1.2\% \\
+Notes dev & discovered & injected, legacy & 13,178 & 61 / 52 & 0 / 0 & 12 / 12 & 2.0 / 2.8\% \\
+Notes dev & hand + disc. & injected, legacy & 13,178 & 40 / 34 & 0 / 0 & 15 / 15 & 2.4 / 3.2\% \\
+Notes dev & zero-config & injected, legacy & 13,178 & 65 / 56 & 0 / 0 & 11 / 11 & 1.8 / 2.6\% \\
+Notes dev & hand & real, legacy & 39,534 & 36 / 36 & 0 / 0 & 16 / 16 & 6.6 / 6.6\% \\
+Notes dev & discovered & real, legacy & 39,534 & 36 / 36 & 0 / 0 & 4 / 4 & 6.9 / 7.7\% \\
+Notes dev & hand + disc. & real, legacy & 39,534 & 36 / 36 & 0 / 0 & 4 / 4 & 7.2 / 8.0\% \\
+Notes dev & zero-config & real, legacy & 39,534 & 40 / 40 & 0 / 0 & 0 / 0 & 7.1 / 7.9\% \\
+CORD train & hand & injected, legacy & 16,810 & 33 / 33 & 0 / 0 & 63 / 63 & 3.5 / 3.5\% \\
+CORD train & discovered & injected, legacy & 16,810 & 81 / 68 & 0 / 0 & 33 / 33 & 4.1 / 5.2\% \\
+CORD train & hand + disc. & injected, legacy & 16,810 & 42 / 42 & 0 / 0 & 54 / 56 & 5.7 / 6.6\% \\
+CORD train & zero-config & injected, legacy & 16,810 & 86 / 73 & 0 / 0 & 31 / 31 & 3.9 / 5.1\% \\
+CORD train & hand & real, legacy & 16,810 & 0 / 0 & 0 / 0 & 0 / 0 & 2.3 / 2.3\% \\
+CORD train & discovered & real, legacy & 16,810 & 0 / 0 & 0 / 0 & 0 / 0 & 3.1 / 4.0\% \\
+CORD train & hand + disc. & real, legacy & 16,810 & 0 / 0 & 0 / 0 & 0 / 0 & 4.2 / 5.0\% \\
+CORD train & zero-config & real, legacy & 16,810 & 0 / 0 & 0 / 0 & 0 / 0 & 2.9 / 3.8\% \\
+CORD val. & hand & injected, legacy & 3,768 & 43 / 43 & 0 / 0 & 34 / 34 & 12.3 / 12.3\% \\
+CORD val. & discovered & injected, legacy & 3,768 & 108 / 80 & 0 / 0 & 15 / 17 & 9.4 / 11.2\% \\
+CORD val. & hand + disc. & injected, legacy & 3,768 & 42 / 43 & 0 / 0 & 36 / 35 & 13.0 / 13.3\% \\
+CORD val. & zero-config & injected, legacy & 3,768 & 112 / 84 & 0 / 0 & 8 / 9 & 8.9 / 10.9\% \\
+CORD val. & hand & real, legacy & 3,768 & 21 / 21 & 0 / 0 & 2 / 2 & 8.5 / 8.5\% \\
+CORD val. & discovered & real, legacy & 3,768 & 22 / 28 & 0 / 0 & 3 / 2 & 9.4 / 10.4\% \\
+CORD val. & hand + disc. & real, legacy & 3,768 & 20 / 20 & 0 / 0 & 3 / 2 & 11.4 / 12.2\% \\
+CORD val. & zero-config & real, legacy & 3,768 & 25 / 31 & 0 / 0 & 1 / 0 & 8.7 / 9.6\% \\
+Real-scan dev & hand & real, legacy & 2,760 & 8 / 8 & 0 / 0 & 0 / 0 & 24.9 / 24.9\% \\
+Real-scan dev & discovered & real, legacy & 2,760 & 16 / 16 & 0 / 0 & 0 / 0 & 19.2 / 21.6\% \\
+Real-scan dev & hand + disc. & real, legacy & 2,760 & 0 / 0 & 0 / 0 & 0 / 0 & 36.8 / 37.0\% \\
+Real-scan dev & zero-config & real, legacy & 2,760 & 16 / 16 & 0 / 0 & 0 / 0 & 18.3 / 18.6\% \\
+Synthetic 00--01 & hand & injected, legacy & 16,364 & 16 / 16 & 0 / 0 & 354 / 354 & 7.3 / 7.3\% \\
+Synthetic 00--01 & discovered & injected, legacy & 16,364 & 232 / 144 & 0 / 0 & 202 / 234 & 4.3 / 8.1\% \\
+Synthetic 00--01 & hand + disc. & injected, legacy & 16,364 & 16 / 8 & 0 / 0 & 352 / 350 & 7.9 / 10.1\% \\
+Synthetic 00--01 & zero-config & injected, legacy & 16,364 & 247 / 160 & 0 / 0 & 150 / 163 & 4.6 / 8.4\% \\
+Synthetic 00--01 & hand & real, legacy & 16,364 & 6 / 6 & 0 / 0 & 0 / 0 & 1.4 / 1.4\% \\
+Synthetic 00--01 & discovered & real, legacy & 16,364 & 6 / 6 & 0 / 0 & 0 / 0 & 0.7 / 2.8\% \\
+Synthetic 00--01 & hand + disc. & real, legacy & 16,364 & 6 / 6 & 0 / 0 & 0 / 0 & 1.6 / 3.5\% \\
+Synthetic 00--01 & zero-config & real, legacy & 16,364 & 6 / 6 & 0 / 0 & 0 / 0 & 0.7 / 2.7\% \\
+\bottomrule
+\end{longtable}}
+

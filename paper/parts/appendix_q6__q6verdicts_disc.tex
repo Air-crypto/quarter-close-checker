@@ -1,0 +1,157 @@
+% Cut verbatim from appendix_q6.tex by paper/gen_v10/split_parts.py; do not edit.
+\apptab{Every run of frozen \vq{6} with discovered identities against the same model alone}\label{tab:q6verdicts_disc}
+As Table~\ref{tab:q6verdicts}. Discovered: identities found in the documents, hand schema. Hand + disc.: both. Zero-config: discovered identities and an inferred schema, no file written by hand.
+{\scriptsize\setlength{\tabcolsep}{3pt}
+\begin{longtable}{llllrrlrrrl}
+\toprule
+Set & Model & Mode & Identities & Silent & Alone & Difference [95\% CI] & Broken & Fixed & To human & vs.\ Opus alone [95\% CI] \\
+\midrule\endhead
+SEC 1 & Haiku & text & discovered & 0 & 109 & $-$109 [$-$175, $-$53] & 0 & 84 & 1.8\% & $-$30 [$-$56, $-$9] \\
+SEC 1 & Haiku & no text & discovered & 80 & 109 & $-$29 [$-$49, $-$12] & 0 & 0 & 4.7\% & +50 [+15, +94] \\
+SEC 1 & Haiku & text & hand + disc. & 0 & 109 & $-$109 [$-$175, $-$53] & 0 & 84 & 2.3\% & $-$30 [$-$56, $-$9] \\
+SEC 1 & Haiku & no text & hand + disc. & 56 & 109 & $-$53 [$-$93, $-$20] & 0 & 0 & 8.2\% & +26 [+8, +45] \\
+SEC 1 & Haiku & text & zero-config & 0 & 109 & $-$109 [$-$175, $-$53] & 0 & 51 & 3.7\% & $-$30 [$-$56, $-$9] \\
+SEC 1 & Haiku & no text & zero-config & 80 & 109 & $-$29 [$-$49, $-$12] & 0 & 0 & 4.7\% & +50 [+15, +94] \\
+SEC 1 & Opus & text & discovered & 5 & 30 & $-$25 [$-$48, $-$7] & 0 & 18 & 0.4\% & -- \\
+SEC 1 & Opus & no text & discovered & 18 & 30 & $-$12 [$-$24, $-$3] & 0 & 0 & 2.4\% & -- \\
+SEC 1 & Opus & text & hand + disc. & 0 & 30 & $-$30 [$-$56, $-$9] & 0 & 18 & 1.4\% & -- \\
+SEC 1 & Opus & no text & hand + disc. & 12 & 30 & $-$18 [$-$34, $-$5] & 0 & 0 & 3.8\% & -- \\
+SEC 1 & Opus & text & zero-config & 5 & 30 & $-$25 [$-$48, $-$7] & 0 & 16 & 0.5\% & -- \\
+SEC 1 & Opus & no text & zero-config & 18 & 30 & $-$12 [$-$24, $-$3] & 0 & 0 & 2.4\% & -- \\
+SEC 1 & GPT & text & discovered & 10 & 531 & $-$521 [$-$695, $-$367] & 0 & 413 & 6.4\% & $-$20 [$-$49, +6] \\
+SEC 1 & GPT & no text & discovered & 484 & 531 & $-$47 [$-$81, $-$24] & 0 & 0 & 6.7\% & +454 [+310, +613] \\
+SEC 1 & GPT & text & hand + disc. & 8 & 531 & $-$523 [$-$697, $-$369] & 0 & 415 & 8.8\% & $-$22 [$-$51, +3] \\
+SEC 1 & GPT & no text & hand + disc. & 303 & 531 & $-$228 [$-$316, $-$149] & 0 & 0 & 27.3\% & +273 [+179, +371] \\
+SEC 1 & GPT & text & zero-config & 56 & 531 & $-$475 [$-$633, $-$333] & 0 & 32 & 24.9\% & +26 [$-$20, +78] \\
+SEC 1 & GPT & no text & zero-config & 484 & 531 & $-$47 [$-$81, $-$24] & 0 & 0 & 6.7\% & +454 [+310, +613] \\
+\midrule
+SEC 2 & Haiku & text & discovered & 8 & 202 & $-$194 [$-$310, $-$98] & 1 & 140 & 1.7\% & $-$61 [$-$129, $-$6] \\
+SEC 2 & Haiku & no text & discovered & 171 & 202 & $-$31 [$-$46, $-$18] & 0 & 0 & 2.9\% & +102 [+49, +183] \\
+SEC 2 & Haiku & text & hand + disc. & 4 & 202 & $-$198 [$-$313, $-$103] & 0 & 141 & 2.6\% & $-$65 [$-$133, $-$10] \\
+SEC 2 & Haiku & no text & hand + disc. & 102 & 202 & $-$100 [$-$167, $-$44] & 0 & 0 & 6.1\% & +33 [$-$18, +88] \\
+SEC 2 & Haiku & text & zero-config & 33 & 202 & $-$169 [$-$262, $-$92] & 0 & 40 & 5.8\% & $-$36 [$-$120, +48] \\
+SEC 2 & Haiku & no text & zero-config & 171 & 202 & $-$31 [$-$46, $-$18] & 0 & 0 & 2.9\% & +102 [+49, +183] \\
+SEC 2 & Opus & text & discovered & 0 & 69 & $-$69 [$-$136, $-$14] & 0 & 43 & 0.9\% & -- \\
+SEC 2 & Opus & no text & discovered & 51 & 69 & $-$18 [$-$37, $-$4] & 0 & 0 & 1.9\% & -- \\
+SEC 2 & Opus & text & hand + disc. & 0 & 69 & $-$69 [$-$136, $-$14] & 0 & 43 & 1.5\% & -- \\
+SEC 2 & Opus & no text & hand + disc. & 39 & 69 & $-$30 [$-$63, $-$6] & 0 & 0 & 2.9\% & -- \\
+SEC 2 & Opus & text & zero-config & 2 & 69 & $-$67 [$-$132, $-$14] & 0 & 20 & 1.2\% & -- \\
+SEC 2 & Opus & no text & zero-config & 51 & 69 & $-$18 [$-$37, $-$4] & 0 & 0 & 1.9\% & -- \\
+SEC 2 & GPT & text & discovered & 37 & 1,012 & $-$975 [$-$1297, $-$708] & 0 & 726 & 7.2\% & $-$32 [$-$106, +31] \\
+SEC 2 & GPT & no text & discovered & 793 & 1,012 & $-$219 [$-$447, $-$84] & 0 & 0 & 10.4\% & +724 [+551, +920] \\
+SEC 2 & GPT & text & hand + disc. & 25 & 1,012 & $-$987 [$-$1311, $-$717] & 0 & 727 & 9.3\% & $-$44 [$-$116, +17] \\
+SEC 2 & GPT & no text & hand + disc. & 529 & 1,012 & $-$483 [$-$739, $-$290] & 0 & 0 & 24.2\% & +460 [+350, +592] \\
+SEC 2 & GPT & text & zero-config & 133 & 1,012 & $-$879 [$-$1177, $-$637] & 0 & 73 & 24.2\% & +64 [$-$32, +184] \\
+SEC 2 & GPT & no text & zero-config & 793 & 1,012 & $-$219 [$-$447, $-$84] & 0 & 0 & 10.4\% & +724 [+551, +920] \\
+\midrule
+SEC 3 & Haiku & text & discovered & 18 & 216 & $-$198 [$-$272, $-$134] & 0 & 121 & 3.7\% & $-$32 [$-$71, $-$2] \\
+SEC 3 & Haiku & no text & discovered & 170 & 216 & $-$46 [$-$65, $-$28] & 0 & 0 & 4.5\% & +120 [+66, +187] \\
+SEC 3 & Haiku & text & hand + disc. & 15 & 216 & $-$201 [$-$278, $-$135] & 0 & 121 & 4.0\% & $-$35 [$-$73, $-$6] \\
+SEC 3 & Haiku & no text & hand + disc. & 125 & 216 & $-$91 [$-$149, $-$47] & 0 & 0 & 7.9\% & +75 [+43, +108] \\
+SEC 3 & Haiku & text & zero-config & 43 & 216 & $-$173 [$-$226, $-$124] & 0 & 51 & 4.4\% & $-$7 [$-$57, +47] \\
+SEC 3 & Haiku & no text & zero-config & 170 & 216 & $-$46 [$-$65, $-$28] & 0 & 0 & 4.5\% & +120 [+66, +187] \\
+SEC 3 & Opus & text & discovered & 5 & 50 & $-$45 [$-$82, $-$17] & 0 & 39 & 2.1\% & -- \\
+SEC 3 & Opus & no text & discovered & 40 & 50 & $-$10 [$-$23, $-$2] & 0 & 0 & 0.8\% & -- \\
+SEC 3 & Opus & text & hand + disc. & 5 & 50 & $-$45 [$-$82, $-$17] & 0 & 39 & 2.2\% & -- \\
+SEC 3 & Opus & no text & hand + disc. & 39 & 50 & $-$11 [$-$26, $-$2] & 0 & 0 & 0.9\% & -- \\
+SEC 3 & Opus & text & zero-config & 6 & 50 & $-$44 [$-$80, $-$17] & 0 & 16 & 2.6\% & -- \\
+SEC 3 & Opus & no text & zero-config & 40 & 50 & $-$10 [$-$23, $-$2] & 0 & 0 & 0.8\% & -- \\
+SEC 3 & GPT & text & discovered & 65 & 1,443 & $-$1378 [$-$1735, $-$1069] & 0 & 874 & 13.1\% & +15 [$-$31, +59] \\
+SEC 3 & GPT & no text & discovered & 1,205 & 1,443 & $-$238 [$-$477, $-$103] & 0 & 0 & 9.0\% & +1155 [+896, +1435] \\
+SEC 3 & GPT & text & hand + disc. & 62 & 1,443 & $-$1381 [$-$1740, $-$1070] & 2 & 877 & 14.5\% & +12 [$-$35, +55] \\
+SEC 3 & GPT & no text & hand + disc. & 755 & 1,443 & $-$688 [$-$1002, $-$452] & 0 & 0 & 29.6\% & +705 [+543, +877] \\
+SEC 3 & GPT & text & zero-config & 187 & 1,443 & $-$1256 [$-$1585, $-$982] & 0 & 50 & 35.2\% & +137 [+56, +232] \\
+SEC 3 & GPT & no text & zero-config & 1,205 & 1,443 & $-$238 [$-$477, $-$103] & 0 & 0 & 9.0\% & +1155 [+896, +1435] \\
+\midrule
+SEC 1+2 & Haiku & text & discovered & 8 & 311 & $-$303 [$-$439, $-$188] & 1 & 224 & 1.7\% & $-$91 [$-$164, $-$33] \\
+SEC 1+2 & Haiku & no text & discovered & 251 & 311 & $-$60 [$-$85, $-$38] & 0 & 0 & 3.5\% & +152 [+83, +243] \\
+SEC 1+2 & Haiku & text & hand + disc. & 4 & 311 & $-$307 [$-$443, $-$192] & 0 & 225 & 2.5\% & $-$95 [$-$168, $-$37] \\
+SEC 1+2 & Haiku & no text & hand + disc. & 158 & 311 & $-$153 [$-$232, $-$85] & 0 & 0 & 6.8\% & +59 [+4, +119] \\
+SEC 1+2 & Haiku & text & zero-config & 33 & 311 & $-$278 [$-$393, $-$180] & 0 & 91 & 5.1\% & $-$66 [$-$150, +22] \\
+SEC 1+2 & Haiku & no text & zero-config & 251 & 311 & $-$60 [$-$85, $-$38] & 0 & 0 & 3.5\% & +152 [+83, +243] \\
+SEC 1+2 & Opus & text & discovered & 5 & 99 & $-$94 [$-$167, $-$37] & 0 & 61 & 0.7\% & -- \\
+SEC 1+2 & Opus & no text & discovered & 69 & 99 & $-$30 [$-$52, $-$12] & 0 & 0 & 2.0\% & -- \\
+SEC 1+2 & Opus & text & hand + disc. & 0 & 99 & $-$99 [$-$173, $-$42] & 0 & 61 & 1.5\% & -- \\
+SEC 1+2 & Opus & no text & hand + disc. & 51 & 99 & $-$48 [$-$86, $-$19] & 0 & 0 & 3.2\% & -- \\
+SEC 1+2 & Opus & text & zero-config & 7 & 99 & $-$92 [$-$163, $-$37] & 0 & 36 & 1.0\% & -- \\
+SEC 1+2 & Opus & no text & zero-config & 69 & 99 & $-$30 [$-$52, $-$12] & 0 & 0 & 2.0\% & -- \\
+SEC 1+2 & GPT & text & discovered & 47 & 1,543 & $-$1496 [$-$1864, $-$1183] & 0 & 1,139 & 6.9\% & $-$52 [$-$131, +17] \\
+SEC 1+2 & GPT & no text & discovered & 1,277 & 1,543 & $-$266 [$-$499, $-$124] & 0 & 0 & 9.2\% & +1178 [+945, +1438] \\
+SEC 1+2 & GPT & text & hand + disc. & 33 & 1,543 & $-$1510 [$-$1880, $-$1194] & 0 & 1,142 & 9.1\% & $-$66 [$-$144, +0] \\
+SEC 1+2 & GPT & no text & hand + disc. & 832 & 1,543 & $-$711 [$-$985, $-$499] & 0 & 0 & 25.2\% & +733 [+586, +899] \\
+SEC 1+2 & GPT & text & zero-config & 189 & 1,543 & $-$1354 [$-$1694, $-$1072] & 0 & 105 & 24.4\% & +90 [$-$18, +219] \\
+SEC 1+2 & GPT & no text & zero-config & 1,277 & 1,543 & $-$266 [$-$499, $-$124] & 0 & 0 & 9.2\% & +1178 [+945, +1438] \\
+\midrule
+SEC 1--3 & Haiku & text & discovered & 26 & 527 & $-$501 [$-$656, $-$366] & 1 & 345 & 2.6\% & $-$123 [$-$204, $-$55] \\
+SEC 1--3 & Haiku & no text & discovered & 421 & 527 & $-$106 [$-$138, $-$77] & 0 & 0 & 3.9\% & +272 [+182, +385] \\
+SEC 1--3 & Haiku & text & hand + disc. & 19 & 527 & $-$508 [$-$664, $-$371] & 0 & 346 & 3.2\% & $-$130 [$-$211, $-$62] \\
+SEC 1--3 & Haiku & no text & hand + disc. & 283 & 527 & $-$244 [$-$343, $-$160] & 0 & 0 & 7.3\% & +134 [+70, +202] \\
+SEC 1--3 & Haiku & text & zero-config & 76 & 527 & $-$451 [$-$577, $-$337] & 0 & 142 & 4.8\% & $-$73 [$-$173, +30] \\
+SEC 1--3 & Haiku & no text & zero-config & 421 & 527 & $-$106 [$-$138, $-$77] & 0 & 0 & 3.9\% & +272 [+182, +385] \\
+SEC 1--3 & Opus & text & discovered & 10 & 149 & $-$139 [$-$219, $-$73] & 0 & 100 & 1.3\% & -- \\
+SEC 1--3 & Opus & no text & discovered & 109 & 149 & $-$40 [$-$64, $-$19] & 0 & 0 & 1.5\% & -- \\
+SEC 1--3 & Opus & text & hand + disc. & 5 & 149 & $-$144 [$-$224, $-$77] & 0 & 100 & 1.8\% & -- \\
+SEC 1--3 & Opus & no text & hand + disc. & 90 & 149 & $-$59 [$-$99, $-$26] & 0 & 0 & 2.2\% & -- \\
+SEC 1--3 & Opus & text & zero-config & 13 & 149 & $-$136 [$-$214, $-$72] & 0 & 52 & 1.7\% & -- \\
+SEC 1--3 & Opus & no text & zero-config & 109 & 149 & $-$40 [$-$64, $-$19] & 0 & 0 & 1.5\% & -- \\
+SEC 1--3 & GPT & text & discovered & 112 & 2,986 & $-$2874 [$-$3382, $-$2417] & 0 & 2,013 & 9.7\% & $-$37 [$-$130, +46] \\
+SEC 1--3 & GPT & no text & discovered & 2,482 & 2,986 & $-$504 [$-$849, $-$265] & 0 & 0 & 9.1\% & +2333 [+1977, +2714] \\
+SEC 1--3 & GPT & text & hand + disc. & 95 & 2,986 & $-$2891 [$-$3400, $-$2430] & 2 & 2,019 & 11.5\% & $-$54 [$-$145, +27] \\
+SEC 1--3 & GPT & no text & hand + disc. & 1,587 & 2,986 & $-$1399 [$-$1817, $-$1065] & 0 & 0 & 27.2\% & +1438 [+1210, +1675] \\
+SEC 1--3 & GPT & text & zero-config & 376 & 2,986 & $-$2610 [$-$3075, $-$2191] & 0 & 155 & 29.2\% & +227 [+82, +387] \\
+SEC 1--3 & GPT & no text & zero-config & 2,482 & 2,986 & $-$504 [$-$849, $-$265] & 0 & 0 & 9.1\% & +2333 [+1977, +2714] \\
+\midrule
+CORD & Haiku & text & discovered & 16 & 262 & $-$246 [$-$326, $-$173] & 0 & 14 & 27.0\% & $-$120 [$-$179, $-$68] \\
+CORD & Haiku & no text & discovered & 77 & 262 & $-$185 [$-$262, $-$117] & 0 & 0 & 19.6\% & $-$59 [$-$126, +2] \\
+CORD & Haiku & text & hand + disc. & 12 & 262 & $-$250 [$-$330, $-$177] & 0 & 18 & 29.4\% & $-$124 [$-$182, $-$73] \\
+CORD & Haiku & no text & hand + disc. & 53 & 262 & $-$209 [$-$287, $-$138] & 0 & 0 & 25.4\% & $-$83 [$-$146, $-$27] \\
+CORD & Haiku & text & zero-config & 16 & 262 & $-$246 [$-$326, $-$173] & 0 & 14 & 26.8\% & $-$120 [$-$179, $-$68] \\
+CORD & Haiku & no text & zero-config & 82 & 262 & $-$180 [$-$256, $-$113] & 0 & 0 & 18.7\% & $-$54 [$-$121, +6] \\
+CORD & Opus & text & discovered & 7 & 136 & $-$129 [$-$187, $-$78] & 0 & 11 & 16.0\% & -- \\
+CORD & Opus & no text & discovered & 68 & 136 & $-$68 [$-$120, $-$25] & 0 & 0 & 7.2\% & -- \\
+CORD & Opus & text & hand + disc. & 7 & 136 & $-$129 [$-$187, $-$78] & 0 & 11 & 17.3\% & -- \\
+CORD & Opus & no text & hand + disc. & 67 & 136 & $-$69 [$-$121, $-$26] & 0 & 0 & 9.0\% & -- \\
+CORD & Opus & text & zero-config & 9 & 136 & $-$127 [$-$184, $-$76] & 0 & 11 & 15.4\% & -- \\
+CORD & Opus & no text & zero-config & 68 & 136 & $-$68 [$-$120, $-$25] & 0 & 0 & 7.2\% & -- \\
+\midrule
+Notes & Haiku & text & discovered & 46 & 48 & $-$2 [$-$5, +0] & 0 & 0 & 2.9\% & +46 [+0, +115] \\
+Notes & Haiku & no text & discovered & 48 & 48 & +0 [+0, +0] & 0 & 0 & 0.7\% & +48 [+0, +120] \\
+Notes & Haiku & text & hand + disc. & 22 & 48 & $-$26 [$-$76, +0] & 0 & 0 & 3.1\% & +22 [+0, +63] \\
+Notes & Haiku & no text & hand + disc. & 24 & 48 & $-$24 [$-$72, +0] & 0 & 0 & 0.9\% & +24 [+0, +68] \\
+Notes & Haiku & text & zero-config & 46 & 48 & $-$2 [$-$5, +0] & 0 & 0 & 1.8\% & +46 [+0, +115] \\
+Notes & Haiku & no text & zero-config & 48 & 48 & +0 [+0, +0] & 0 & 0 & 1.0\% & +48 [+0, +120] \\
+Notes & Opus & text & discovered & 0 & 0 & +0 [+0, +0] & 0 & 0 & 2.9\% & -- \\
+Notes & Opus & no text & discovered & 0 & 0 & +0 [+0, +0] & 0 & 0 & 0.7\% & -- \\
+Notes & Opus & text & hand + disc. & 0 & 0 & +0 [+0, +0] & 0 & 0 & 2.8\% & -- \\
+Notes & Opus & no text & hand + disc. & 0 & 0 & +0 [+0, +0] & 0 & 0 & 0.7\% & -- \\
+Notes & Opus & text & zero-config & 0 & 0 & +0 [+0, +0] & 0 & 0 & 1.8\% & -- \\
+Notes & Opus & no text & zero-config & 0 & 0 & +0 [+0, +0] & 0 & 0 & 0.7\% & -- \\
+Notes & GPT & text & discovered & 0 & 2,005 & $-$2005 [$-$3403, $-$837] & 0 & 8 & 20.5\% & +0 [+0, +0] \\
+Notes & GPT & no text & discovered & 1 & 2,005 & $-$2004 [$-$3402, $-$837] & 0 & 0 & 18.2\% & +1 [+0, +3] \\
+Notes & GPT & text & hand + disc. & 0 & 2,005 & $-$2005 [$-$3403, $-$837] & 0 & 8 & 20.5\% & +0 [+0, +0] \\
+Notes & GPT & no text & hand + disc. & 1 & 2,005 & $-$2004 [$-$3402, $-$837] & 0 & 0 & 18.3\% & +1 [+0, +3] \\
+Notes & GPT & text & zero-config & 1 & 2,005 & $-$2004 [$-$3402, $-$837] & 0 & 0 & 23.7\% & +1 [+0, +3] \\
+Notes & GPT & no text & zero-config & 1 & 2,005 & $-$2004 [$-$3402, $-$837] & 0 & 0 & 18.2\% & +1 [+0, +3] \\
+\midrule
+Real scans & Haiku & no text & discovered & 39 & 39 & +0 [+0, +0] & 0 & 0 & 0.0\% & +0 [$-$3, +3] \\
+Real scans & Haiku & no text & hand + disc. & 3 & 39 & $-$36 [$-$86, $-$4] & 0 & 0 & 15.9\% & $-$36 [$-$86, $-$5] \\
+Real scans & Haiku & no text & zero-config & 39 & 39 & +0 [+0, +0] & 0 & 0 & 0.0\% & +0 [$-$3, +3] \\
+Real scans & Opus & no text & discovered & 39 & 39 & +0 [+0, +0] & 0 & 0 & 0.0\% & -- \\
+Real scans & Opus & no text & hand + disc. & 2 & 39 & $-$37 [$-$88, $-$4] & 0 & 0 & 18.6\% & -- \\
+Real scans & Opus & no text & zero-config & 39 & 39 & +0 [+0, +0] & 0 & 0 & 0.0\% & -- \\
+\midrule
+Synthetic & Haiku & text & discovered & 18 & 2 & +16 [+9, +24] & 16 & 0 & 1.5\% & +18 [+10, +27] \\
+Synthetic & Haiku & no text & discovered & 2 & 2 & +0 [+0, +0] & 0 & 0 & 0.6\% & +2 [+0, +5] \\
+Synthetic & Haiku & text & hand + disc. & 2 & 2 & +0 [+0, +0] & 0 & 0 & 3.0\% & +2 [+0, +5] \\
+Synthetic & Haiku & no text & hand + disc. & 2 & 2 & +0 [+0, +0] & 0 & 0 & 1.9\% & +2 [+0, +5] \\
+Synthetic & Haiku & text & zero-config & 10 & 2 & +8 [+3, +14] & 8 & 0 & 1.5\% & +10 [+4, +16] \\
+Synthetic & Haiku & no text & zero-config & 2 & 2 & +0 [+0, +0] & 0 & 0 & 0.6\% & +2 [+0, +5] \\
+Synthetic & Opus & text & discovered & 16 & 0 & +16 [+9, +24] & 16 & 0 & 1.7\% & -- \\
+Synthetic & Opus & no text & discovered & 0 & 0 & +0 [+0, +0] & 0 & 0 & 0.7\% & -- \\
+Synthetic & Opus & text & hand + disc. & 0 & 0 & +0 [+0, +0] & 0 & 0 & 3.3\% & -- \\
+Synthetic & Opus & no text & hand + disc. & 0 & 0 & +0 [+0, +0] & 0 & 0 & 1.9\% & -- \\
+Synthetic & Opus & text & zero-config & 8 & 0 & +8 [+3, +14] & 8 & 0 & 1.6\% & -- \\
+Synthetic & Opus & no text & zero-config & 0 & 0 & +0 [+0, +0] & 0 & 0 & 0.7\% & -- \\
+\bottomrule
+\end{longtable}}
+

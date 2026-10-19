@@ -1,0 +1,28 @@
+% Cut verbatim from appendix_q9dev.tex by paper/gen_v10/split_parts.py; do not edit.
+\apptab{Development runs in which frozen \vq{9} broke a correct number}\label{tab:q9devbroken}
+Per run: numbers broken by \vq{9}, by \vq{8} in the same run, and how many of \vq{9}'s were also broken by \vq{8}.
+{\scriptsize\setlength{\tabcolsep}{4pt}
+\begin{longtable}{lllllrrr}
+\toprule
+Set & Extraction & Mode & Identities & Scoring & \vq{9} & \vq{8} & also \vq{8} \\
+\midrule\endhead
+SEC set 1 & luna & ocr-doctr & hand & legacy & 2 & 2 & 2 \\
+SEC set 2 & haiku & ocr-tesseract & hand & legacy & 1 & 1 & 1 \\
+SEC set 2 & opus & ocr-doctr & hand & legacy & 1 & 1 & 1 \\
+SEC set 2 & luna & ocr-tesseract & hand & legacy & 1 & 1 & 1 \\
+SEC set 3 & haiku & ocr-doctr & hand & legacy & 2 & 2 & 2 \\
+SEC set 3 & haiku & ocr-tesseract & hand & legacy & 1 & 1 & 1 \\
+SEC set 3 & luna & text & hand & legacy & 2 & 2 & 2 \\
+SEC set 3 & luna & ocr-tesseract & hand & legacy & 1 & 1 & 1 \\
+Notes tables & haiku & text & hand & legacy & 1 & 1 & 1 \\
+Notes tables & opus & text & hand & legacy & 1 & 1 & 1 \\
+Notes tables & luna & text & hand & legacy & 1 & 1 & 1 \\
+SEC dev & haiku poor & text & discovered & legacy & 1 & 0 & 0 \\
+SEC dev & haiku poor & text & hand + disc. & legacy & 1 & 0 & 0 \\
+SEC dev & opus poor & text & discovered & legacy & 1 & 0 & 0 \\
+SEC dev & opus poor & text & hand + disc. & legacy & 1 & 0 & 0 \\
+SEC dev & opus & text & discovered & legacy & 1 & 0 & 0 \\
+SEC dev & opus & text & hand + disc. & legacy & 1 & 0 & 0 \\
+\bottomrule
+\end{longtable}}
+

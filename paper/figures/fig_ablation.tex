@@ -1,0 +1,43 @@
+% Figure: ablations, six Fund R hard runs, 193 errors, frozen v1.
+% Source: out/hard_runs/ablate_frozen_summary.json (tier1_fixed_correctly / sent_to_tier2 /
+% not_flagged / tier1_wrong_changes). no_pagecheck and no_notprinted equal "full" (189/2/2/0).
+% Closer-not-exact errors are also in a tier 2 item, so fixed + tier 2 + missed = 193 in every row.
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}
+\begin{axis}[qbar, width=3.7cm, xmin=0, xmax=193, y=13pt,
+  xlabel={tier 0 errors (6 hard runs, $n=193$)},
+  ytick={1,2,3,4,5,6}, ymin=1, ymax=6, y dir=reverse,
+  yticklabels={Full system$^{*}$, No misread repair, No swap/period/sign search, Page only, No label read, Arithmetic only},
+  xtick={0,50,100,150,193},
+  legend columns=3, legend style={at={(0.5,1.03)}, anchor=south},
+  clip=false]
+\addplot[fixbar] coordinates {(189,1) (187,2) (181,3) (179,4) (14,5) (5,6)};
+\addplot[t2bar] coordinates {(2,1) (4,2) (10,3) (12,4) (166,5) (124,6)};
+\addplot[missbar] coordinates {(2,1) (2,2) (2,3) (2,4) (13,5) (64,6)};
+\legend{fixed, to tier 2, missed}
+% direct value labels for fixed
+\coordinate (abl1) at (axis cs:94,1);
+\coordinate (abl2) at (axis cs:93,2);
+\coordinate (abl3) at (axis cs:90,3);
+\coordinate (abl4) at (axis cs:89,4);
+\coordinate (abl5) at (axis cs:97,5);
+\coordinate (abl6) at (axis cs:67,6);
+\coordinate (abl7) at (axis cs:161,6);
+% wrong changes
+\coordinate (abl8) at (axis cs:193,3);
+\coordinate (abl9) at (axis cs:193,4);
+\end{axis}
+\node[inlab] at (abl1) {189};
+\node[inlab] at (abl2) {187};
+\node[inlab] at (abl3) {181};
+\node[inlab] at (abl4) {179};
+\node[darklab] at (abl5) {166};
+\node[darklab] at (abl6) {124};
+\node[misslab] at (abl7) {64};
+\node[wronglab] at (abl8) {\textcolor{cWrong}{$\blacktriangle$}\,2 wrong};
+\node[wronglab] at (abl9) {\textcolor{cWrong}{$\blacktriangle$}\,2 wrong};
+\end{tikzpicture}
+\caption{Ablations of PE v1's tier~1 on the six Fund~R hard runs. Without the search, 2 label reads with the wrong sign are applied ($\blacktriangle$). $^{*}$Turning off the cited-spot check or the ``not printed anywhere'' flag gives the same counts. Wilson intervals are in Table~\ref{tab:ablation}.}
+\label{fig:ablation}
+\end{figure}

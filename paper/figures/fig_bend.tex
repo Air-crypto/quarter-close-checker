@@ -1,0 +1,39 @@
+% Figure: bend-to-tie, held-out set 2, per model, with Wilson 95% intervals (paper/ci.py wilson()).
+% Sources: paper/heldout2_v2.md per-run bend rows summed by model (draft.md Section 6 table):
+%   own checks tie: Opus 398/423 (91.4-96.0), Haiku 454/1,539 (27.3-31.8), luna 272/2,805 (8.7-10.8)
+%   erased: Opus 10/13 (49.7-91.8), Haiku 7/13 (29.1-76.8), luna 4/13 (12.7-57.6)
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=2 by 1, horizontal sep=16pt, yticklabels at=edge left},
+  dotplot, width=2.75cm, y=13pt, xmin=0, xmax=100,
+  ytick={1,2,3}, ymin=1, ymax=3, y dir=reverse,
+  yticklabels={Claude Opus, Claude Haiku, gpt-6-luna},
+  xtick={0,50,100}, xticklabels={0,50,100\%}, enlarge y limits={abs=0.75}, title style={text height=1.6ex, text depth=0.4ex}]
+\nextgroupplot[title={own checks tie}]
+\addplot[dotmark, error bars/.cd, x dir=both, x explicit] coordinates {
+  (94.09,1) -= (2.67,0) += (1.88,0)
+  (29.50,2) -= (2.23,0) += (2.33,0)
+  (9.70,3) -= (1.04,0) += (1.15,0)};
+\coordinate (ben1) at (axis cs:94.09,1);
+\coordinate (ben2) at (axis cs:29.50,2);
+\coordinate (ben3) at (axis cs:9.70,3);
+\nextgroupplot[title={planted issues erased}]
+\addplot[dotmark, error bars/.cd, x dir=both, x explicit] coordinates {
+  (76.92,1) -= (27.18,0) += (14.90,0)
+  (53.85,2) -= (24.70,0) += (22.95,0)
+  (30.77,3) -= (18.09,0) += (26.86,0)};
+\coordinate (ben4) at (axis cs:76.92,1);
+\coordinate (ben5) at (axis cs:53.85,2);
+\coordinate (ben6) at (axis cs:30.77,3);
+\end{groupplot}
+\node[vlab] at (ben1) {398/423};
+\node[vlab] at (ben2) {454/1,539};
+\node[vlab] at (ben3) {272/2,805};
+\node[vlab] at (ben4) {10/13};
+\node[vlab] at (ben5) {7/13};
+\node[vlab] at (ben6) {4/13};
+\end{tikzpicture}
+\caption{Bending to tie on the private-equity held-out set~2 (bad scans, five funds per model), with Wilson 95\% intervals. Left: share of tier~0 errors whose checks all pass on the model's own numbers. Right: share of the 13 planted document issues per model that the model's entries erased.}
+\label{fig:bend}
+\end{figure}

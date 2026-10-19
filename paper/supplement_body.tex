@@ -1,0 +1,572 @@
+\section{Private-equity case study: per-run results}\label{sup:pe}
+Material moved from Appendix~\ref{app:pe} of the paper.
+
+\input{figures/fig_heldout2}
+\input{figures/fig_ablation}
+\input{figures/fig_ocr}
+\clearpage
+
+\apptab{The five PE v1 defects found by the attack suite (text mode, 360 cases) and the v2 changes}\label{tab:v1v2}
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}LL@{}}
+\toprule
+v1 defect & v2 change \\
+\midrule
+Label read took a percentage in a GP-letter sentence as a position's fair value (20 wrong changes) & No \% or multiple reads for dollar fields; position reads need a Cost\,/\,Fair Value header; reads applied jointly under the guard (Section~\ref{sec:labelread}), withheld reads routed \\
+Pages printed ``in thousands'' (15 wrong changes, 5 silent) & Page scale read and used in every page comparison; scaled pages confirm but never replace; copied thousands routed \\
+A page typo ``repaired'' from another column of the same line (8 wrong changes) & Never misread-repair a value its own cell prints; ``taken'' spots by box overlap; swap and sign search also check the own line \\
+Blank fields crashed an upstream check, so tier~1 never ran (9 crashes) & Nulls removed before checks; partial sums skipped; empty fields and starved checks routed \\
+Signs never compared with the page (12 silent) & Page sign read; mismatches fixed from the page under the guard, or routed when unclear \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Per-run results, Fund R}\label{app:fundr}
+
+\apptab{Claude runs, text layer, frozen v1} Errors are out of 252 numbers per run; v2 gives identical counts in text mode.
+
+\begin{center}
+\begin{tabular}{llrrrrr}
+\toprule
+Level & Model & Errors & Fixed & To tier 2 & Missed & Wrong changes \\
+\midrule
+clean & Haiku & 3 & 3 & 0 & 0 & 0 \\
+scan & Haiku / Sonnet / Opus & 3 / 0 / 1 & 3 / 0 / 1 & 0 / 0 / 0 & 0 / 0 / 0 & 0 \\
+bad\_scan & Haiku / Sonnet / Opus & 58 / 21 / 18 & 57 / 21 / 17 & 1 / 0 / 0 & 0 / 0 / 1 & 0 \\
+headless & Haiku / Sonnet / Opus & 67 / 21 / 8 & 66 / 21 / 7 & 1 / 0 / 0 & 0 / 0 / 1 & 0 \\
+\midrule
+\textbf{6 hard runs} & & \textbf{193} & \textbf{189} & \textbf{2} & \textbf{2} & \textbf{0} \\
+\textbf{9 runs (with scan)} & & \textbf{197} & \textbf{193} & \textbf{2} & \textbf{2} & \textbf{0} \\
+\textbf{10 runs (with clean)} & & \textbf{200} & \textbf{196} & \textbf{2} & \textbf{2} & \textbf{0} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\apptab{Ablations, six hard runs (193 errors), frozen v1}\label{tab:ablation}
+Wilson 95\% intervals are on the fixed share. An error moved closer or wrong can also be named by a tier~2 item, so rows can sum to more than 193.
+\begin{center}
+\begin{tabular}{lrrrrr}
+\toprule
+Tier 1 configuration & Fixed (Wilson 95\%) & Closer & Wrong changes & To tier 2 & Missed \\
+\midrule
+Full & 189 (94.8--99.2\%) & 0 & 0 & 2 & 2 \\
+No label read & 14 (4.4--11.8\%) & 2 & 0 & 166 & 13 \\
+No swap / period / sign search & 181 (89.4--96.4\%) & 1 & 2 & 10 & 2 \\
+No misread-digit repair & 187 (93.4--98.6\%) & 0 & 0 & 4 & 2 \\
+No page check at the cited spot & 189 & 0 & 0 & 2 & 2 \\
+No ``not printed anywhere'' flag & 189 & 0 & 0 & 2 & 2 \\
+Arithmetic only (search, no page) & 5 (1.1--5.9\%) & 2 & 0 & 124 & 64 \\
+Page only (label read, no search or misread repair) & 179 (88.2--95.6\%) & 1 & 2 & 12 & 2 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\apptab{Outcomes by the page text tier 1 reads (9 runs, 197 errors): fixed / tier 2 / missed} Neither version made a wrong change.
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+Page text & v1 & v2 \\
+\midrule
+Original digital text layer & 193 / 2 / 2 & 193 / 2 / 2 \\
+Tesseract OCR of the degraded scans (default safeguards) & 8 / 148 / 41 & 8 / 155 / 34 \\
+No text at all & 8 / 123 / 66 & 8 / 130 / 59 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\apptab{OCR and no-text, per run} Fixed / tier 2 / missed; v1 $\rightarrow$ v2 where they differ.
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Run & No text & OCR \\
+\midrule
+scan Haiku / Sonnet / Opus & 3/0/0, 0/0/0, 0/0/1 & 3/0/0, 0/0/0, 0/1/0 \\
+bad\_scan Haiku & 3/36/19 & 3/49/6 \\
+bad\_scan Sonnet & 0/15/6 $\rightarrow$ 0/16/5 & 0/15/6 $\rightarrow$ 0/16/5 \\
+bad\_scan Opus & 1/10/7 $\rightarrow$ 1/12/5 & 1/10/7 $\rightarrow$ 1/12/5 \\
+headless Haiku & 0/47/20 $\rightarrow$ 0/50/17 & 0/58/9 $\rightarrow$ 0/61/6 \\
+headless Sonnet & 0/10/11 $\rightarrow$ 0/11/10 & 0/10/11 $\rightarrow$ 0/11/10 \\
+headless Opus & 1/5/2 & 1/5/2 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\apptab{gpt-6-luna on Fund R, text layer, frozen v1} Without page text, tier~1 fixes none of luna's Fund~R errors (bad\_scan: 41 to tier~2, 145 missed; headless: 35 to tier~2, 154 missed).
+\begin{center}
+\begin{tabular}{lrrrrr}
+\toprule
+Level & Errors (blank) & Fixed & To tier 2 & Missed & Wrong \\
+\midrule
+scan & 3 (0) & 3 & 0 & 0 & 0 \\
+bad\_scan & 186 (85) & 163 & 10 & 13 & 0 \\
+headless & 189 (82) & 170 & 10 & 9 & 0 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Per-run results, synthetic fund extractions}\label{app:runs}
+
+\apptab{Development funds (frozen v1)} Text layer; OCR and no-text rows are identical to each other.
+\begin{center}
+\begin{tabular}{lrrccc}
+\toprule
+Run & Numbers & Tier 0 errors & Text: fixed / tier 2 / missed & No text: tier 2 / missed & Tier 2 items (text / no text) \\
+\midrule
+fund01 Haiku & 720 & 333 & 329 / 3 / 1 & 209 / 124 & 12 / 88 \\
+fund01 Opus & 720 & 110 & 109 / 1 / 0 & 44 / 66 & 8 / 6 \\
+fund03 Haiku & 712 & 362 & 360 / 2 / 0 & 192 / 170 & 6 / 28 \\
+fund03 Opus & 712 & 68 & 68 / 0 / 0 & 0 / 68 & 4 / 0 \\
+fund05 Haiku & 744 & 340 & 338 / 2 / 0 & 144 / 196 & 11 / 53 \\
+fund05 Opus & 744 & 105 & 103 / 2 / 0 & 1 / 104 & 11 / 1 \\
+fund07 Haiku & 588 & 225 & 223 / 2 / 0 & 76 / 149 & 12 / 43 \\
+fund07 Opus & 588 & 20 & 20 / 0 / 0 & 0 / 20 & 9 / 2 \\
+fund09 Haiku & 620 & 248 & 240 / 6 / 2 & 97 / 151 & 13 / 56 \\
+fund09 Opus & 620 & 42 & 42 / 0 / 0 & 0 / 42 & 6 / 0 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\apptab{Held-out set 1, frozen v1} No run had a wrong or broken value in any mode.
+\begin{center}
+\begin{tabular}{lrrccc}
+\toprule
+Run & Numbers & Tier 0 errors & Text: fixed / tier 2 / missed & No text: fixed / tier 2 / missed & Tier 2 items (text / no text) \\
+\midrule
+fund11 Haiku & 720 & 288 & 285 / 3 / 0 & 0 / 70 / 218 & 14 / 27 \\
+fund11 Opus & 720 & 103 & 102 / 1 / 0 & 0 / 8 / 95 & 8 / 2 \\
+fund11 luna & 720 & 599 & 585 / 12 / 2 & 0 / 45 / 554 & 36 / 25 \\
+fund13 Haiku & 576 & 210 & 208 / 2 / 0 & 4 / 14 / 192 & 10 / 13 \\
+fund13 Opus & 576 & 31 & 31 / 0 / 0 & 0 / 0 / 31 & 6 / 2 \\
+fund13 luna & 576 & 448 & 439 / 5 / 4 & 0 / 45 / 403 & 23 / 37 \\
+fund15 Haiku & 748 & 349 & 343 / 6 / 0 & 4 / 109 / 236 & 11 / 133 \\
+fund15 Opus & 748 & 93 & 92 / 1 / 0 & 0 / 31 / 62 & 8 / 12 \\
+fund15 luna & 748 & 655 & 638 / 13 / 4 & 0 / 65 / 590 & 30 / 35 \\
+fund17 Haiku & 632 & 180 & 179 / 1 / 0 & 0 / 23 / 157 & 6 / 12 \\
+fund17 Opus & 632 & 30 & 30 / 0 / 0 & 0 / 0 / 30 & 3 / 0 \\
+fund17 luna & 632 & 481 & 466 / 12 / 3 & 0 / 62 / 419 & 34 / 47 \\
+fund19 Haiku & 752 & 317 & 316 / 1 / 0 & 0 / 240 / 77 & 11 / 69 \\
+fund19 Opus & 752 & 67 & 67 / 0 / 0 & 0 / 54 / 13 & 7 / 9 \\
+fund19 luna & 752 & 643 & 633 / 3 / 7 & 0 / 47 / 596 & 21 / 31 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Tier 0 error kinds, development runs: misread or other 1,508, missing 229, misfiled from another field 94, misfiled from another period or document 20, wrong sign 2. Held-out set~1, Claude runs: misread or other 1,273, missing 318, misfiled from another field 53, misfiled from another period or document 16, wrong sign 8. luna: missing 2,185, misread or other 580, misfiled from another field 50, misfiled from another period or document 10, scale 1.
+
+\apptab{Held-out set 2 by model, v1 and v2}\label{tab:ho2}
+Per-run rows summed by model; blanks in parentheses; f = fixed, t2 = to tier 2, m = missed. No run fixed anything without page text.
+\begin{center}\footnotesize\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lrcccc}
+\toprule
+Model & Errors (blank) & Text v1: f / t2 / m & Text v2: f / t2 / m & No text v1: t2 / m & No text v2: t2 / m \\
+\midrule
+Claude Opus & 423 (0) & 422 / 1 / 0 & 422 / 1 / 0 & 24 / 399 & 24 / 399 \\
+Claude Haiku & 1,539 (395) & 1,522 / 16 / 1 & 1,524 / 14 / 1 & 637 / 902 & 1,063 / 476 \\
+gpt-6-luna & 2,805 (2,235) & 2,738 / 37 / 30 & 2,739 / 66 / 0 & 213 / 2,592 & 2,504 / 301 \\
+\midrule
+\textbf{All} & \textbf{4,767 (2,630)} & \textbf{4,682 / 54 / 31} & \textbf{4,685 / 81 / 1} & \textbf{874 / 3,893} & \textbf{3,591 / 1,176} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\apptab{Held-out set 2 per run, v1 and v2} No run had a wrong or broken value in any mode.
+\begin{center}
+\begin{tabular}{lrrcccc}
+\toprule
+Run & Numbers & Errors & Text v1: f / t2 / m & Text v2: f / t2 / m & No text v1: t2 / m & No text v2: t2 / m \\
+\midrule
+fund31 Haiku & 712 & 378 & 370 / 8 / 0 & 372 / 6 / 0 & 67 / 311 & 267 / 111 \\
+fund31 Opus & 712 & 109 & 108 / 1 / 0 & 108 / 1 / 0 & 0 / 109 & 0 / 109 \\
+fund31 luna & 712 & 611 & 599 / 7 / 5 & 599 / 12 / 0 & 51 / 560 & 488 / 123 \\
+fund33 Haiku & 652 & 330 & 327 / 2 / 1 & 327 / 2 / 1 & 178 / 152 & 271 / 59 \\
+fund33 Opus & 652 & 86 & 86 / 0 / 0 & 86 / 0 / 0 & 0 / 86 & 0 / 86 \\
+fund33 luna & 652 & 516 & 502 / 11 / 3 & 502 / 14 / 0 & 41 / 475 & 471 / 45 \\
+fund35 Haiku & 648 & 268 & 266 / 2 / 0 & 266 / 2 / 0 & 121 / 147 & 178 / 90 \\
+fund35 Opus & 648 & 69 & 69 / 0 / 0 & 69 / 0 / 0 & 0 / 69 & 0 / 69 \\
+fund35 luna & 648 & 524 & 510 / 6 / 8 & 510 / 14 / 0 & 61 / 463 & 470 / 54 \\
+fund37 Haiku & 660 & 259 & 256 / 3 / 0 & 256 / 3 / 0 & 114 / 145 & 151 / 108 \\
+fund37 Opus & 660 & 88 & 88 / 0 / 0 & 88 / 0 / 0 & 0 / 88 & 0 / 88 \\
+fund37 luna & 660 & 554 & 540 / 8 / 6 & 540 / 14 / 0 & 40 / 514 & 493 / 61 \\
+fund39 Haiku & 700 & 304 & 303 / 1 / 0 & 303 / 1 / 0 & 157 / 147 & 196 / 108 \\
+fund39 Opus & 700 & 71 & 71 / 0 / 0 & 71 / 0 / 0 & 24 / 47 & 24 / 47 \\
+fund39 luna & 700 & 600 & 587 / 5 / 8 & 588 / 12 / 0 & 20 / 580 & 582 / 18 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Tier 0 error kinds, held-out set~2 (all runs): missing 2,630, misread or other 1,999, misfiled from another field 102, misfiled from another period or document 32, wrong sign 4.
+
+\subsection{Label-read failure causes before and after the changes}\label{app:diag}
+Development funds, text mode. The rows sum finer-grained per-cause counts. A coarser tally that counts only lines with three numbers gives 531 for entity columns and 230 for repeated labels.
+\begin{center}
+\begin{tabular}{lrr}
+\toprule
+Cause & Before (1,055 unfixed) & After (21 unfixed) \\
+\midrule
+Entity column (company or LP/GP/total) not known to the reader & 536 & 0 \\
+Same label on several lines & 227 & 0 \\
+Missing value skipped by the label pass & 229 & 2 \\
+Label not found on page & 15 & 0 \\
+Narrative field (``has invested \$X of \$Y''), excluded on purpose & 14 & 14 \\
+No column, several numbers on the line (non-narrative) & 29 & 1 \\
+Column not placed by the column picker & 0 & 3 \\
+Right read, fix withheld by routing & 5 & 1 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Planted errors on 30 synthetic funds (pre-freeze code)}\label{app:synth}
+\begin{center}
+\begin{tabular}{lrrrrr}
+\toprule
+ & Plants & Fixed & Wrong change & Escalated & Missed \\
+\midrule
+\multicolumn{6}{@{}l}{\emph{With page text}} \\
+mislabel-style, one at a time & 797 & 797 & 0 & 0 & 0 \\
+mislabel-style, all at once & 746 & 746 & 0 & 0 & 0 \\
+random swaps, one at a time & 1,800 & 1,800 & 0 & 0 & 0 \\
+random swaps, 5 at once & 1,500 & 1,500 & 0 & 0 & 0 \\
+adversarial: compensating / invisible / rival & 51 / 37 / 122 & all & 0 & 0 & 0 \\
+\midrule
+\multicolumn{6}{@{}l}{\emph{Arithmetic only (no page text)}} \\
+mislabel-style, one at a time & 797 & 0 & 0 & 771 & 26 \\
+mislabel-style, all at once & 746 & 0 & 0 & 722 & 24 \\
+random swaps, one at a time & 1,800 & 0 & 0 & 1,798 & 2 \\
+random swaps, 5 at once & 1,500 & 0 & 0 & 1,497 & 3 \\
+adversarial: compensating & 51 & 0 & 0 & 1 & 50 \\
+adversarial: invisible swap & 37 & 0 & 0 & 1 & 36 \\
+adversarial: rival fix & 122 & 0 & 0 & 122 (all ``a person should pick'') & 0 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+Proposed fix in the packet (no page text) & Right fix named & Wrong fix named & Rivals (person picks) & Not flagged \\
+\midrule
+mislabel-style, one at a time & 670 / 797 = 84.1\% & 2 & 99 & 26 \\
+mislabel-style, all at once & 587 / 746 = 78.7\% & 3 & 132 & 24 \\
+random swaps, one at a time & 1,445 / 1,800 = 80.3\% & 1 & 351 & 2 \\
+random swaps, 5 at once & 1,196 / 1,500 = 79.7\% & 0 & 301 & 3 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Of the planted document issues on the correct extractions, all 16 GP-vs-FS \emph{typo} issues were reported as document issues. Of 20 \emph{mismatch} issues, 18 were reported as document issues and 2 as document issues plus a ``person should pick'' item. Of 18 \emph{stale} issues, 14 were reported as document or document plus review, 3 as review only, and 1 also with a wrong-value suggestion on the narrative. All 15 revised capital accounts were correctly superseded.
+
+\subsection{Adversarial results per category}\label{app:adv}
+
+\apptab{Adversarial outcomes in the PE case study, totals}\label{tab:adv}
+The 360-case suite (funds 11--19) found PE v1's defects and is PE v2's tuning set; the fresh 430-case set (funds 31--39) was generated after the v2 freeze.
+\begin{center}\footnotesize\setlength{\tabcolsep}{3pt}
+\begin{tabular}{llcrrrrrrrrr}
+\toprule
+Suite & Mode & Code & Cases & Wrong change & Wrong values & Silent & Silent (blank) & Routed & Fixed & Clean & Crash \\
+\midrule
+\multirow{4}{*}{360 (tuning for v2)} & text & v1 & 360 & 43 & 246 & 22 & 5 & 39 & 175 & 67 & 9 \\
+ & text & v2 & 360 & \textbf{0} & 0 & 5 & 0 & 62 & 183 & 110 & 0 \\
+ & no text & v1 & 360 & 0 & 0 & 98 & 16 & 127 & 0 & 110 & 9 \\
+ & no text & v2 & 360 & 0 & 0 & 83 & 0 & 167 & 0 & 110 & 0 \\
+\midrule
+\multirow{4}{*}{430 fresh (test)} & text & v1 & 430 & 33 & 246 & 24 & 5 & 39 & 236 & 87 & 6 \\
+ & text & v2 & 430 & \textbf{0} & 0 & 2 & 0 & 63 & 245 & 120 & 0 \\
+ & no text & v1 & 430 & 0 & 0 & 108 & 24 & 172 & 0 & 120 & 6 \\
+ & no text & v2 & 430 & 0 & 0 & 93 & 0 & 217 & 0 & 120 & 0 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+
+\apptab{v1 suite (360 cases, funds 11--19), text mode, v1 $\rightarrow$ v2 (tuning set)}
+\begin{center}
+\begin{tabular}{lccccccc}
+\toprule
+Category & Wrong change & Silent & Silent (blank) & Routed & Fixed & Clean & Crash \\
+\midrule
+(a) coordinated bending & 0 $\rightarrow$ 0 & 0 $\rightarrow$ 0 & 0 $\rightarrow$ 0 & 3 $\rightarrow$ 3 & 37 $\rightarrow$ 37 & 0 $\rightarrow$ 0 & 0 $\rightarrow$ 0 \\
+(b) decoy numbers & 0 $\rightarrow$ 0 & 3 $\rightarrow$ 3 & 0 $\rightarrow$ 0 & 10 $\rightarrow$ 10 & 27 $\rightarrow$ 27 & 0 $\rightarrow$ 0 & 0 $\rightarrow$ 0 \\
+(c) coincidental ties & 0 $\rightarrow$ 0 & 0 $\rightarrow$ 0 & 0 $\rightarrow$ 0 & 10 $\rightarrow$ 10 & 20 $\rightarrow$ 20 & 0 $\rightarrow$ 0 & 0 $\rightarrow$ 0 \\
+(d) planted source errors & 8 $\rightarrow$ 0 & 0 $\rightarrow$ 0 & 0 $\rightarrow$ 0 & 0 $\rightarrow$ 0 & 10 $\rightarrow$ 10 & 37 $\rightarrow$ 45 & 0 $\rightarrow$ 0 \\
+(e) label collisions & 20 $\rightarrow$ 0 & 0 $\rightarrow$ 0 & 0 $\rightarrow$ 0 & 3 $\rightarrow$ 3 & 2 $\rightarrow$ 2 & 30 $\rightarrow$ 50 & 0 $\rightarrow$ 0 \\
+(f) sign / scale traps & 15 $\rightarrow$ 0 & 19 $\rightarrow$ 2 & 0 $\rightarrow$ 0 & 13 $\rightarrow$ 23 & 13 $\rightarrow$ 20 & 0 $\rightarrow$ 15 & 0 $\rightarrow$ 0 \\
+(g) OCR digit confusions & 0 $\rightarrow$ 0 & 0 $\rightarrow$ 0 & 0 $\rightarrow$ 0 & 0 $\rightarrow$ 0 & 40 $\rightarrow$ 40 & 0 $\rightarrow$ 0 & 0 $\rightarrow$ 0 \\
+(h) blanks / nulls & 0 $\rightarrow$ 0 & 0 $\rightarrow$ 0 & 5 $\rightarrow$ 0 & 0 $\rightarrow$ 13 & 26 $\rightarrow$ 27 & 0 $\rightarrow$ 0 & 9 $\rightarrow$ 0 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\apptab{Fresh set (430 cases, funds 31--39), v1 $\rightarrow$ v2} Cells show one value where v1 and v2 agree.
+\begin{center}\footnotesize\setlength{\tabcolsep}{3pt}
+\begin{tabular}{llrcccccccc}
+\toprule
+Mode & Category & Cases & Wrong change & Wrong values & Silent & Silent (blank) & Routed & Fixed & Clean & Crash \\
+\midrule
+text & (a) coordinated bending & 50 & 0 & 0 & 0 & 0 & 1 & 49 & 0 & 0 \\
+text & (b) decoy numbers & 60 & 0 & 0 & 0 & 0 & 10 & 50 & 0 & 0 \\
+text & (c) coincidental ties & 40 & 0 & 0 & 0 & 0 & 10 & 30 & 0 & 0 \\
+text & (d) planted source errors & 60 & 6 $\rightarrow$ 0 & 6 $\rightarrow$ 0 & 0 & 0 & 0 & 10 & 44 $\rightarrow$ 50 & 0 \\
+text & (e) label collisions & 60 & 12 $\rightarrow$ 0 & 12 $\rightarrow$ 0 & 0 & 0 & 3 & 2 & 43 $\rightarrow$ 55 & 0 \\
+text & (f) sign / scale traps & 65 & 15 $\rightarrow$ 0 & 228 $\rightarrow$ 0 & 24 $\rightarrow$ 2 & 0 & 14 $\rightarrow$ 27 & 12 $\rightarrow$ 21 & 0 $\rightarrow$ 15 & 0 \\
+text & (g) OCR digit confusions & 50 & 0 & 0 & 0 & 0 & 1 & 49 & 0 & 0 \\
+text & (h) blanks / nulls & 45 & 0 & 0 & 0 & 5 $\rightarrow$ 0 & 0 $\rightarrow$ 11 & 34 & 0 & 6 $\rightarrow$ 0 \\
+\midrule
+no text & (a) coordinated bending & 50 & 0 & 0 & 50 & 0 & 0 & 0 & 0 & 0 \\
+no text & (b) decoy numbers & 60 & 0 & 0 & 14 & 0 & 46 & 0 & 0 & 0 \\
+no text & (c) coincidental ties & 40 & 0 & 0 & 0 & 0 & 40 & 0 & 0 & 0 \\
+no text & (d) planted source errors & 60 & 0 & 0 & 10 & 0 & 0 & 0 & 50 & 0 \\
+no text & (e) label collisions & 60 & 0 & 0 & 0 & 0 & 5 & 0 & 55 & 0 \\
+no text & (f) sign / scale traps & 65 & 0 & 0 & 19 & 0 & 31 & 0 & 15 & 0 \\
+no text & (g) OCR digit confusions & 50 & 0 & 0 & 0 & 0 & 50 & 0 & 0 & 0 \\
+no text & (h) blanks / nulls & 45 & 0 & 0 & 15 $\rightarrow$ 0 & 24 $\rightarrow$ 0 & 0 $\rightarrow$ 45 & 0 & 0 & 6 $\rightarrow$ 0 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Examples of erased document issues}\label{app:erased}
+\begin{center}
+\begin{tabular}{lllrr}
+\toprule
+Run & Issue & Field & Entered & Printed \\
+\midrule
+fund09 Opus & mismatch & call commitment, 2025-04-15 & 10,000,000 & 6,000,000 \\
+fund07 Opus & stale & GP total invested, 2025-06-30 & 20,300,000 & 20,050,000 \\
+fund03 Opus & typo & GP fair value, Derta AI, 2025-06-30 & 5,850,000 & 5,849,100 \\
+fund11 Opus & mismatch & call commitment, 2025-10-03 & 10,000,000 & 6,000,000 \\
+fund19 Opus & mismatch & call commitment, 2025-07-15 & 4,000,000 & 6,500,000 \\
+fund37 Opus & mismatch & call commitment, 2025-02-21 & 2,000,000 & 6,000,000 \\
+fund35 Opus & typo & GP fair value, Kandex Ltd., 2026-06-30 & 19,433,021 & 19,433,221 \\
+fund33 luna & stale & GP total invested, 2026-03-31 & 120,000,000 & 96,150,000 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+
+\apptab{Development funds 01--09 (10 runs, 1,853 errors): fixed / tier 2 / missed}\label{tab:dev} OCR is identical to no text. The label-read changes were made on these funds, so the v1 and v2 columns are development results.
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+Page text & Before changes & v1 (frozen) & v2 \\
+\midrule
+Text layer & 798 / 784 / 271 & 1,832 / 18 / 3 & 1,832 / 20 / 1 \\
+No text & 0 / 763 / 1,090 & 0 / 763 / 1,090 & 0 / 1,003 / 850 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\apptab{Held-out set 1, frozen v1}\label{tab:ho1} Text: fixed / tier 2 / missed / wrong. No page text (= OCR): fixed / tier 2 / missed.
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+Model & Errors & Blank & Text & No text \\
+\midrule
+Claude Opus & 324 & 0 & 322 / 2 / 0 / 0 & 0 / 93 / 231 \\
+Claude Haiku & 1,344 & 318 & 1,331 / 13 / 0 / 0 & 8 / 456 / 880 \\
+gpt-6-luna & 2,826 & 2,185 & 2,761 / 45 / 20 / 0 & 0 / 264 / 2,562 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\apptab{Numbers bent to tie (bad\_scan runs)}\label{tab:bend} ``Own checks tie'': every check the error feeds passes on the model's numbers. Planted document issues are ``erased'' if made consistent, ``kept'' if their checks still fail, and ``lost'' if they could not be evaluated.
+\begin{center}\footnotesize\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lrrrrrrrrr}
+\toprule
+Runs & Tier 0 errors & Own checks tie & Flagged & No check covers & Missing & Doc.\ issues & Erased & Kept & Lost \\
+\midrule
+Development, Haiku + Opus (10) & 1,853 & 828 & 781 & 15 & 229 & 30 & 19 & 11 & 0 \\
+Held-out 1, Haiku + Opus (10) & 1,668 & 751 & 570 & 29 & 318 & 28 & 17 & 11 & 0 \\
+Held-out 1, gpt-6-luna (5) & 2,826 & 280 & 311 & 50 & 2,185 & 14 & 3 & 8 & 3 \\
+Held-out 2, Haiku + Opus + luna (15) & 4,767 & 1,124 & 917 & 96 & 2,630 & 39 & 21 & 13 & 5 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\apptab{Intervals for PE headline rates}\label{tab:ci} Wilson 95\% intervals treat errors as independent; the cluster bootstrap resamples the 13 Fund~R documents or the 5 funds.
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+Result & $k/n$ & Rate (\%) & Wilson & Cluster \\
+\midrule
+Fund R hard runs, text, v1 & 189/193 & 97.9 & 94.8--99.2 & 94.2--100.0 \\
+Fund R OCR, 9 runs, flagged & 156/197 & 79.2 & 73.0--84.3 & 64.6--89.2 \\
+Held-out 1, Claude, text, v1 & 1,653/1,668 & 99.1 & 98.5--99.5 & 98.7--99.6 \\
+Held-out 1, luna, text, v1 & 2,761/2,826 & 97.7 & 97.1--98.2 & 97.2--98.2 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\apptab{One-sided 95\% upper bounds on the wrong-change rate where none occurred}\label{tab:zero} For $k=0$ in $n$, the Clopper--Pearson bound is $1-0.05^{1/n}\approx 3/n$.
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+Result ($k=0$) & $n$ & Bound & Clusters (bound) \\
+\midrule
+Fund R hard runs, text, v1 & 193 errors & 1.54\% & 0/13 docs (20.6\%) \\
+Fund R OCR, 9 runs & 197 errors & 1.51\% & 0/13 docs (20.6\%) \\
+Held-out 1, Claude, v1 & 1,668 errors & 0.18\% & 0/5 funds (45.1\%) \\
+Held-out 1, luna, v1 & 2,826 errors & 0.11\% & 0/5 funds (45.1\%) \\
+Held-out 2, all models, v2 & 4,767 errors & 0.06\% & 0/5 funds (45.1\%) \\
+\quad correct values & 5,349 & 0.06\% & \\
+30 funds, planted & 4,843 plants & 0.06\% & 0/30 funds (9.5\%) \\
+Fresh adversarial, v2, per mode & 430 cases & 0.69\% & 0/5 funds (45.1\%) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\clearpage
+\section{Frozen \vq{6}: every held-out set and every run}\label{sup:q6}
+Material moved from Appendix~\ref{app:q6} of the paper; the run protocol is described there.
+
+\input{parts/appendix_q6__q6A_0}
+\input{parts/appendix_q6__q6B_0}
+\input{parts/appendix_q6__q6C_0}
+\input{parts/appendix_q6__q6ABC_0}
+\input{parts/appendix_q6__q6D_0}
+\input{parts/appendix_q6__q6E_0}
+\input{parts/appendix_q6__q6F_0}
+\input{parts/appendix_q6__q6F_1}
+\input{parts/appendix_q6__q6F_issues}
+\input{parts/appendix_q6__q6G_0}
+\input{parts/appendix_q6__q6G_planted}
+\input{parts/appendix_q6__q6verdicts}
+\input{parts/appendix_q6__q6verdicts_disc}
+\input{parts/appendix_q6__idsvshand}
+\clearpage
+\section{Frozen \vq{7} on the fresh synthetic held-out set: every run}\label{sup:q7}
+Material moved from Appendix~\ref{app:q7} of the paper; the run protocol is described there.
+
+\input{tab_dev7}
+\input{parts/appendix_q7__q7all}
+\input{parts/appendix_q7__q7paired}
+\input{parts/appendix_q7__q7legacy}
+\input{parts/appendix_q7__q7kinds}
+\input{parts/appendix_q7__q7dom}
+\input{parts/appendix_q7__q7dev}
+\input{parts/appendix_q7__e7}
+\clearpage
+\section{Frozen \vq{9}, \vq{8} and \vq{6} on SEC set~4: every run}\label{sup:q9}
+Material moved from Appendix~\ref{app:q9} of the paper; the run protocol is described there.
+
+\input{parts/appendix_q9__q9all}
+\input{parts/appendix_q9__q9hand}
+\clearpage
+\section{Development grid of frozen \vq{9}: every set}\label{sup:q9dev}
+Material moved from Appendix~\ref{app:q9dev} of the paper.
+
+\input{parts/appendix_q9dev__q9devall}
+\clearpage
+\section{Frozen \vq{8} on the second fresh held-out set: every run}\label{sup:q8}
+Material moved from Appendix~\ref{app:q8} of the paper; the run protocol is described there.
+
+\input{tab_dev8}
+\input{parts/appendix_q8__q8all}
+\input{parts/appendix_q8__q8groups}
+\input{parts/appendix_q8__q8paired}
+\input{parts/appendix_q8__q8legacy}
+\input{parts/appendix_q8__q8kinds}
+\input{parts/appendix_q8__q8dom}
+\input{parts/appendix_q8__q8src}
+\input{parts/appendix_q8__q8dev}
+\clearpage
+\section{Further SEC results}\label{sup:calc}
+Material moved from Appendix~\ref{app:calc} of the paper.
+
+\apptab{Filers' calculation-linkbase identities against set~1's identities, frozen \vq{3}, held-out set~1 poor scans}\label{tab:calc}
+Layout: set~1's 484 held-out identities (layout-inferred and semantic). Linkbase: 486 identities from the filers' calculation linkbases, semantic relations kept, layout rules kept for BRK-B, MSFT and PLD (no linkbase file). Over all 20 set-1 filings the linkbases give 752 identities, all holding on the truth, and match 621 of the 1,054 earlier ones.
+\begin{center}\footnotesize
+\begin{tabular}{llrrrrrr}
+\toprule
+Identities & Run & Errors & Fixed & To tier 2 & Missed & Silent & Flagged (wrong) \\
+\midrule
+Layout & Opus, text & 30 & 18 & 12 & 0 & 0 & 22 (12) \\
+Linkbase & Opus, text & 30 & 18 & 12 & 0 & 0 & 19 (12) \\
+Layout & Opus, no text & 30 & 0 & 17 & 13 & 13 & 62 (17) \\
+Linkbase & Opus, no text & 30 & 0 & 16 & 14 & 14 & 58 (16) \\
+Layout & Haiku, text & 109 & 82 & 27 & 0 & 0 & 73 (27) \\
+Linkbase & Haiku, text & 109 & 82 & 27 & 0 & 0 & 61 (27) \\
+Layout & Haiku, no text & 109 & 0 & 52 & 57 & 57 & 155 (52) \\
+Linkbase & Haiku, no text & 109 & 0 & 51 & 58 & 58 & 155 (51) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\apptab{\vq{3} against \vq{4} on the SEC development filings only (30 statements, 2,445 numbers), poor scans}\label{tab:q4dev}
+Accuracy after tier~1 / silent / flagged (wrong) / broken. \vq{3} has no OCR mode; its OCR rows feed it the OCR words as if they were the text layer. Accuracy before the checker: Haiku 96.07\%, Opus 99.47\%.
+\begin{center}\footnotesize
+\begin{tabular}{lll}
+\toprule
+Run, mode & \vq{3} & \vq{4} \\
+\midrule
+Haiku, text & 99.02\% / 0 / 106 (24) / 0 & 99.02\% / 0 / 61 (24) / 0 \\
+Haiku, OCR docTR & 91.04\% / 28 / 1,753 (191) / 126 & 96.73\% / 23 / 424 (57) / 0 \\
+Haiku, OCR Tesseract & 92.56\% / 22 / 1,900 (160) / 86 & 96.20\% / 29 / 477 (64) / 0 \\
+Haiku, no text & 96.07\% / 49 / 200 (47) / 0 & 96.07\% / 49 / 200 (47) / 0 \\
+Opus, text & 99.88\% / 0 / 9 (3) / 0 & 99.88\% / 0 / 7 (3) / 0 \\
+Opus, OCR docTR & 93.95\% / 29 / 1,722 (119) / 135 & 99.47\% / 2 / 261 (11) / 0 \\
+Opus, OCR Tesseract & 95.75\% / 23 / 1,880 (81) / 91 & 99.47\% / 3 / 268 (10) / 0 \\
+Opus, no text & 99.47\% / 7 / 25 (6) / 0 & 99.47\% / 7 / 25 (6) / 0 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Changes made on development data, version by version}\label{sup:changes}
+The full record behind the versions table of Appendix~\ref{app:changes} of the paper.
+
+\textbf{\vq{2}} (synthetic dev bundles 00--01). A lone dash followed by words is not a zero. A prose reader takes only the number printed right after the label phrase. Digit-bearing tokens in a label or entity (invoice numbers, dates) must be printed on the matched line. A heading must print no values, labels that name the entity win, and a column read must sit under its header cell. New schema options: a \code{dot\_thousands} number format and a per-field scale. Misread repair works at the extracted value's decimal precision, and tier~2 suggestions are never applied internally. On dev, text-mode breaks fell from 82 to 0 and tier~2 items from 207 to 37.
+
+\textbf{\vq{3}} (CORD train and validation; 10 SEC dev filings). A \code{grouped} number format; unit statements in parentheses; a page with no unit statement inherits the nearest earlier page's; date and stacked headers; a more specific label claims its line; a label that finds its line but cannot read it vetoes the field; label-less entity rows are not read; swaps and flips are confirmed on the fields' own lines; and the optional \code{label\_read: backed}. A CORD adapter assigns each shared receipt-level label to the field that carries it most often on TRAIN. On dev, \vq{3} broke 0 numbers in every group and mode, where \vq{2} broke 1,817 on CORD train gold extractions and 11 on each clean SEC dev extraction.
+
+\textbf{\vq{4}} (SEC development filings: their clean and poor-scan extractions, OCR of their poor scans, injected errors; CORD train and validation; regression on synthetic dev bundles and the PE validation). An OCR mode with the two-reader rule of Section~\ref{sec:textmode}, a per-document scale vote, and OCR cleanup (rows fitted along the page slope, specks dropped, words snapped to the label vocabulary, header years snapped, missing parentheses restored, a punctuation mark before three final digits read as a thousands comma). Product terms in identities, and the CORD adapter's line identity rewritten from $\text{price}-c\cdot\text{unit price}$ with the true count $c$ to $\text{price}-\text{count}\times\text{unit price}$. A row read for label-less entity rows. No sign flip away from a declared sign. Identity-localised flags. A threshold to flag high-confidence OCR disagreements was tried at 0.9 and 0.97, added flags without catching an error, and is off. On the development filings \vq{4} broke no number in any mode, where \vq{3} fed OCR as a text layer broke 86 to 135 per run (Table~\ref{tab:q4dev}); in text mode its fixes, silent and broken counts equal \vq{3}'s and only the flags shrink. On CORD development data it made no wrong or broken change; a broken count found during tuning (a count read from the previous item's continuation row) was fixed by preferring the continuation row below.
+
+\textbf{\vq{5}} (development tables of the notes benchmark, 10 filers, 76 tables, 6,589 numbers, with the Opus, Haiku and GPT extractions and injected errors; SEC development poor scans, their OCR and injected errors; CORD train and validation; synthetic dev bundles 00--01; PE validation). It changes only the page read. A read changes a value only under rule (a), identity-backed, or rule (b), unambiguous and corroborated (Section~\ref{sec:labelread}); every other read is a tier~2 item with the reason it was not taken. The guard runs jointly over all documents, and when an identity that tied breaks, the one other input whose page cell makes it tie again completes the correction. A read never changes a value by a power of 1000. Unit statements in billions and unit statements broken over two lines are read, and a line running across the row-label edge ends a stacked header. Tried and rejected on development data: rule (b) alone with \vq{4}'s per-document guard (notes breaks 0, but PE validation fixes fell from 4,718 to 1,411), and using a voted page scale to read values in text mode (12 wrong changes on the PE validation).
+
+\textbf{\vq{6}} (the \vq{5} development data, plus the real-scan development split and real re-reads of development crops by Haiku and Opus readers, two rounds). The weaknesses addressed were low identity coverage, OCR and a scan's text layer posing as a trustworthy page, errors that agree or cancel, and the hand-built files every domain needed. Changes: zero-config identity discovery and schema inference (Section~\ref{sec:discover}); the re-read tier (Section~\ref{sec:rereadmethod}); a scanned PDF's text layer treated as an OCR (on the real-scan development split \vq{5} broke 4 correct numbers per model in text mode, \vq{6} none); identity coverage reported per run. Tried and not kept: a uniqueness filter on discovery's page reads (cut SEC coverage from 82\% to 78\%); the backed label read for every zero-config run (SEC zero-config fixes fell from 57 to 20); equality ties without the year check (paired columns of different years); zero-config on CORD with the replace-style label read and free signs (23 of 8,405 correct numbers broken on CORD train); exempting every page-confirmed label from the per-document check (12 broken on the notes development tables); and the first re-read gate (Section~\ref{sec:reread}). With hand files, \vq{6} gives \vq{5}'s results on every development set except scanned text layers. Source: \code{qcore6/CHANGES.md}, \code{out/qcore6\_work/dev\_summary6.md}.
+
+\textbf{\vq{7}} (every \vq{6} held-out set, now spent: SEC sets 1--3, CORD test, the notes tables, the real scans, synthetic 02--05; and \vq{6}'s development grid). The weaknesses addressed, measured on those sets: zero-config broke correct numbers (age bands read as values; a discovered identity that held by accident backing a change) and left more numbers silent than hand identities (fewer identities discovered; without page text, on scanned forms and receipts, almost no flags). The changes are the four of Section~\ref{sec:discover}, all gated on something being discovered; nine tests were added. Costs on development data: more flags on scanned forms, unchanged no-text results on SEC filings, and fewer fixes, because changes resting only on unbacked discovered identities become suggestions. Source: \code{qcore7/CHANGES.md}, \code{out/qcore7\_work/dev\_summary7.md} (Section~\ref{app:q7dev}).
+
+\textbf{\vq{8}} (everything above, plus set~H, \vq{7}'s fresh synthetic set, spent by \vq{7}'s run). The weaknesses addressed, measured on those sets: the two notes-table breaks of zero-config \vq{7}, and zero-config leaving 3 to 9 times as many numbers silent as hand identities on set~H, mostly because discovery missed long totals in error-heavy documents, cross-document ties and products with rates. The changes are the five of Section~\ref{sec:discover}, all in zero-config code; six tests were added and one \vq{7} test changed on purpose (a digit misread under a weak label now goes to tier~2). Three guards in the inferred schema's exact-label rule were added after development breaks: a long label whose words a shorter line also prints (two SEC development numbers, before the first freeze), a footnote marker after the label (one notes-table number per model, first freeze), and fewer than three significant digits (two SEC set~3 numbers, second freeze). Tried and not kept: naming every other unconfirmed input of a discovered identity when a misread suggestion rests on discovered identities alone (set~H high, no text, 73 to 68 silent, but more flags on clean extractions). Costs on development data: CORD validation zero-config silent 25 to 31, fewer fixes on SEC sets 2 and 3, more flags on clean data, and slower discovery (322 to 350\,s for the largest development run against 133\,s). Source: \code{qcore8/CHANGES.md}, \code{out/qcore8\_work/dev\_summary8.md} (Section~\ref{app:q8dev}).
+
+\textbf{\vq{9}} (everything above, plus set~I, \vq{8}'s fresh set, spent by \vq{8}'s run). The weaknesses addressed, measured there: \vq{8}'s zero-config breaks (9 bank-statement checks printed twice with opposite signs; 7 cells of an inventory row read from a neighbour whose numbers include the record's identifier; one week-total completion on the wrong day), one hand-mode and one discovered-identity break from loose scaled page matches (a budget report storing values at the page's own unit), and the gap to hand identities without page text on the SEC development sets. The changes are the five of Section~\ref{sec:discover}; eight tests were added. Measured one at a time on SEC development sets in zero-config (silent / false flags over 12 runs per mode): slip admission, without page text $-13$ / $+11$ (with it $-7$ / $+109$, so off with page text); tight tolerance $-28$ / $+116$ (with page text $-3$ / $+56$, off); section-total sums $-7$ / $+10$; equal ties $-17$ / $+15$; keeping a rule-(b) read's page basis raised text-mode fixes from 1,161 to 1,276. Tried and not kept: the two discovery checks with page text; the tight tolerance at 2.5 units ($-3$ silent); a first version of change~3 that required every scaled match to be at least one page unit, which stopped confirming SEC sub-unit lines and added 54 hand-mode flags on development sets. Not done: a generic rule for the two hand-mode breaks \vq{8} already had on development data (the Snap-on swap on SEC set~3 and the Salesforce cell on the notes tables). Source: \code{qcore9/CHANGES.md}, \code{out/qcore9\_work/FROZEN.md}.
+
+\apptab{\vq{4} against \vq{5} on development data only}\label{tab:q5dev}
+Accuracy after tier~1 / silent / flagged (wrong) / broken / fixed (source: \code{out/qcore5\_work/dev\_summary5.md}). Accuracy before: notes Opus 100.00\%, Haiku 99.76\%, GPT 83.81\%; SEC poor scans Haiku 96.07\%, Opus 99.47\%.
+\begin{center}\footnotesize
+\begin{tabular}{lll}
+\toprule
+Run, mode & \vq{4} & \vq{5} \\
+\midrule
+Notes, Opus, text & 99.15\% / 52 / 731 (4) / 56 / 0 & 100.00\% / 0 / 33 (0) / 0 / 0 \\
+Notes, Haiku, text & 99.03\% / 52 / 739 (12) / 56 / 8 & 99.76\% / 0 / 49 (16) / 0 / 0 \\
+Notes, GPT, text & 83.52\% / 60 / 1,861 (1,026) / 56 / 37 & 84.05\% / 8 / 1,280 (1,043) / 0 / 16 \\
+Notes, Opus + injected errors, text & 98.20\% / 234 / 2,316 (122) / 164 / 48 & 99.04\% / 82 / 286 (107) / 0 / 51 \\
+SEC, Haiku poor scans, text & 99.02\% / 0 / 61 (24) / 0 / 72 & 99.06\% / 0 / 60 (23) / 0 / 73 \\
+SEC, Haiku poor scans, OCR docTR & 96.73\% / 23 / 424 (57) / 0 / 16 & 96.65\% / 23 / 438 (59) / 0 / 14 \\
+SEC, Opus poor scans, text & 99.88\% / 0 / 7 (3) / 0 / 10 & 99.88\% / 0 / 7 (3) / 0 / 10 \\
+SEC, Opus poor scans, OCR docTR & 99.47\% / 2 / 261 (11) / 0 / 0 & 99.47\% / 2 / 259 (11) / 0 / 0 \\
+\bottomrule
+\end{tabular}
+\end{center}
+No-text runs are identical under both versions; CORD and synthetic dev results are within four fixes of \vq{4}, with no wrong or broken change.
+
+
+\section{CORD and SEC, all extractors}\label{app:realdata}
+\apptab{Frozen \vq{3}, text mode, held-out data}
+\begin{center}
+\begin{tabular}{llrrrrrl}
+\toprule
+Data & Extractor & Errors & Fixed & To tier 2 & Missed & Broken & Accuracy before $\rightarrow$ after \\
+\midrule
+CORD test & Opus & 4 & 0 & 2 & 2 & 0 & 99.60\% $\rightarrow$ 99.60\% \\
+ & Haiku & 15 & 1 & 12 & 2 & 0 & 98.50\% $\rightarrow$ 98.60\% \\
+ & Donut-CORD & 150 & 1 & 128 & 21 & 0 & 84.97\% $\rightarrow$ 85.07\% \\
+ & Opus, poor scan & 136 & 5 & 120 & 11 & 0 & 86.37\% $\rightarrow$ 86.87\% \\
+ & Haiku, poor scan & 262 & 10 & 236 & 16 & 0 & 73.75\% $\rightarrow$ 74.75\% \\
+\midrule
+SEC set 1 held-out & Opus / Haiku, clean & 0 / 0 & -- & -- & -- & 0 / 0 & 100\% $\rightarrow$ 100\% \\
+ & Opus, poor scan & 30 & 18 & 12 & 0 & 0 & 98.60\% $\rightarrow$ 99.44\% \\
+ & Haiku, poor scan & 109 & 82 & 27 & 0 & 0 & 94.92\% $\rightarrow$ 98.74\% \\
+\bottomrule
+\end{tabular}
+\end{center}
+In no-text mode \vq{3} gives the same output as \vq{2}, since none of its changes apply without a text layer. On the poor scans, tier~1 then fixes nothing and flags 69 of Opus's and 213 of Haiku's CORD errors, and 17 of Opus's and 52 of Haiku's SEC errors.
+

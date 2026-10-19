@@ -1,0 +1,20 @@
+\begin{figure}[t]
+\centering
+\fbox{\begin{minipage}{0.94\columnwidth}\small
+\textbf{Checker} (one document; extraction $x$, identities $Ax=b$, page reads $p$)\\[2pt]
+\begin{tabular}{@{}r@{\hspace{5pt}}p{0.86\columnwidth}@{}}
+1: & Label each read: \emph{corroborated} if $x_i$ matches the page on $i$'s own line.\\
+2: & $\Fail(x)\gets\{k : |g_k(x)|>\tau_k\}$, where $g_k(x)=a_k^\top x-b_k$.\\
+3: & \textbf{for} each $k\in\Fail(x)$ and input $i$ of $k$ \textbf{do}\\
+4: & \quad candidates $x'$: swap $x_i$ with another number, with the adjacent period's value, or negate it; or the closing value $v=x_i-g_k(x)/a_{ki}$.\\
+5: & \quad \textbf{keep} $x'$ only if $\Fail(x')\subsetneq\Fail(x)$ \eqref{eq:accept}, the page does not contradict it, and $x'_i$ lies in the allowed set \eqref{eq:allowed}.\\
+6: & \quad \textbf{gate:} write $x'$ only if (a) it is backed by an identity or (b) the read is unambiguous and corroborated.\\
+7: & \textbf{for} each $k$ still in $\Fail$ \textbf{do}\\
+8: & \quad \textbf{if} every input of $k$ matches the page: mark a source-document error; keep values.\\
+9: & \quad \textbf{else} route to tier~2, naming only inputs not shown right.\\
+10: & \textbf{return} $x$, tier-2 items.
+\end{tabular}
+\end{minipage}}
+\caption{The checker's decision steps. It never writes a value outside the allowed set, so it cannot invent a number to make the books tie.}
+\label{fig:algo}
+\end{figure}

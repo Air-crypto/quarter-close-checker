@@ -1,0 +1,39 @@
+% Figure: Fund R, 9 runs (197 errors), page text that tier 1 reads.
+% Source: paper/v2_tuning.md, "Fund R hard runs" per-run table, clean_haiku removed
+% (= draft.md Section 5.4 table). No wrong change in any cell.
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}
+\begin{axis}[qbar, width=4.3cm, xmin=0, xmax=197, y=11pt,
+  ytick={1,2,3,4,5}, ymin=1, ymax=5, y dir=reverse,
+  yticklabels={Text layer (v1 $=$ v2), Tesseract OCR\quad v1, v2, No text\quad v1, v2},
+  xtick={0,50,100,150,197},
+  xlabel={tier 0 errors (9 runs, $n=197$)},
+  legend columns=3, legend style={at={(0.5,1.04)}, anchor=south}, clip=false]
+\addplot[fixbar] coordinates {(193,1) (8,2) (8,3) (8,4) (8,5)};
+\addplot[t2bar] coordinates {(2,1) (148,2) (155,3) (123,4) (130,5)};
+\addplot[missbar] coordinates {(2,1) (41,2) (34,3) (66,4) (59,5)};
+\legend{fixed, flagged (tier 2), missed}
+\coordinate (ocr1) at (axis cs:96,1);
+\coordinate (ocr2) at (axis cs:82,2);
+\coordinate (ocr3) at (axis cs:85,3);
+\coordinate (ocr4) at (axis cs:70,4);
+\coordinate (ocr5) at (axis cs:73,5);
+\coordinate (ocr6) at (axis cs:176,2);
+\coordinate (ocr7) at (axis cs:180,3);
+\coordinate (ocr8) at (axis cs:164,4);
+\coordinate (ocr9) at (axis cs:167,5);
+\end{axis}
+\node[inlab] at (ocr1) {193};
+\node[darklab] at (ocr2) {148};
+\node[darklab] at (ocr3) {155};
+\node[darklab] at (ocr4) {123};
+\node[darklab] at (ocr5) {130};
+\node[misslab] at (ocr6) {41};
+\node[misslab] at (ocr7) {34};
+\node[misslab] at (ocr8) {66};
+\node[misslab] at (ocr9) {59};
+\end{tikzpicture}
+\caption{Tier~1 outcomes on Fund~R (nine runs) by the page text available: the digital text layer, Tesseract OCR of the degraded scans, or none. Neither PE version made a wrong change.}
+\label{fig:ocr}
+\end{figure}

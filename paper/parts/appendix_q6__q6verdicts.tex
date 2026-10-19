@@ -1,0 +1,105 @@
+% Cut verbatim from appendix_q6.tex by paper/gen_v10/split_parts.py; do not edit.
+\apptab{Every run of frozen \vq{6} with hand identities against the same model alone, and against Opus alone}\label{tab:q6verdicts}
+Paired bootstrap of the difference in silent errors over documents (same resamples, 10,000, seed 0). A cut is a difference whose interval lies below 0. Pooled SEC rows repeat the per-set rows. The last column compares the pipeline with Opus alone on the same documents (not shown for Opus's own rows).
+{\scriptsize\setlength{\tabcolsep}{3pt}
+\begin{longtable}{llllrrlrrrl}
+\toprule
+Set & Model & Mode & Identities & Silent & Alone & Difference [95\% CI] & Broken & Fixed & To human & vs.\ Opus alone [95\% CI] \\
+\midrule\endhead
+SEC 1 & Haiku & text & hand & 0 & 109 & $-$109 [$-$175, $-$53] & 0 & 84 & 2.4\% & $-$30 [$-$56, $-$9] \\
+SEC 1 & Haiku & no text & hand & 57 & 109 & $-$52 [$-$92, $-$19] & 0 & 0 & 7.2\% & +27 [+8, +46] \\
+SEC 1 & Haiku & OCR docTR & hand & 47 & 109 & $-$62 [$-$108, $-$25] & 0 & 13 & 11.6\% & +17 [$-$3, +37] \\
+SEC 1 & Haiku & OCR Tesseract & hand & 38 & 109 & $-$71 [$-$124, $-$28] & 0 & 0 & 18.2\% & +8 [$-$13, +28] \\
+SEC 1 & Opus & text & hand & 0 & 30 & $-$30 [$-$56, $-$9] & 0 & 18 & 0.7\% & -- \\
+SEC 1 & Opus & no text & hand & 13 & 30 & $-$17 [$-$32, $-$5] & 0 & 0 & 2.9\% & -- \\
+SEC 1 & Opus & OCR docTR & hand & 10 & 30 & $-$20 [$-$38, $-$5] & 0 & 4 & 8.5\% & -- \\
+SEC 1 & Opus & OCR Tesseract & hand & 9 & 30 & $-$21 [$-$40, $-$6] & 0 & 0 & 13.2\% & -- \\
+SEC 1 & GPT & text & hand & 8 & 531 & $-$523 [$-$697, $-$369] & 0 & 413 & 8.7\% & $-$22 [$-$51, +3] \\
+SEC 1 & GPT & no text & hand & 316 & 531 & $-$215 [$-$304, $-$138] & 0 & 0 & 25.8\% & +286 [+186, +390] \\
+SEC 1 & GPT & OCR docTR & hand & 194 & 531 & $-$337 [$-$479, $-$219] & 2 & 30 & 32.1\% & +164 [+93, +241] \\
+SEC 1 & GPT & OCR Tesseract & hand & 193 & 531 & $-$338 [$-$477, $-$219] & 0 & 1 & 40.7\% & +163 [+92, +240] \\
+\midrule
+SEC 2 & Haiku & text & hand & 4 & 202 & $-$198 [$-$313, $-$103] & 0 & 141 & 2.4\% & $-$65 [$-$133, $-$10] \\
+SEC 2 & Haiku & no text & hand & 105 & 202 & $-$97 [$-$164, $-$41] & 0 & 0 & 5.5\% & +36 [$-$15, +91] \\
+SEC 2 & Haiku & OCR docTR & hand & 52 & 202 & $-$150 [$-$256, $-$66] & 0 & 8 & 13.2\% & $-$17 [$-$67, +23] \\
+SEC 2 & Haiku & OCR Tesseract & hand & 54 & 202 & $-$148 [$-$252, $-$65] & 1 & 0 & 16.7\% & $-$15 [$-$65, +24] \\
+SEC 2 & Opus & text & hand & 0 & 69 & $-$69 [$-$136, $-$14] & 0 & 43 & 1.3\% & -- \\
+SEC 2 & Opus & no text & hand & 42 & 69 & $-$27 [$-$59, $-$3] & 0 & 0 & 2.4\% & -- \\
+SEC 2 & Opus & OCR docTR & hand & 30 & 69 & $-$39 [$-$83, $-$6] & 1 & 0 & 8.7\% & -- \\
+SEC 2 & Opus & OCR Tesseract & hand & 28 & 69 & $-$41 [$-$85, $-$9] & 0 & 0 & 12.2\% & -- \\
+SEC 2 & GPT & text & hand & 27 & 1,012 & $-$985 [$-$1308, $-$716] & 0 & 720 & 8.9\% & $-$42 [$-$115, +20] \\
+SEC 2 & GPT & no text & hand & 541 & 1,012 & $-$471 [$-$727, $-$279] & 0 & 0 & 22.4\% & +472 [+360, +605] \\
+SEC 2 & GPT & OCR docTR & hand & 355 & 1,012 & $-$657 [$-$951, $-$431] & 0 & 87 & 26.8\% & +286 [+222, +360] \\
+SEC 2 & GPT & OCR Tesseract & hand & 377 & 1,012 & $-$635 [$-$930, $-$405] & 1 & 5 & 34.3\% & +308 [+236, +386] \\
+\midrule
+SEC 3 & Haiku & text & hand & 15 & 216 & $-$201 [$-$278, $-$135] & 0 & 123 & 3.3\% & $-$35 [$-$73, $-$6] \\
+SEC 3 & Haiku & no text & hand & 123 & 216 & $-$93 [$-$156, $-$47] & 0 & 0 & 7.9\% & +73 [+42, +105] \\
+SEC 3 & Haiku & OCR docTR & hand & 85 & 216 & $-$131 [$-$197, $-$79] & 2 & 12 & 16.1\% & +35 [+3, +66] \\
+SEC 3 & Haiku & OCR Tesseract & hand & 80 & 216 & $-$136 [$-$206, $-$79] & 1 & 0 & 20.3\% & +30 [$-$8, +66] \\
+SEC 3 & Haiku & OCR docTR & hand + re-read & 80 & 216 & $-$136 [$-$203, $-$82] & 2 & 12 & 16.6\% & +30 [$-$3, +62] \\
+SEC 3 & Opus & text & hand & 5 & 50 & $-$45 [$-$82, $-$17] & 0 & 39 & 1.4\% & -- \\
+SEC 3 & Opus & no text & hand & 39 & 50 & $-$11 [$-$26, $-$2] & 0 & 0 & 0.7\% & -- \\
+SEC 3 & Opus & OCR docTR & hand & 29 & 50 & $-$21 [$-$40, $-$6] & 0 & 0 & 9.9\% & -- \\
+SEC 3 & Opus & OCR Tesseract & hand & 25 & 50 & $-$25 [$-$51, $-$6] & 0 & 0 & 12.2\% & -- \\
+SEC 3 & Opus & OCR docTR & hand + re-read & 27 & 50 & $-$23 [$-$45, $-$6] & 0 & 0 & 10.1\% & -- \\
+SEC 3 & GPT & text & hand & 65 & 1,443 & $-$1378 [$-$1735, $-$1068] & 2 & 887 & 13.8\% & +15 [$-$32, +58] \\
+SEC 3 & GPT & no text & hand & 754 & 1,443 & $-$689 [$-$1000, $-$452] & 0 & 0 & 29.6\% & +704 [+541, +877] \\
+SEC 3 & GPT & OCR docTR & hand & 532 & 1,443 & $-$911 [$-$1232, $-$650] & 0 & 59 & 36.6\% & +482 [+350, +628] \\
+SEC 3 & GPT & OCR Tesseract & hand & 552 & 1,443 & $-$891 [$-$1225, $-$620] & 1 & 3 & 42.3\% & +502 [+374, +648] \\
+\midrule
+SEC 1+2 & Haiku & text & hand & 4 & 311 & $-$307 [$-$443, $-$192] & 0 & 225 & 2.4\% & $-$95 [$-$168, $-$37] \\
+SEC 1+2 & Haiku & no text & hand & 162 & 311 & $-$149 [$-$228, $-$82] & 0 & 0 & 6.0\% & +63 [+8, +122] \\
+SEC 1+2 & Haiku & OCR docTR & hand & 99 & 311 & $-$212 [$-$330, $-$116] & 0 & 21 & 12.7\% & +0 [$-$57, +44] \\
+SEC 1+2 & Haiku & OCR Tesseract & hand & 92 & 311 & $-$219 [$-$338, $-$121] & 1 & 0 & 17.2\% & $-$7 [$-$64, +37] \\
+SEC 1+2 & Opus & text & hand & 0 & 99 & $-$99 [$-$173, $-$42] & 0 & 61 & 1.1\% & -- \\
+SEC 1+2 & Opus & no text & hand & 55 & 99 & $-$44 [$-$80, $-$17] & 0 & 0 & 2.6\% & -- \\
+SEC 1+2 & Opus & OCR docTR & hand & 40 & 99 & $-$59 [$-$107, $-$22] & 1 & 4 & 8.6\% & -- \\
+SEC 1+2 & Opus & OCR Tesseract & hand & 37 & 99 & $-$62 [$-$110, $-$25] & 0 & 0 & 12.5\% & -- \\
+SEC 1+2 & GPT & text & hand & 35 & 1,543 & $-$1508 [$-$1878, $-$1193] & 0 & 1,133 & 8.8\% & $-$64 [$-$142, +3] \\
+SEC 1+2 & GPT & no text & hand & 857 & 1,543 & $-$686 [$-$960, $-$475] & 0 & 0 & 23.6\% & +758 [+604, +929] \\
+SEC 1+2 & GPT & OCR docTR & hand & 549 & 1,543 & $-$994 [$-$1316, $-$728] & 2 & 117 & 28.6\% & +450 [+352, +555] \\
+SEC 1+2 & GPT & OCR Tesseract & hand & 570 & 1,543 & $-$973 [$-$1298, $-$707] & 1 & 6 & 36.4\% & +471 [+366, +579] \\
+\midrule
+SEC 1--3 & Haiku & text & hand & 19 & 527 & $-$508 [$-$664, $-$371] & 0 & 348 & 2.8\% & $-$130 [$-$211, $-$62] \\
+SEC 1--3 & Haiku & no text & hand & 285 & 527 & $-$242 [$-$344, $-$156] & 0 & 0 & 6.9\% & +136 [+73, +202] \\
+SEC 1--3 & Haiku & OCR docTR & hand & 184 & 527 & $-$343 [$-$477, $-$230] & 2 & 33 & 14.2\% & +35 [$-$29, +91] \\
+SEC 1--3 & Haiku & OCR Tesseract & hand & 172 & 527 & $-$355 [$-$492, $-$238] & 2 & 0 & 18.5\% & +23 [$-$45, +82] \\
+SEC 1--3 & Opus & text & hand & 5 & 149 & $-$144 [$-$224, $-$77] & 0 & 100 & 1.2\% & -- \\
+SEC 1--3 & Opus & no text & hand & 94 & 149 & $-$55 [$-$93, $-$24] & 0 & 0 & 1.8\% & -- \\
+SEC 1--3 & Opus & OCR docTR & hand & 69 & 149 & $-$80 [$-$131, $-$39] & 1 & 4 & 9.2\% & -- \\
+SEC 1--3 & Opus & OCR Tesseract & hand & 62 & 149 & $-$87 [$-$141, $-$43] & 0 & 0 & 12.4\% & -- \\
+SEC 1--3 & GPT & text & hand & 100 & 2,986 & $-$2886 [$-$3394, $-$2427] & 2 & 2,020 & 11.0\% & $-$49 [$-$141, +33] \\
+SEC 1--3 & GPT & no text & hand & 1,611 & 2,986 & $-$1375 [$-$1794, $-$1044] & 0 & 0 & 26.2\% & +1462 [+1229, +1701] \\
+SEC 1--3 & GPT & OCR docTR & hand & 1,081 & 2,986 & $-$1905 [$-$2359, $-$1519] & 2 & 176 & 32.1\% & +932 [+761, +1109] \\
+SEC 1--3 & GPT & OCR Tesseract & hand & 1,122 & 2,986 & $-$1864 [$-$2331, $-$1467] & 2 & 9 & 39.0\% & +973 [+800, +1154] \\
+\midrule
+CORD & Haiku & text & hand & 12 & 262 & $-$250 [$-$330, $-$177] & 0 & 17 & 29.2\% & $-$124 [$-$182, $-$73] \\
+CORD & Haiku & no text & hand & 52 & 262 & $-$210 [$-$289, $-$139] & 0 & 0 & 25.1\% & $-$84 [$-$147, $-$29] \\
+CORD & Haiku & OCR docTR & hand & 48 & 262 & $-$214 [$-$294, $-$142] & 0 & 0 & 29.0\% & $-$88 [$-$151, $-$33] \\
+CORD & Haiku & OCR Tesseract & hand & 46 & 262 & $-$216 [$-$297, $-$144] & 0 & 0 & 31.1\% & $-$90 [$-$153, $-$34] \\
+CORD & Opus & text & hand & 7 & 136 & $-$129 [$-$187, $-$78] & 0 & 11 & 17.0\% & -- \\
+CORD & Opus & no text & hand & 67 & 136 & $-$69 [$-$121, $-$26] & 0 & 0 & 8.7\% & -- \\
+CORD & Opus & OCR docTR & hand & 67 & 136 & $-$69 [$-$121, $-$26] & 0 & 0 & 12.7\% & -- \\
+CORD & Opus & OCR Tesseract & hand & 66 & 136 & $-$70 [$-$122, $-$27] & 0 & 0 & 14.8\% & -- \\
+\midrule
+Notes & Haiku & text & hand & 23 & 48 & $-$25 [$-$75, +1] & 1 & 0 & 2.3\% & +23 [+0, +66] \\
+Notes & Haiku & no text & hand & 24 & 48 & $-$24 [$-$72, +0] & 0 & 0 & 0.2\% & +24 [+0, +68] \\
+Notes & Opus & text & hand & 1 & 0 & +1 [+0, +3] & 1 & 0 & 2.1\% & -- \\
+Notes & Opus & no text & hand & 0 & 0 & +0 [+0, +0] & 0 & 0 & 0.0\% & -- \\
+Notes & GPT & text & hand & 3 & 2,005 & $-$2002 [$-$3400, $-$835] & 1 & 8 & 19.7\% & +3 [+0, +7] \\
+Notes & GPT & no text & hand & 3 & 2,005 & $-$2002 [$-$3400, $-$835] & 0 & 0 & 18.0\% & +3 [+0, +7] \\
+\midrule
+Real scans & Haiku & no text & hand & 3 & 39 & $-$36 [$-$86, $-$4] & 0 & 0 & 13.8\% & $-$36 [$-$86, $-$5] \\
+Real scans & Haiku & dataset OCR & hand & 3 & 39 & $-$36 [$-$86, $-$4] & 0 & 0 & 15.1\% & $-$36 [$-$86, $-$5] \\
+Real scans & Haiku & scanner OCR layer & hand & 1 & 16 & $-$15 [$-$38, +0] & 0 & 0 & 18.0\% & $-$14 [$-$36, +0] \\
+Real scans & Opus & no text & hand & 2 & 39 & $-$37 [$-$88, $-$4] & 0 & 0 & 16.6\% & -- \\
+Real scans & Opus & dataset OCR & hand & 2 & 39 & $-$37 [$-$88, $-$4] & 0 & 0 & 17.4\% & -- \\
+Real scans & Opus & scanner OCR layer & hand & 1 & 15 & $-$14 [$-$36, +0] & 0 & 0 & 18.0\% & -- \\
+\midrule
+Synthetic & Haiku & text & hand & 2 & 2 & +0 [+0, +0] & 0 & 0 & 2.5\% & +2 [+0, +5] \\
+Synthetic & Haiku & no text & hand & 2 & 2 & +0 [+0, +0] & 0 & 0 & 1.5\% & +2 [+0, +5] \\
+Synthetic & Opus & text & hand & 0 & 0 & +0 [+0, +0] & 0 & 0 & 2.8\% & -- \\
+Synthetic & Opus & no text & hand & 0 & 0 & +0 [+0, +0] & 0 & 0 & 1.6\% & -- \\
+\bottomrule
+\end{longtable}}
+

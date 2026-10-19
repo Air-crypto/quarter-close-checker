@@ -1,0 +1,83 @@
+% Cut verbatim from appendix_q7.tex by paper/gen_v10/split_parts.py; do not edit.
+\section{Development grid of frozen \vq{7}}\label{app:q7dev}
+\textbf{Development data only.} Every set below was spent before \vq{7} was written, and \vq{7} was tuned on them. Frozen \vq{7} and frozen \vq{6} were run on every (set, extraction, mode, identity setting) of the grid, 682 pairs of runs, none missing; for the \vq{6} held-out sets the \vq{6} runs are its held-out runs. Pooled over extractions and modes, legacy scoring (the rule of the \vq{6} results). Hand-identity check: in all 190 hand runs \vq{7} returned exactly \vq{6}'s fixes (190) and tier~2 items (190). Source: \code{out/qcore7\_work/dev\_summary7.md}, \code{dev\_summary7.json}.
+{\scriptsize\setlength{\tabcolsep}{4pt}
+\begin{longtable}{lllrllll}
+\toprule
+Set & Identities & Extractions & Numbers & Silent \vq{6} / \vq{7} & Broken & Fixed & To a person \\
+\midrule\endhead
+SEC set 1 & hand & real & 25,728 & 885 / 885 & 2 / 2 & 563 / 563 & 14.3 / 14.3\% \\
+SEC set 1 & discovered & real & 12,864 & 597 / 597 & 0 / 0 & 515 / 476 & 3.7 / 4.0\% \\
+SEC set 1 & hand + disc. & real & 12,864 & 379 / 379 & 0 / 0 & 517 / 518 & 8.6 / 8.6\% \\
+SEC set 1 & zero-config & real & 12,864 & 643 / 605 & 0 / 0 & 99 / 260 & 7.1 / 5.8\% \\
+SEC set 2 & hand & real & 53,088 & 1,615 / 1,615 & 3 / 3 & 1,001 / 1,001 & 12.9 / 12.9\% \\
+SEC set 2 & discovered & real & 26,544 & 1,060 / 1,058 & 1 / 0 & 906 / 804 & 4.2 / 4.5\% \\
+SEC set 2 & hand + disc. & real & 26,544 & 699 / 699 & 0 / 0 & 908 / 871 & 7.8 / 7.8\% \\
+SEC set 2 & zero-config & real & 26,544 & 1,183 / 1,080 & 0 / 0 & 133 / 397 & 7.7 / 5.9\% \\
+SEC set 3 & hand & real & 62,472 & 2,304 / 2,304 & 6 / 6 & 1,108 / 1,108 & 16.2 / 16.2\% \\
+SEC set 3 & discovered & real & 31,236 & 1,503 / 1,502 & 0 / 0 & 1,019 / 955 & 5.5 / 5.7\% \\
+SEC set 3 & hand + disc. & real & 31,236 & 1,001 / 999 & 2 / 0 & 1,022 / 1,011 & 9.9 / 9.9\% \\
+SEC set 3 & zero-config & real & 31,236 & 1,651 / 1,536 & 0 / 0 & 117 / 481 & 9.4 / 7.7\% \\
+CORD test & hand & real & 7,984 & 365 / 365 & 0 / 0 & 28 / 28 & 20.9 / 20.9\% \\
+CORD test & discovered & real & 3,992 & 168 / 151 & 0 / 0 & 25 / 25 & 17.5 / 19.5\% \\
+CORD test & hand + disc. & real & 3,992 & 139 / 134 & 0 / 0 & 29 / 29 & 20.3 / 21.2\% \\
+CORD test & zero-config & real & 3,992 & 175 / 153 & 0 / 0 & 25 / 25 & 17.0 / 19.3\% \\
+Notes tables & hand & real & 88,668 & 54 / 54 & 3 / 3 & 8 / 8 & 7.1 / 7.1\% \\
+Notes tables & discovered & real & 88,668 & 95 / 95 & 0 / 0 & 8 / 1 & 7.7 / 7.7\% \\
+Notes tables & hand + disc. & real & 88,668 & 47 / 47 & 0 / 0 & 8 / 1 & 7.7 / 7.8\% \\
+Notes tables & zero-config & real & 88,668 & 96 / 101 & 0 / 6 & 0 / 0 & 7.9 / 7.8\% \\
+Real scans & hand & real & 6,054 & 13 / 13 & 0 / 0 & 0 / 0 & 16.2 / 16.2\% \\
+Real scans & discovered & real & 2,018 & 78 / 5 & 0 / 0 & 0 / 0 & 0.0 / 20.6\% \\
+Real scans & hand + disc. & real & 2,018 & 5 / 5 & 0 / 0 & 0 / 0 & 17.2 / 22.6\% \\
+Real scans & zero-config & real & 2,018 & 78 / 5 & 0 / 0 & 0 / 0 & 0.0 / 20.6\% \\
+Synthetic 02--05 & hand & real & 31,568 & 4 / 4 & 0 / 0 & 0 / 0 & 2.1 / 2.1\% \\
+Synthetic 02--05 & discovered & real & 31,568 & 36 / 4 & 32 / 0 & 0 / 0 & 1.1 / 1.1\% \\
+Synthetic 02--05 & hand + disc. & real & 31,568 & 4 / 4 & 0 / 0 & 0 / 0 & 2.5 / 2.3\% \\
+Synthetic 02--05 & zero-config & real & 31,568 & 20 / 4 & 16 / 0 & 0 / 0 & 1.1 / 1.4\% \\
+SEC dev & hand & real & 19,560 & 113 / 113 & 0 / 0 & 100 / 100 & 8.9 / 8.9\% \\
+SEC dev & discovered & real & 19,560 & 147 / 147 & 0 / 0 & 91 / 71 & 7.7 / 7.8\% \\
+SEC dev & hand + disc. & real & 19,560 & 113 / 113 & 0 / 0 & 100 / 100 & 6.9 / 6.9\% \\
+SEC dev & zero-config & real & 19,560 & 165 / 157 & 0 / 0 & 54 / 50 & 7.0 / 7.6\% \\
+SEC dev & hand & injected & 4,890 & 17 / 17 & 0 / 0 & 54 / 54 & 3.2 / 3.2\% \\
+SEC dev & discovered & injected & 4,890 & 30 / 30 & 0 / 0 & 54 / 39 & 3.1 / 3.4\% \\
+SEC dev & hand + disc. & injected & 4,890 & 13 / 13 & 0 / 0 & 54 / 51 & 4.0 / 4.0\% \\
+SEC dev & zero-config & injected & 4,890 & 41 / 33 & 0 / 0 & 38 / 27 & 3.3 / 3.6\% \\
+Notes dev & hand & real & 39,534 & 36 / 36 & 0 / 0 & 16 / 16 & 6.6 / 6.6\% \\
+Notes dev & discovered & real & 39,534 & 36 / 36 & 0 / 0 & 6 / 4 & 6.9 / 6.9\% \\
+Notes dev & hand + disc. & real & 39,534 & 36 / 36 & 0 / 0 & 18 / 4 & 7.2 / 7.2\% \\
+Notes dev & zero-config & real & 39,534 & 46 / 40 & 0 / 0 & 0 / 0 & 7.5 / 7.1\% \\
+Notes dev & hand & injected & 13,178 & 67 / 67 & 0 / 0 & 18 / 18 & 1.2 / 1.2\% \\
+Notes dev & discovered & injected & 13,178 & 61 / 61 & 0 / 0 & 17 / 12 & 2.0 / 2.0\% \\
+Notes dev & hand + disc. & injected & 13,178 & 40 / 40 & 0 / 0 & 18 / 15 & 2.4 / 2.4\% \\
+Notes dev & zero-config & injected & 13,178 & 67 / 65 & 0 / 0 & 14 / 11 & 1.8 / 1.8\% \\
+CORD train & hand & real & 16,810 & 0 / 0 & 0 / 0 & 0 / 0 & 2.3 / 2.3\% \\
+CORD train & discovered & real & 16,810 & 0 / 0 & 0 / 0 & 0 / 0 & 1.1 / 3.1\% \\
+CORD train & hand + disc. & real & 16,810 & 0 / 0 & 0 / 0 & 0 / 0 & 2.5 / 4.2\% \\
+CORD train & zero-config & real & 16,810 & 0 / 0 & 0 / 0 & 0 / 0 & 1.0 / 2.9\% \\
+CORD train & hand & injected & 16,810 & 33 / 33 & 0 / 0 & 63 / 63 & 3.5 / 3.5\% \\
+CORD train & discovered & injected & 16,810 & 142 / 81 & 0 / 0 & 36 / 33 & 1.6 / 4.1\% \\
+CORD train & hand + disc. & injected & 16,810 & 48 / 42 & 0 / 0 & 55 / 54 & 4.0 / 5.7\% \\
+CORD train & zero-config & injected & 16,810 & 147 / 86 & 0 / 0 & 34 / 31 & 1.5 / 3.9\% \\
+CORD val. & hand & real & 3,768 & 21 / 21 & 0 / 0 & 2 / 2 & 8.5 / 8.5\% \\
+CORD val. & discovered & real & 3,768 & 35 / 22 & 0 / 0 & 3 / 3 & 5.9 / 9.4\% \\
+CORD val. & hand + disc. & real & 3,768 & 21 / 20 & 0 / 0 & 3 / 3 & 8.8 / 11.4\% \\
+CORD val. & zero-config & real & 3,768 & 37 / 25 & 0 / 0 & 1 / 1 & 5.5 / 8.7\% \\
+CORD val. & hand & injected & 3,768 & 43 / 43 & 0 / 0 & 34 / 34 & 12.3 / 12.3\% \\
+CORD val. & discovered & injected & 3,768 & 141 / 108 & 0 / 0 & 17 / 15 & 7.1 / 9.4\% \\
+CORD val. & hand + disc. & injected & 3,768 & 43 / 42 & 0 / 0 & 36 / 36 & 12.5 / 13.0\% \\
+CORD val. & zero-config & injected & 3,768 & 145 / 112 & 0 / 0 & 10 / 8 & 6.8 / 8.9\% \\
+Real-scan dev & hand & real & 2,760 & 8 / 8 & 0 / 0 & 0 / 0 & 24.9 / 24.9\% \\
+Real-scan dev & discovered & real & 2,760 & 24 / 16 & 0 / 0 & 0 / 0 & 7.5 / 19.2\% \\
+Real-scan dev & hand + disc. & real & 2,760 & 8 / 0 & 0 / 0 & 0 / 0 & 25.1 / 36.8\% \\
+Real-scan dev & zero-config & real & 2,760 & 24 / 16 & 0 / 0 & 0 / 0 & 6.4 / 18.3\% \\
+Synthetic 00--01 & hand & real & 16,364 & 6 / 6 & 0 / 0 & 0 / 0 & 1.4 / 1.4\% \\
+Synthetic 00--01 & discovered & real & 16,364 & 6 / 6 & 0 / 0 & 0 / 0 & 0.6 / 0.7\% \\
+Synthetic 00--01 & hand + disc. & real & 16,364 & 6 / 6 & 0 / 0 & 0 / 0 & 1.5 / 1.6\% \\
+Synthetic 00--01 & zero-config & real & 16,364 & 6 / 6 & 0 / 0 & 0 / 0 & 0.6 / 0.7\% \\
+Synthetic 00--01 & hand & injected & 16,364 & 16 / 16 & 0 / 0 & 354 / 354 & 7.3 / 7.3\% \\
+Synthetic 00--01 & discovered & injected & 16,364 & 258 / 232 & 0 / 0 & 254 / 202 & 3.5 / 4.3\% \\
+Synthetic 00--01 & hand + disc. & injected & 16,364 & 16 / 16 & 0 / 0 & 352 / 352 & 7.9 / 7.9\% \\
+Synthetic 00--01 & zero-config & injected & 16,364 & 273 / 247 & 0 / 0 & 195 / 150 & 3.9 / 4.6\% \\
+\bottomrule
+\end{longtable}}
+

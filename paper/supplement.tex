@@ -1,0 +1,133 @@
+% Supplement to the two-column paper (main.tex): the long listings moved out of its appendix in the tenth version.
+% Built by make.sh (after main.tex) and copied to ../../paper/supplement.pdf. Cross-references to the paper use xr-hyper
+% (main.aux); the paper refers to this file through supplement.aux. Every table is the v9 appendix material verbatim:
+% supplement_body.tex holds the hand-written parts, parts/*.tex the generated tables cut by ../gen_v10/split_parts.py.
+\documentclass[10pt]{article}
+\usepackage[letterpaper,margin=0.75in,columnsep=0.25in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}
+\usepackage[scaled=0.9]{helvet}
+\usepackage{courier}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{booktabs,tabularx,array,multirow}
+\usepackage{graphicx}
+\graphicspath{{figures/}{latex2col/figures/}}
+\usepackage{xcolor}
+\usepackage{pifont}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,patterns,calc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{groupplots}
+\usepackage[font=small,labelfont=bf,skip=4pt]{caption}
+\usepackage{enumitem}
+\usepackage{needspace}
+\usepackage{adjustbox}
+\usepackage{longtable}
+\setlist{nosep,leftmargin=1.2em}
+\usepackage{xr-hyper}
+\externaldocument[]{main}
+\usepackage[colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black]{hyperref}
+\usepackage{xurl}
+
+% ---- one palette for every chart and diagram (validated with the dataviz checker) ----
+\definecolor{cFix}{HTML}{2A78D6}    % fixed by tier 1
+\definecolor{cT2}{HTML}{EDA100}     % sent to tier 2 / flagged
+\definecolor{cMiss}{HTML}{C9C7C0}   % missed (neutral, hatched for grayscale)
+\definecolor{cWrong}{HTML}{E34948}  % wrong change / silent wrong
+\definecolor{ink}{HTML}{52514E}     % secondary text, axes
+
+\pgfplotsset{
+  qbar/.style={xbar stacked, bar width=7pt, scale only axis,
+    axis line style={draw=ink!60}, tick style={draw=ink!60},
+    axis x line*=bottom, axis y line*=left, y axis line style={draw=none}, ytick style={draw=none},
+    tick label style={font=\sffamily\scriptsize, text=black},
+    label style={font=\sffamily\scriptsize, text=ink},
+    title style={font=\sffamily\scriptsize\bfseries, yshift=-3pt},
+    xmajorgrids, grid style={draw=ink!15},
+    enlarge y limits={abs=0.55},
+    legend style={font=\sffamily\scriptsize, draw=none, fill=none, column sep=6pt},
+    legend image code/.code={\draw[#1] (0cm,-0.09cm) rectangle (0.32cm,0.09cm);},
+  },
+  gbar/.style={xbar, bar width=4.6pt, scale only axis,
+    axis line style={draw=ink!60}, tick style={draw=ink!60},
+    axis x line*=bottom, axis y line*=left, y axis line style={draw=none}, ytick style={draw=none},
+    tick label style={font=\sffamily\scriptsize, text=black},
+    label style={font=\sffamily\scriptsize, text=ink},
+    title style={font=\sffamily\scriptsize\bfseries, yshift=-2pt},
+    xmajorgrids, grid style={draw=ink!15},
+    enlarge y limits={abs=0.62}, clip=false,
+    point meta=explicit symbolic,
+    nodes near coords, nodes near coords align={horizontal},
+    every node near coord/.append style={font=\sffamily\tiny, text=black, inner sep=1.5pt, anchor=west, rotate=0},
+    legend style={font=\sffamily\scriptsize, draw=none, fill=none, column sep=5pt},
+    legend image code/.code={\draw[#1] (0cm,-0.09cm) rectangle (0.32cm,0.09cm);},
+  },
+  silentbar/.style={fill=cWrong, draw=white, line width=0.4pt},
+  flagbar/.style={fill=cT2, draw=white, line width=0.4pt},
+  brokebar/.style={fill=cMiss, draw=ink!60, line width=0.4pt,
+    postaction={pattern=north east lines, pattern color=ink!55}},
+  fixbar/.style={fill=cFix, draw=white, line width=0.6pt},
+  t2bar/.style={fill=cT2, draw=white, line width=0.6pt},
+  missbar/.style={fill=cMiss, draw=white, line width=0.6pt,
+    postaction={pattern=north east lines, pattern color=ink!55}},
+  dotplot/.style={scale only axis,
+    axis line style={draw=ink!60}, tick style={draw=ink!60},
+    axis x line*=bottom, axis y line*=left, y axis line style={draw=none}, ytick style={draw=none},
+    tick label style={font=\sffamily\scriptsize, text=black},
+    title style={font=\sffamily\scriptsize\bfseries, yshift=-3pt},
+    xmajorgrids, grid style={draw=ink!15}, enlarge y limits={abs=0.5}, clip=false},
+  dotmark/.style={only marks, mark=*, mark size=2.2pt, color=cFix!85!black,
+    mark options={draw=white, line width=0.5pt},
+    error bars/error bar style={line width=0.8pt, color=cFix!85!black},
+    error bars/error mark options={rotate=90, mark size=2pt, line width=0.8pt}},
+}
+\tikzset{
+  inlab/.style={font=\sffamily\scriptsize\bfseries, text=white},
+  darklab/.style={font=\sffamily\scriptsize, text=black},
+  sidelab/.style={font=\sffamily\tiny, text=ink, anchor=west, xshift=2pt},
+  misslab/.style={font=\sffamily\scriptsize, text=black, fill=cMiss, inner sep=1pt, rounded corners=1pt},
+  wronglab/.style={font=\sffamily\scriptsize, text=black, anchor=west, xshift=2pt},
+  vlab/.style={font=\sffamily\tiny, text=ink, above=3.5pt},
+}
+
+\raggedbottom
+\newcommand{\vq}[1]{\textsf{qcore#1}}
+\newcommand{\code}[1]{\texttt{\small #1}}
+\newcommand{\Fail}{\mathcal{F}}
+\newcommand{\Tie}{\mathcal{T}}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\dbltopfraction}{0.9}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.8}
+\renewcommand{\dblfloatpagefraction}{0.8}
+\setlength{\textfloatsep}{10pt plus 2pt minus 2pt}
+\setlength{\dbltextfloatsep}{10pt plus 2pt minus 2pt}
+\setlength{\abovedisplayskip}{4pt plus 1pt minus 1pt}
+\setlength{\belowdisplayskip}{4pt plus 1pt minus 1pt}
+\setlength{\bibsep}{1.5pt}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcommand{\tsize}{\footnotesize\setlength{\tabcolsep}{3.5pt}}
+
+
+
+\renewcommand{\thesection}{S\arabic{section}}
+\counterwithin{table}{section}
+\counterwithin{figure}{section}
+\newcommand{\apptab}[1]{\par\Needspace{22\baselineskip}\medskip\noindent\captionof{table}{#1}}
+
+\title{\Large\bfseries Supplementary material for ``A Cheap Model and a Deterministic Checker: Fewer Silent Errors in Numeric Document Extraction from the Documents' Own Identities''}
+\author{Aarush Yadav\\\texttt{ayadav361@ucla.edu}\and Arihan Yadav\\\texttt{apyadav@wisc.edu}}
+\date{}
+
+\begin{document}
+\maketitle
+\small
+\setlength{\tabcolsep}{5pt}
+\noindent This supplement holds the long per-run listings that the paper's appendix summarises: every run of every frozen version on every held-out set, every paired difference, the development grids, the per-run results of the private-equity case study and the version-by-version record of changes. Section, table and figure numbers prefixed with S are this supplement's; all others refer to the paper. Nothing here is new: each table is the one printed in the previous version of the paper's appendix, generated from the same result files.
+
+\input{supplement_body}
+
+\end{document}

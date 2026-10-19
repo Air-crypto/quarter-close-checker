@@ -1,0 +1,18 @@
+% Cut verbatim from appendix_q7.tex by paper/gen_v10/split_parts.py; do not edit.
+\apptab{Legacy scoring (the rule of every earlier report: $|v-t|\le\max(0.5,10^{-6}|t|)$) on the fresh held-out set: silent errors, \vq{6} / \vq{7}}\label{tab:q7legacy}
+Model alone under this rule: clean 0, low 81, high 278 wrong. Broken counts are the same as under strict scoring.
+\begin{center}\footnotesize
+\begin{tabular}{llrrrr}
+\toprule
+Extraction & Mode & Hand & Discovered & Hand + disc. & Zero-config \\
+\midrule
+clean & text & 0 / 0 & 16 / 0 & 0 / 0 & 8 / 0 \\
+clean & no text & 0 / 0 & 0 / 0 & 0 / 0 & 0 / 0 \\
+low, 1.5\% & text & 4 / 4 & 26 / 8 & 4 / 4 & 20 / 9 \\
+low, 1.5\% & no text & 5 / 5 & 26 / 21 & 5 / 5 & 26 / 21 \\
+high, 5\% & text & 7 / 7 & 63 / 40 & 8 / 6 & 63 / 46 \\
+high, 5\% & no text & 15 / 15 & 151 / 132 & 15 / 15 & 151 / 132 \\
+\bottomrule
+\end{tabular}
+\end{center}
+

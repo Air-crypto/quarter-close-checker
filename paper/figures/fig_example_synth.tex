@@ -1,0 +1,53 @@
+% Figure 2: worked repair, synthetic fund 37 (icsynth, held-out), bad_scan, Claude Haiku, Q1 2025 capital account.
+% (No Opus run on a synthetic fund has a capital-account bend that a check flags: in the held-out
+%  Opus runs every wrong number ties every check it feeds; see paper/heldout2_v2.md.)
+% Sources (all under out/):
+%   synth/fund37/bad_scan/2025 Q1/10 - Capital Account Statement.pdf   (degraded page, 85 dpi; crop rendered
+%       with pdftoppm -r 255 -gray, box (195,1030)-(2007,1166) -> figures/synth_example_crop.png)
+%   synth/fund37/bundle/2025 Q1/10 - Capital Account Statement.pdf     (printed text: ITD unrealized 296,477,
+%       carry -50,939; ITD roll-forward 0 + 710,000 - 40,000 - 1,781 + 0 + 296,477 - 50,939 - 0 = 913,757)
+%   synth/fund37/correct.jsonl   (truth: Q1 ITD unrealized 296,477, carry -50,939; Q2 unrealized QTD 618, ITD 297,095)
+%   v2/synth_models/synth_fund37_haiku/text/records.jsonl  (model values: Q1 ITD unrealized 256,477, carry -10,939,
+%       contributions 710,000, fees -40,000, op. income -1,781, realized 0, distributions 0, closing 913,757;
+%       Q2 unrealized QTD 218, ITD 257,995)
+%   v2/synth_models/synth_fund37_haiku/text/score.json     (errors, outcome "fixed", broke [])
+%   model answer doc01/answer.json printed_text for carry ITD: "Allocation of carried interest -10,939 (low confidence, blurred)"
+%   tier 1 = frozen v2/qclose (qclose.tiers.triage on the records above): events 256,477->296,477, -10,939->-50,939,
+%       218->618, 257,995->297,095 (reason misread, "its own line on the page prints ...");
+%       checks: ca.rollforward_lines.itd@2025-03-31 pass before and after (913,757);
+%       xq.ca.itd_accumulates.unrealized_gain@2025-06-30 fail before (256,695 vs 257,995, diff 1,300), pass after (297,095);
+%       after tier 1 no ca.* or xq.ca.* check fails.
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  font=\sffamily\scriptsize,
+  box/.style={draw=ink, rounded corners=1.5pt, line width=0.5pt, align=left, inner sep=3pt,
+              text width=7.7cm, fill=white},
+  bad/.style={box, draw=cWrong, fill=cWrong!6},
+  good/.style={box, draw=cFix!80!black, fill=cFix!7},
+  step/.style={font=\sffamily\scriptsize\bfseries, text=ink},
+  flow/.style={-{Latex[length=1.6mm,width=1.2mm]}, line width=0.6pt, draw=ink},
+  node distance=3.2pt,
+]
+\node[inner sep=0pt] (img) {\includegraphics[width=8.1cm]{synth_example_crop.png}};
+\node[anchor=north west, font=\sffamily\tiny, text=ink, inner sep=1pt] at ([yshift=-1pt]img.south west)
+  {Q1 2025 capital account, synthetic fund 37, bad\_scan (85 dpi). Columns: ITD, YTD, QTD.};
+\node[box, below=10pt of img] (b1) {%
+  {\bfseries 1 Tier 0 (Haiku).} Unrealized gain ITD $=$ \textbf{256,477};\\ carried interest ITD $=$ $-$10,939.\\
+  \emph{The model's note on the carry entry: ``low confidence, blurred''.}};
+\node[box, below=of b1] (b2) {%
+  {\bfseries 2 Q1 ITD roll-forward ties.} $710{,}000 - \dots + 256{,}477 - 10{,}939 = 913{,}757$ \textcolor{cFix!80!black}{\ding{51}}\\
+  The $-40{,}000$ and $+40{,}000$ cancel, so a check inside the quarter passes.};
+\node[bad, below=of b2] (b3) {%
+  {\bfseries 3 Cross-quarter identity fails.} $u^{\mathrm{ITD}}_{\mathrm{Q2}} = u^{\mathrm{ITD}}_{\mathrm{Q1}} + u^{\mathrm{QTD}}_{\mathrm{Q2}}$:\\
+  $256{,}477 + 218 = 256{,}695 \neq 257{,}995$, \ gap $1{,}300$ \textcolor{cWrong}{\ding{55}}};
+\node[box, below=of b3] (b4) {%
+  {\bfseries 4 Label read.} Each field's own line prints the value: \textbf{296,477} (ITD),\\
+  carry $-$50,939; Q2 unrealized 618 (QTD) and 297,095 (ITD).};
+\node[good, below=of b4] (b5) {%
+  {\bfseries 5 Tier 1 writes the printed values.}\\ $256{,}477 \rightarrow 296{,}477$; \ $-10{,}939 \rightarrow -50{,}939$;\\ Q2: $218 \rightarrow 618$, $257{,}995 \rightarrow 297{,}095$\\
+  $296{,}477 + 618 = 297{,}095$ \textcolor{cFix!80!black}{\ding{51}} \quad roll-forward still $913{,}757$ \textcolor{cFix!80!black}{\ding{51}}\\ every roll-forward and accumulation check on the capital accounts ties};
+\end{tikzpicture}
+\caption{A worked repair on a synthetic fund (held-out fund 37, bad scan, Claude Haiku; frozen v2 checker). The model entered an inception-to-date unrealized gain 40,000 below the printed value and a carried-interest charge 40,000 smaller, so the quarter's roll-forward still ties. The cross-quarter accumulation identity fails, and the fields' printed lines supply a fix that ties it; after tier 1 every roll-forward and accumulation check on the capital accounts ties.}
+\label{fig:example}
+\end{figure}

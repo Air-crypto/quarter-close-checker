@@ -1,0 +1,25 @@
+% Cut verbatim from appendix_q9.tex by paper/gen_v10/split_parts.py; do not edit.
+\apptab{Hand identities: does \vq{9} return \vq{8}'s fixes and tier~2 items? (SEC set~4, run by run)}\label{tab:q9hand}
+\vq{8} and \vq{6} returned the same fixes and tier~2 items in all 12 hand runs. \vq{9} differs only where it reads page text, through change~3 (\code{page.find\_value}, Section~\ref{sec:discover}): counts of fixes and tier~2 items only in \vq{9} or only in \vq{8}, and the change in silent and broken numbers.
+\begin{center}\footnotesize
+\begin{tabular}{llcccccc}
+\toprule
+Model & Mode & Same fixes & Same tier~2 & Fixes only & Tier~2 only & Silent & Broken \\
+ & & & & \vq{9} / \vq{8} & \vq{9} / \vq{8} & \vq{8} $\rightarrow$ \vq{9} & \vq{8} $\rightarrow$ \vq{9} \\
+\midrule
+Haiku & text & yes & no & 0 / 0 & 4 / 0 & 13 $\rightarrow$ 9 & 0 $\rightarrow$ 0 \\
+Haiku & no text & yes & yes & 0 / 0 & 0 / 0 & 67 $\rightarrow$ 67 & 0 $\rightarrow$ 0 \\
+Haiku & OCR docTR & yes & no & 0 / 0 & 5 / 0 & 53 $\rightarrow$ 52 & 1 $\rightarrow$ 1 \\
+Haiku & OCR Tesseract & yes & no & 0 / 0 & 2 / 0 & 39 $\rightarrow$ 39 & 1 $\rightarrow$ 1 \\
+Opus & text & yes & yes & 0 / 0 & 0 / 0 & 0 $\rightarrow$ 0 & 0 $\rightarrow$ 0 \\
+Opus & no text & yes & yes & 0 / 0 & 0 / 0 & 17 $\rightarrow$ 17 & 0 $\rightarrow$ 0 \\
+Opus & OCR docTR & yes & no & 0 / 0 & 4 / 0 & 11 $\rightarrow$ 11 & 0 $\rightarrow$ 0 \\
+Opus & OCR Tesseract & yes & no & 0 / 0 & 1 / 0 & 14 $\rightarrow$ 14 & 0 $\rightarrow$ 0 \\
+GPT & text & no & no & 3 / 0 & 14 / 3 & 26 $\rightarrow$ 15 & 1 $\rightarrow$ 2 \\
+GPT & no text & yes & yes & 0 / 0 & 0 / 0 & 585 $\rightarrow$ 585 & 0 $\rightarrow$ 0 \\
+GPT & OCR docTR & yes & no & 0 / 0 & 3 / 0 & 344 $\rightarrow$ 343 & 0 $\rightarrow$ 0 \\
+GPT & OCR Tesseract & yes & no & 0 / 0 & 1 / 0 & 408 $\rightarrow$ 408 & 0 $\rightarrow$ 0 \\
+\bottomrule
+\end{tabular}
+\end{center}
+

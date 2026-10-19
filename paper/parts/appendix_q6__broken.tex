@@ -1,0 +1,37 @@
+% Cut verbatim from appendix_q6.tex by paper/gen_v10/split_parts.py; do not edit.
+\apptab{Every correct number broken by frozen \vq{6} on held-out data}\label{tab:broken}
+Per-set runs only (pooled rows repeat them). Every break is silent (no tier~2 item names the cell). Reason: the tier~1 operation that made the change. The same cells broken under frozen \vq{5} on the same inputs are not repeated.
+{\scriptsize\setlength{\tabcolsep}{3pt}
+\begin{longtable}{l>{\raggedright\arraybackslash}p{3.3cm}>{\raggedright\arraybackslash}p{7.4cm}rrl}
+\toprule
+Set & Pipeline & Cell (document $|$ concept $|$ period, column) & Truth & Changed to & Reason \\
+\midrule\endhead
+SEC 1 & GPT + \vq{6}, OCR docTR & VZ\_2026-06-30\_cash\_flow | EmployeeBenefitsAndShareBasedCompensationNoncash | 2026-06-30 Six Months Ended June 30, 2026 & 35\,M & 30\,M & misread \\
+SEC 1 & GPT + \vq{6}, OCR docTR & WMT\_2026-07-31\_balance\_sheet | LongTermDebtCurrent | 2026-01-31 January 31, 2026 & 3,542\,M & 4,542\,M & misread \\
+SEC 2 & Haiku + \vq{6}, OCR Tesseract & MCD\_2026-06-30\_cash\_flow | ProceedsFromPaymentsForOtherFinancingActivities | 2025-06-30 Quarters Ended June 30, 2025 & -126\,M & -110\,M & misread \\
+SEC 2 & Haiku + \vq{6} discovered ids, text & MA\_2026-06-30\_balance\_sheet | PropertyPlantAndEquipmentNet | 2026-06-30 June 30, 2026 (in millions, except per share data) & 2,541\,M & 2,756\,M & misread \\
+SEC 2 & Opus + \vq{6}, OCR docTR & HON\_2026-06-30\_cash\_flow | DeferredIncomeTaxesAndTaxCredits | 2025-06-30 Six Months Ended June 30, 2025 (Dollars in millions) & -31\,M & -50\,M & misread \\
+SEC 2 & GPT + \vq{6}, OCR Tesseract & DIS\_2026-06-27\_cash\_flow | IncreaseDecreaseInAccruedIncomeTaxesPayable | 2026-06-27 Nine Months Ended June 27, 2026 & -1,611\,M & -618\,M & misread \\
+SEC 3 & Haiku + \vq{6}, OCR docTR & AES\_2025-12-31\_income\_statement | GeneralAndAdministrativeExpense | 2024-12-31 2024 (in millions, except per share amounts) & -288\,M & -256\,M & misread \\
+SEC 3 & Haiku + \vq{6}, OCR docTR & ETSY\_2026-06-30\_cash\_flow | IncreaseDecreaseInOperatingAssetsNoncurrent | 2026-06-30 Six Months Ended June 30, 2026 & -3.239\,M & -3.25\,M & misread \\
+SEC 3 & Haiku + \vq{6}, OCR Tesseract & EXPD\_2026-06-30\_balance\_sheet | DeferredIncomeTaxLiabilitiesNet | 2025-12-31 December 31, 2025 & 3.04\,M & 4.04\,M & misread \\
+SEC 3 & Haiku + \vq{6}, OCR docTR + Opus re-read & AES\_2025-12-31\_income\_statement | GeneralAndAdministrativeExpense | 2024-12-31 2024 (in millions, except per share amounts) & -288\,M & -256\,M & misread \\
+SEC 3 & Haiku + \vq{6}, OCR docTR + Opus re-read & ETSY\_2026-06-30\_cash\_flow | IncreaseDecreaseInOperatingAssetsNoncurrent | 2026-06-30 Six Months Ended June 30, 2026 & -3.239\,M & -3.25\,M & misread \\
+SEC 3 & GPT + \vq{6}, text & SNA\_2026-01-03\_cash\_flow | AccountsReceivableAndContractReceivableCreditLossExpenseReversal | 2024-12-28 2024 & 22.8\,M & 23.3\,M & wrong\_period \\
+SEC 3 & GPT + \vq{6}, text & SNA\_2026-01-03\_cash\_flow | IncreaseDecreaseInInventories | 2023-12-30 2023 & 23.3\,M & 22.8\,M & wrong\_period \\
+SEC 3 & GPT + \vq{6}, OCR Tesseract & POOL\_2026-06-30\_balance\_sheet | AssetsCurrent | 2025-12-31 December 31, 2025 (Audited) & 1,969.864\,M & 1,968.964\,M & misread \\
+SEC 3 & GPT + \vq{6} hand + discovered ids, text & SNA\_2026-01-03\_cash\_flow | AccountsReceivableAndContractReceivableCreditLossExpenseReversal | 2024-12-28 2024 & 22.8\,M & 23.3\,M & wrong\_period \\
+SEC 3 & GPT + \vq{6} hand + discovered ids, text & SNA\_2026-01-03\_cash\_flow | IncreaseDecreaseInInventories | 2023-12-30 2023 & 23.3\,M & 22.8\,M & wrong\_period \\
+Notes & Haiku + \vq{6}, text & CRM\_2026-07-31\_t036 | DebtInstrumentCarryingAmount | 2026-07-31 Outstanding Principal as of July 31, 2026 & 39,500\,M & 39,288\,M & misread \\
+Notes & Opus + \vq{6}, text & CRM\_2026-07-31\_t036 | DebtInstrumentCarryingAmount | 2026-07-31 Outstanding Principal as of July 31, 2026 & 39,500\,M & 39,288\,M & misread \\
+Notes & GPT + \vq{6}, text & CRM\_2026-07-31\_t036 | DebtInstrumentCarryingAmount | 2026-07-31 Outstanding Principal as of July 31, 2026 & 39,500\,M & 39,288\,M & misread \\
+Synthetic & Haiku + \vq{6} discovered ids, text & public\_stats\_02 | narrative\_count | entity 30-34, 8 quarterly bulletins & 6,527--7,531 & 4,586--5,270 & misread \\
+Synthetic & Haiku + \vq{6} discovered ids, text & public\_stats\_05 | narrative\_count | entity 30-34, 8 quarterly bulletins & 4,697--5,636 & 4,762--5,870 & misread \\
+Synthetic & Haiku + \vq{6} zero-config, text & public\_stats\_05 | narrative\_count | entity 30-34, 8 quarterly bulletins & 4,697--5,636 & 20 & misread \\
+Synthetic & Opus + \vq{6} discovered ids, text & public\_stats\_02 | narrative\_count | entity 30-34, 8 quarterly bulletins & 6,527--7,531 & 4,586--5,270 & misread \\
+Synthetic & Opus + \vq{6} discovered ids, text & public\_stats\_05 | narrative\_count | entity 30-34, 8 quarterly bulletins & 4,697--5,636 & 4,762--5,870 & misread \\
+Synthetic & Opus + \vq{6} zero-config, text & public\_stats\_05 | narrative\_count | entity 30-34, 8 quarterly bulletins & 4,697--5,636 & 20 & misread \\
+\bottomrule
+\end{longtable}}
+Synthetic rows (ranges over the bulletins): the record's entity is the age band `30-34', a digit-only entity; held-out \vq{2} broke the same cells by the label read (Appendix~\ref{app:domains}). The hand identities never let the read through; discovered identities tie it.
+
